@@ -1,0 +1,278 @@
+%
+% File          : wspr.sty
+% Description   : WSPR Lab Latex Macros
+% Last Modified : Feb 3, 2022
+% By            : Brad Reaves
+% NSF Code Based on siis-latex2.sty by Patrick McDaniel
+% 
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{wspr}[2022/02/03 WSPR Lab LaTeX Macros]
+
+% --------------- LaTeX Engine Tweaks --------------
+
+% Make widows and orphans less likely
+\widowpenalty=1000
+\clubpenalty=1000
+
+% ---------------- Common and Helpful Packages ------
+\RequirePackage{etoolbox}
+\AtEndPreamble{%
+    %% Best practice packages 
+    \PassOptionsToPackage{T1}{fontenc}
+    \RequirePackage{fontenc}
+    \RequirePackage{textcomp} % Essential for some reason
+    \PassOptionsToPackage{utf8}{inputenc}% set encoding to UTF-8
+    \RequirePackage{inputenc} 
+    %% Common/helpful packages
+    \RequirePackage{microtype} % Better Kerning
+    \RequirePackage{url} % Better handling of URLs
+    \RequirePackage{hyperref} % Provide clickable links to refs and cites
+    \RequirePackage{xspace} % Used for spaces in custom commands
+    \RequirePackage{caption}
+    \RequirePackage{subcaption}
+    \RequirePackage{comment} % Provide comment environment
+    \PassOptionsToPackage{inline}{enumitem}
+    \RequirePackage{enumitem} % Customizes list environments
+    \PassOptionsToPackage{usenames,dvipsnames}{xcolor}
+    \RequirePackage{xcolor} % Provides color
+}
+
+% --------------- Debug Option--------------------
+%% Use this to debug a file easier
+\DeclareOption{debug}{ % Begin Option
+    \def\WSPRDEBUG {} % True for later definitions
+    \AtEndPreamble{%
+        \PassOptionsToPackage{color,draft}{showkeys} % useful when writing the paper
+        \RequirePackage{showkeys} % useful when writing the paper
+    }
+    \AtBeginDocument{%
+    }
+ } % End Option
+% --------------- Draft Option--------------------
+ %% Use this for building drafts that are easier to edit
+\DeclareOption{draft}{ % Begin Option
+     \def\WSPRDRAFT{} % True for later definitions
+     \AtEndPreamble{%
+        \RequirePackage{todonotes} %provides nice \todo notes in margin
+        \PassOptionsToPackage{l2tabu,orthodox}{nag}
+        \RequirePackage{nag} % detect deprecated use of latex packages and commands
+        \RequirePackage{lineno}
+    } %AtEndPreamble
+    \AtBeginDocument{%
+        \linenumbers % Turn on line numbers
+        \pagestyle{plain} % Turn on page numbers
+    } %AtBeginDocument
+} % End Option
+
+% --------------- Typography Options --------------------
+%% Cuts space between and margin around itemize, enumerate, and
+%% definition environments
+\DeclareOption{tightlists}{ % Begin Option
+     \def\WSPRTLIST{} % True for later definitions
+     \AtEndPreamble{%
+         \setlist{noitemsep,align=left,leftmargin=*,topsep=0pt,parsep=0pt,partopsep=0pt}
+     } %AtEndPreamble
+} % End Option
+
+%% Makes text smaller and at 3/4 spacing in block quotes
+\DeclareOption{tightblockquotes}{ % Begin Option
+     \def\WSPRTBQ{} % True for later definitions
+     \AtEndPreamble{%
+         \RequirePackage{setspace}
+     } %AtEndPreamble
+     \AtBeginEnvironment{quote}{\par\small\setstretch{0.75}}
+} % End Option
+
+% --------------- NSF Formatting --------------------
+
+
+% NSF Proposal Stuff
+\DeclareOption{nsf}{ % Begin Option
+    %% Style-specific packages
+    \def\WSPRNSF{}
+
+    % Require packages
+    \AtEndPreamble{%
+        \RequirePackage{mathpazo} % Palatino for text and math
+    }
+
+    %--NSF Section
+    \newcounter{nsfsection}
+    \setcounter{nsfsection}{1}
+    \renewcommand{\thesection}{\Alph{nsfsection}.\arabic{section}}
+    %\renewcommand{\thesubsection}{\Alph{section}}
+    \newcommand{\nsfsection}[1]{
+    \stepcounter{nsfsection}
+    \noindent
+    {\Large\bf \Alph{nsfsection}.~~~#1}
+    \vspace{-0.6em}
+    \noindent
+    }
+    % Ref Section
+    \renewcommand{\refname}{\stepcounter{nsfsection}\Alph{nsfsection}.~~REFERENCES CITED}
+    % Note
+    \newcommand{\note}[1]{
+    \begin{itemize}
+    \item {\it #1}
+    \end{itemize}
+    }
+    % Future Work
+    \newcommand{\futurework}{
+    \vspace{4pt}
+    \noindent
+    {\it Proposed work} -
+    }
+    % Challenges
+    \newcounter{challenge-section}
+    \setcounter{challenge-section}{1}
+    \newcounter{challenge}
+    \setcounter{challenge}{1}
+    \newcommand{\challenge}[2]{
+    \noindent
+    {\bf Challenge~\arabic{challenge-section}\alph{challenge} -- {\it #1}.}
+    \stepcounter{challenge}
+    #2
+
+    \vspace{6pt}
+    }
+    % ---- Font Sizes ----
+    \newfont{\secfnt}{ptmb at 16pt}
+    \def\secsize{\@setsize\secsize{16pt}\xiipt\@xiipt}
+    %need a 12 pt font size for section and abstract headings
+    \def\section{\@startsection {section}{1}{\z@}{-10\p@ \@plus -4\p@ \@minus -2\p@}%
+    {4\p@}{\secsize\bf}}
+    %need a 11 pt font size for subsection headings
+    \def\subsize{\@setsize\subsize{11pt}\xipt\@xipt}
+    \def\subsection{\@startsection {subsection}{2}{\z@}{-8\p@ \@plus -2\p@ \@minus -\p@}%
+    {4\p@}{\subsize\bf}}
+    % Something to do with subsection
+    \def\subsection{\@startsection {subsection}{2}{\z@}{-8\p@ \@plus -2\p@ \@minus -\p@}%
+    {4\p@}{\subsize\bf}}
+    %
+    \newfont{\subsecfnt}{ptmri at 10pt}
+    \def\subsubsection{\@startsection{subsubsection}{3}{\z@}{-8\p@ \@plus -2\p@ \@minus -\p@}%
+     {4\p@}{\subsecfnt}}
+    %
+    \addtolength{\textfloatsep}{-1.5em}
+
+    % Old Task Macro
+    %\newcounter{taskcounter}
+    %\setcounter{taskcounter}{1}
+    %\newcommand{\task}[1]{
+    %\vspace{6pt}
+    %\noindent
+    %{\bf Task \arabic{taskcounter}}.~({\it #1})
+    %\stepcounter{taskcounter}
+    %}
+    % Thrust and Task Counters
+    \newcounter{thrust}
+    \renewcommand\thethrust{\arabic{thrust}}
+    \newcommand{\thrust}[2]{
+    \refstepcounter{thrust}
+    \label{#2}
+    \subsection{Thrust \thethrust:~ #1}
+    }
+    \newcounter{task}[thrust]
+    \renewcommand\thetask{\thethrust.\arabic{task}}
+    \newcommand{\task}[1]{
+    \refstepcounter{task}
+    \vspace{6pt}
+    \noindent
+    {\bf Task \thetask:~ #1}
+    }
+    \newcommand{\taskpart}[1]{\vspace{4pt}\noindent\textit{#1} --}
+} % End NSF Option
+% ----------------  Catchall Option -----------------
+
+\DeclareOption*{
+  \ClassWarning{myclass}{Unknown option '\CurrentOption'}
+}
+
+\ProcessOptions\relax
+
+% ----------------  Post-option processing  -----------------
+
+ \ifdefined\WSPRDEBUG
+     
+ \fi
+
+% ----------------  Editing macros -----------------
+
+\ifdefined\WSPRDRAFT
+    \providecommand{\notetext}[1]{\textcolor{red}{#1}}
+\else
+    \providecommand{\todo}[1]{} % turn off any todos
+    \providecommand{\notetext}[1]{}
+\fi
+
+\newcommand{\todocite}[1]{\notetext{[#1]}}
+\newcommand{\todoref}[1]{\notetext{[ref:#1}]}
+\newcommand{\todowrite}[1]{\notetext{Write:#1\ldots}}
+\providecommand{\todonum}[1]{\notetext{XXX}}
+
+%todo: generate authors programatically: https://tex.stackexchange.com/questions/145420/dynamically-define-commands/153304
+
+
+% ---------------- Formatting ----------------------
+
+% Useful when you need to scrunch section headings,
+% but be careful of the 'compact' argument if you are submitting
+% a paper, as you will likely violate the template
+%\usepackage[compact,noindentafter]{titlesec}
+%\titlespacing{\section}{0pt}{2ex}{1ex}
+%\titlespacing{\subsection}{0pt}{1ex}{0ex}
+%\titlespacing{\subsubsection}{0pt}{0.5ex}{0ex}
+
+% Replace's Will's custom \myparagraph in a better way
+%\usepackage{titlesec}
+%\titleformat{\paragraph}[runin]{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}[:]
+%\titlespacing*{\paragraph}{0pt}{0.25em}{0.5em}
+% For legacy code
+%\let\myparagraph\paragraph
+
+% Highlight box:
+\newenvironment{boxed}
+    {\begin{center}
+    \begin{tabular}{|>{\centering\arraybackslash}p{0.9\textwidth}|}\hline\vspace{-3mm}\cellcolor{blue!10}}%
+    {\\\hline
+    \end{tabular}
+    \end{center} }
+
+
+
+% Item separator
+\newcommand{\itembase}{\setlength{\itemsep}{-2pt}}
+
+\newcommand{\myparagraph}[1]{\vspace{0em}\noindent\textbf{#1}:}
+\newcommand{\myparagraphi}[1]{\vspace{0em}\noindent\textit{#1}:}
+
+% Finding Counter
+
+\newcounter{paperFindingCounter}
+\newcommand{\paperFinding}[1]{\refstepcounter{paperFindingCounter}\vspace{0em}\noindent\textbf{Finding \arabic{paperFindingCounter}}: \textit{#1}.}
+
+\newcommand{\researchquestion}[1]{\textbf{RQ #1:}}
+\newcommand{\RQ}[1]{\researchquestion{#1}}%helper macro; original command name is too long
+
+\usepackage{seqsplit}
+%Verbatim with word wrapping and hyphen
+%\DeclareTextFontCommand{\ttt}{\ttfamily\lefthyphenmin=0\righthyphenmin=0\hyphenchar\font`\-\relax}
+\newcommand{\ttt}[1]{%
+  \begingroup
+    \protect\renewcommand{\seqinsert}{\ifmmode\allowbreak\else\-\fi}%
+    \protect\texttt{\protect\seqinsert{\protect\seqsplit{\small#1}}}%
+  \endgroup
+}
+\newcommand{\tttscript}[1]{%
+  \begingroup
+    \protect\renewcommand{\seqinsert}{\ifmmode\allowbreak\else\-\fi}%
+    \protect\texttt{\protect\seqinsert{\protect\seqsplit{\scriptsize#1}}}%
+  \endgroup
+}
+\newcommand{\tttfoot}[1]{%
+  \begingroup
+    \protect\renewcommand{\seqinsert}{\ifmmode\allowbreak\else\-\fi}%
+    \protect\texttt{\protect\seqinsert{\protect\seqsplit{\footnotesize#1}}}%
+  \endgroup
+}
