@@ -1,16 +1,32 @@
 \section{Results}
 \label{sec:results}
 \subsection{Javascript APIs}
+
+\input{figures/cloaking_over_time}
+
 \subsubsection{Fingerprinting APIs}{}
+
+
+ 
+\begin{itemize}
+    \item Crypto.getRandomValues jumped from SMA of 20\% to 80\% of the daily traffic (184 domains to 810) February 8th 2024
+    \item The usage of seed APIs used by Su at el. (well know APIs that trackers use) has been steadily decreasing from ~30\% of the daily traffic to 15\%.
+    \input{figures/crypto_api_over_time}
+    
+\end{itemize}
 \subsubsection{MDN API groups over time}{}
 \subsubsection{Experimental APIs and WASM}{}
 \subsubsection{Fingerprintability of Kits}{}
 \subsubsection{Interactive JS logs}{}
 \subsubsection{Client-side cloaking tactics}{}
 \subsubsection{First Party/Third Party embedded/Third Party Scripts}
-\subsubsection{First Party script fragments and inheritence}{}
-\subsubsection{Kit families}{}
+\subsection{Kit families}{}
 \subsubsection{Offline evaluation of detectors}{}
 \subsubsection{Kit fragments and inheritence}{}
+\subsubsection{First Party script fragments and inheritance}{}
 \subsection{Kit detection}
 \subsubsection{Kit detection via javascript}{}
+\section{Case studies}
+\subsection{Open Source client components}
+\subsection{Mobile targets}
+\subsection{Comparison to target pages}{}
