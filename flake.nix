@@ -1,0 +1,87 @@
+{
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-23.11";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+  };
+
+  outputs = inputs@{ self
+    , nixpkgs
+    , nixpkgs-stable
+    , home-manager
+    , ... }:
+  let
+    inherit (nixpkgs) lib;
+    inherit (builtins) readDir attrNames mapAttrs;
+    inherit (lib) const fileContents filterAttrs hasAttr mkIf recursiveUpdate;
+    
+    machines = let
+      getProps = name: let
+        dirPath = ./machines + "/${name}";
+        dirContents = readDir dirPath;
+      in recursiveUpdate {
+        system = "x86_64-linux";
+        files = mapAttrs (file: _: dirPath + "/${file}") dirContents;
+      } (if hasAttr "default.nix" dirContents
+          then import dirPath
+          else {});
+    in mapAttrs (name: _: getProps name) (filterAttrs (k: v: v == "directory") (readDir ./machines));
+
+    mkConfig = name: props: rec {
+      inherit (props) system;
+
+      # Make inputs available as needed
+      specialArgs = {
+        inherit self
+          nixpkgs
+          nixpkgs-stable
+          home-manager;
+      };
+
+      modules = [
+        # Make processed inputs and variables available as needed
+        {
+          _module.args = {
+            hostname = name;
+            upkgs = nixpkgs-stable.legacyPackages.${system};
+          };
+        }
+
+        nixpkgs.nixosModules.notDetected
+
+
+        # Config we want to apply to all systems
+        ({ ... }: {
+          system.configurationRevision = mkIf (self ? rev) self.rev;
+
+          networking.hostName = name;
+        })
+
+
+        # Import this machine's config
+        props.files."configuration.nix"
+      ];
+    };
+
+    nixosConfigurationsRaw = mapAttrs mkConfig (filterAttrs (_: props: hasAttr "configuration.nix" props.files) machines);
+  in {
+    nixosConfigurations = mapAttrs (const lib.nixosSystem) nixosConfigurationsRaw;
+
+    devShell.x86_64-linux = let
+      pkgs = nixpkgs.legacyPackages.x86_64-linux;
+    in pkgs.mkShell {
+      shellHook = ''
+        nix --extra-experimental-features "nix-command flakes" \
+          build -L ".#nixosConfigurations.\"$(hostname)\".config.system.build.toplevel"
+        nix --extra-experimental-features "nix-command flakes" \
+          build --profile /nix/var/nix/profiles/system "$(readlink -f "./result")"
+        nix --extra-experimental-features "nix-command flakes" \
+          shell -vv "$(readlink -f "./result")" -c switch-to-configuration switch
+        [[ -e "./result" ]] && rm result
+      '';
+    };
+  };
+}
