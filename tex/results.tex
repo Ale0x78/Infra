@@ -10,23 +10,72 @@
  
 \begin{itemize}
     \item Crypto.getRandomValues jumped from SMA of 20\% to 80\% of the daily traffic (184 domains to 810) February 8th 2024
-    \item The usage of seed APIs used by Su at el. (well know APIs that trackers use) has been steadily decreasing from ~30\% of the daily traffic to 15\%.
+    \item The usage of seed APIs used by Su at el.\cite{fptechniques-www23} (well know APIs that trackers use) has been steadily decreasing from ~30\% of the daily traffic to 15\%.
     \input{figures/crypto_api_over_time}
-    
+    \input{figures/fp_seed_vs_fp_all}
 \end{itemize}
-\subsubsection{MDN API groups over time}{}
+\subsubsection{MDN API groups}{}
+\begin{itemize}
+    \item We collected \webMDNAPICount{} MDN API categories
+    \item HDBSCAN clustering of MDN API categories over time
+\end{itemize}
 \subsubsection{Experimental APIs and WASM}{}
+\begin{itemize}
+    \item We discover presese of 14 experimental MDN categories
+    \item TODO: Do these categories go up or down over time? 
+    \item We observed using WASM modules for client-side bot detection via captchas
+\end{itemize}
 \subsubsection{Fingerprintability of Kits}{}
+\input{figures/clusters_of_seen_kits}
+\begin{itemize}
+    \item Using a set of MDN API categories as a metric, the mean infra-kit jaccard similarity XX (min: XX std: XX) while the mean intra-kit jaccard similarity was XX (min: XX std: XX)
+    \item TODO: Compresison to real tranco pages
+    \item TODO: Compresison to target pages
+\end{itemize}
 \subsubsection{Interactive JS logs}{}
+\begin{itemize}
+    \item 
+\end{itemize}
 \subsubsection{Client-side cloaking tactics}{}
+\begin{itemize}
+    \item 
+\end{itemize}
 \subsubsection{First Party/Third Party embedded/Third Party Scripts}
 \subsection{Kit families}{}
-\subsubsection{Offline evaluation of detectors}{}
+\begin{itemize}
+    \item 
+\end{itemize}
+\subsubsection{Offline evaluation of detector}{}
+\begin{itemize}
+    \item We evaluate the detector on 70\% of the domains that have a phishing kit attached
+    \item We evaluate it on accuracy and ability to distinguish new kits. TODO THIS IS WHAT WE NEED TO DO
+\end{itemize}
 \subsubsection{Kit fragments and inheritence}{}
+\begin{itemize}
+    \item 
+\end{itemize}
 \subsubsection{First Party script fragments and inheritance}{}
+\begin{itemize}
+    \item Using the SHA hash of scripts, we can detect scripts that some pages emmbed as first party while other load from a third party source.
+    \item 
+\end{itemize}
 \subsection{Kit detection}
 \subsubsection{Kit detection via javascript}{}
+\begin{itemize}
+    \item 
+\end{itemize}
 \section{Case studies}
 \subsection{Open Source client components}
+\begin{itemize}
+    \item Git directories in phishing kits
+    \item Finding OSS components in client-side javascript via Github API
+\end{itemize}
 \subsection{Mobile targets}
+\begin{itemize}
+    \item MDN distribution v. other sources
+    \item APIs specific to mobile devices
+\end{itemize}
 \subsection{Comparison to target pages}{}
+\begin{itemize}
+    \item 
+\end{itemize}

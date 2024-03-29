@@ -1,0 +1,74 @@
+%% =========================
+%% COLORS
+%% =========================
+\definecolor{aoenglish}{rgb}{0.0, 0.5, 0.0}
+
+
+%% =========================
+%% TO-DO COMMANDS
+%% =========================
+\newif\ifsubmit\submittrue
+\ifsubmit
+\newcommand{\textcomment}[1]{}
+\newcommand{\alex}[1]{}
+\else
+\newcommand{\textcomment}[1]{\noindent\textcolor{aoenglish}{\texttt{\textbf{Comment:} #1 \\}}}
+\newcommand{\alex}[1]{\textcolor{purple}{\textbf{Alex:} #1}}
+\fi
+
+\ifsubmit
+\newcommand{\RC}[1]{}
+\else
+\newcommand{\RC}[1]{[\textcolor{blue}{RC~#1}]}
+\fi
+
+\newcommand\encircle[1]{\microtypesetup{disable}\tikz[baseline=(X.base)] \node (X) [draw, shape=circle, inner sep=0em,text width=1em, text centered] {\scriptsize #1};\microtypesetup{enable}}
+
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+
+%% =========================
+%% HELPFUL COMMANDS
+%% =========================
+\newcommand{\code}[1]{\mintinline{javascript}{#1}}
+\newcommand{\greencode}[1]{\textcolor{aoenglish}{\code{#1}}}
+
+
+%% =========================
+%% STRINGS AND ABBREVIATIONS
+%% =========================
+\newcommand{\ie}{\emph{i.e.,}\xspace}
+\newcommand{\eg}{\emph{e.g.,}\xspace}
+\newcommand{\tool}{{\sc Argus}\xspace}
+\newcommand{\systemname}{{\sc Argus}\xspace}
+\newcommand{\toolurl}{\url{https://secureci.org/argus}}
+\newcommand{\pocurl}{\url{https://secureci.org/poc}\xspace}
+\newcommand{\vwurl}{\url{https://poc.secureci.org}\xspace}
+\newcommand{\benchmarkname}{VWBench}
+\newcommand{\gh}{GitHub}
+\newcommand{\gci}{GitHub CI}
+\newcommand{\ghasttool}{{\sc Ghast}\xspace}
+\newcommand{\githubtool}{{\sc GitSec}\xspace}
+\newcommand{\gwchecker}{{\sc Gwchecker}\xspace}
+\newcommand{\actions}{\code{Actions}}
+\newcommand{\action}{\code{Action}}
+\newcommand{\codeql}{{\sc CodeQL}\xspace}
+\newcommand{\vwbench}{{\sc VWBench}\xspace}
+\newcommand{\plugins}{Plugins}
+
+\newcommand{\tbl}[1]{Table~\ref{#1}}
+\newcommand{\sect}[1]{Section~\ref{#1}}
+\newcommand{\fig}[1]{Figure~\ref{#1}}
+\newcommand{\apdx}[1]{Appendix~\ref{#1}}
+\newcommand{\lst}[1]{Listing~\ref{#1}}
+\newcommand{\algo}[1]{Algorithm~\ref{#1}}
+\newcommand{\al}{~\emph{et~al.}}
+\newcommand{\exploitrepo}{\url{https://anonymous.4open.science/r/poc-0B60/}\xspace}
+
+\definecolor{actioninputcolor}{rgb}{1.0, 0.49, 0.0}
+\newcommand{\inputsourceicon}{\textcolor{actioninputcolor}{\faBolt}}
+\newcommand{\taintsourceicon}{\textcolor{red}{\faUserSecret}}
+\newcommand{\taintsinkicon}{\textcolor{red}{\faBomb}}
+\newcommand{\usesvulnerableaction}{\textcolor{red}{\faUnlink}}
+\newcommand{\flowsicon}{\faMailReply}
+\newcommand{\sanitizeicon}{\textcolor{green}{\faLock}}
+\newcommand{\hoticon}{\faFire}
