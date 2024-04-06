@@ -16,7 +16,7 @@
       # ../../dev/git.nix
     ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  networking.hostId = "d5abb711";
+  # networking.hostId = "d5abb711";
   systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
   fileSystems."/" =
     { device = "zpool/root";
