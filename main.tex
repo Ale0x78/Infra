@@ -46,18 +46,17 @@
 %%
 %%
 
-\documentclass[sigconf,natbib=false]{acmart}
+\documentclass[sigconf,natbib=false, dvipsnames]{cls/acmart}
 
 \usepackage{style/wspr}
 \usepackage{tikz}
-\usepackage[dvipsnames]{xcolor}
+% \usepackage[dvipsnames]{xcolor}
 % \usepackage[draft]{style/wspr}
 %%
 %% \BibTeX command to typeset BibTeX logo in the docs
-\AtBeginDocument{%
-  \providecommand\BibTeX{{%
-    Bib\TeX}}}
-
+% \AtBeginDocument{%
+%   \providecommand\BibTeX{{%
+%     Bib\TeX}}}
 %% Rights management information.  This information is sent to you
 %% when you complete the rights form.  These commands have SAMPLE
 %% values in them; it is your responsibility as an author to replace
@@ -69,9 +68,9 @@
 % \acmDOI{XXXXXXX.XXXXXXX}
 
 %% These commands are for a PROCEEDINGS abstract or paper.
-% \acmConference[Conference acronym 'XX]{Make sure to enter the correct
-%   conference title from your rights confirmation emai}{June 03--05,
-%   2018}{Woodstock, NY}
+\acmConference[CCS24]{Make sure to enter the correct
+  conference title from your rights confirmation emai}{June 03--05,
+  2024}{Woodstock, NY}
 %%
 %%  Uncomment \acmBooktitle if the title of the proceedings is different
 %%  from ``Proceedings of ...''!
@@ -154,9 +153,9 @@
 
 \input{tex/introduction.tex}
 \input{tex/background.tex}
-\input{tex/related_work.tex}
 \input{tex/methods.tex}
 \input{tex/results.tex}
+\input{tex/related_work.tex}
 \input{tex/limitations_future_work.tex}
 \input{tex/conclusion.tex}
 %%
