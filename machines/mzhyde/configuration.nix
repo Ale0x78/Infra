@@ -48,6 +48,12 @@
 
   boot.zfs.extraPools = [ "zpool" ];
 
+  # Disable the motherboards's builtin bluetooth
+  # Thanks https://discourse.nixos.org/t/how-to-disable-the-bluetooth-of-my-intel-wifi-card/40407/4
+    # services.udev.extraRules = {
+    # SUBSYSTEM="usb"; ATTR{idVendor}="8087"; ATTR{idProduct}="0a2a"; ATTR{authorized}="0";
+    # };
+
   # networking.hostName = "MzHyde"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -56,6 +62,7 @@
   # Set your time zone.
   time.timeZone = "US/Eastern";
      
+  virtualisation.containers.enable = true;
   virtualisation.libvirtd = {
     enable = true;
     qemu = {
@@ -89,6 +96,7 @@
     pyenv
     rbenv
     nodenv
+    xwaylandvideobridge
     toolbox
     podman
     nvidia-podman

@@ -1,15 +1,14 @@
 { config, lib, pkgs, ... }:
 
 {
-  services.xserver = {
-    enable = true;  
-    displayManager.gdm = {
-      enable = true;  
-      wayland = true; 
-    };
-    desktopManager.gnome.enable = true; 
-  };
+  services.xserver.enable = true;
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
+  services.xserver.desktopManager.gnome.extraGSettingsOverridePackages = [ pkgs.gnome.mutter ];
   sound.enable = true;
+  programs.dconf.enable = true;
+  environment.sessionVariables = { NIXOS_OZONE_WL = "1"; };
+  # services.displayManager.sddm.wayland.enable = true;
   # Enable a bunch of other thinngs
   hardware = {
     steam-hardware.enable = true;

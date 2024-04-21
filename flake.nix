@@ -1,22 +1,26 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-23.11";
+
     home-manager = {
-      url = "github:nix-community/home-manager/release-23.11";
+      url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
   outputs = inputs@{ self
     , nixpkgs
-    , nixpkgs-unstable
+    , nixpkgs-stable
     , home-manager
     , ... }:
   let
+
+    # lib = inputs.nixpkgs.lib;
     inherit (nixpkgs) lib;
     inherit (builtins) readDir attrNames mapAttrs;
     inherit (lib) const fileContents filterAttrs hasAttr mkIf recursiveUpdate;
+
 
     machines = let
       getProps = name: let
@@ -37,7 +41,7 @@
       specialArgs = {
         inherit self
           nixpkgs
-          nixpkgs-unstable
+          nixpkgs-stable
           home-manager;
       };
 
@@ -46,7 +50,7 @@
         {
           _module.args = {
             hostname = name;
-            upkgs = nixpkgs-unstable.legacyPackages.${system};
+            upkgs = nixpkgs-stable.legacyPackages.${system};
           };
         }
 
