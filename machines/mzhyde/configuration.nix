@@ -112,7 +112,6 @@
     obsidian
     qFlipper
     sunshine
-    alacritty
     # cosmic-term
   ];
   # Freaking obsidian making me do this
