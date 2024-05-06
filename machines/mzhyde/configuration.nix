@@ -90,6 +90,7 @@
     nil
     binutils
     coreutils
+    gwe
     rustup
     go
     gopls
