@@ -72,7 +72,6 @@ in
       home.packages = with pkgs; [
             vscode
             firefox
-            brave
             discord
             telegram-desktop
             steam
