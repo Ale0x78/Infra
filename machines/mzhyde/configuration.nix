@@ -14,7 +14,7 @@
       ../../os/gfx.nix
 
       ../../users/alex.nix
-      # ../../dev/git.nix
+      ../../os/python3.nix
     ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   # networking.hostId = "d5abb711";
