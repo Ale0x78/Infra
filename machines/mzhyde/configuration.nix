@@ -29,11 +29,11 @@
       fsType = "zfs";
     };
 
-  fileSystems."/home/alex/libvirt" = 
-  {
-    device = "zpool/libvirt";
-    fsType = "zfs";
-  };
+  # fileSystems."/home/alex/libvirt" = 
+  # {
+  #   device = "zpool/libvirt";
+  #   fsType = "zfs";
+  # };
 
   fileSystems."/var" =
     { device = "zpool/var";

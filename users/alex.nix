@@ -80,6 +80,13 @@ in
             htop
             capitaine-cursors
             gnomeExtensions.forge
+            gnomeExtensions.logo-menu
+            gnomeExtensions.vitals
+            gnomeExtensions.space-bar
+            gnomeExtensions.unite
+            gnomeExtensions.top-bar-organizer
+            brave
+            google-chrome
             autossh
             git
             fish
