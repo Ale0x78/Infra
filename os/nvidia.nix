@@ -1,8 +1,46 @@
 { config, lib, pkgs, ... }:
+# Special thanks to https://astrid.tech/2022/09/22/0/nixos-gpu-vfio/
+# https://alexbakker.me/post/nixos-pci-passthrough-qemu-vfio.html
+# And the arch Wiki
+let
+  # RTX 3090 Ti
+  gpuIDs = [
+    "10de:2204" # Graphics
+    "10de:2204" # Audio
+  ];
+in { pkgs, lib, config, ... }: {
+  options.vfio.enable = with lib;
+    mkEnableOption "Configure the machine for VFIO";
 
+  config = let cfg = config.vfio;
+  in {
+    boot = {
+      initrd.kernelModules = [
+        "vfio_pci"
+        "vfio"
+        "vfio_iommu_type1"
+        "vfio_virqfd"
+
+        "nvidia"
+        "nvidia_modeset"
+        "nvidia_uvm"
+        "nvidia_drm"
+      ];
+
+      kernelParams = [
+        # enable IOMMU
+        "amd_iommu=on"
+      ] ++ lib.optional cfg.enable
+        # isolate the GPU
+        ("vfio-pci.ids=" + lib.concatStringsSep "," gpuIDs);
+    };
+
+    hardware.opengl.enable = true;
+    virtualisation.spiceUSBRedirection.enable = true;
+  };
 ## This is directly from the NixOS wiki
 # https://nixos.wiki/wiki/Nvidia
-{
+
   boot.extraModprobeConfig = "options kvm_intel nested=1";
   services.xserver.videoDrivers = ["nvidia"];
   hardware.nvidia = {
