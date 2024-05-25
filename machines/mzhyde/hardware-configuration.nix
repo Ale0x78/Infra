@@ -15,6 +15,8 @@
   boot.extraModulePackages = [ ];
   boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
 
+  boot.blacklistedKernelModules = ["r8169"];
+
   fileSystems."/" =
     { device = "zpool/root";
       fsType = "zfs";
