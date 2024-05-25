@@ -10,6 +10,15 @@
       pandas
       statsmodels
       scikitlearn
+      pymongo
+      psycopg2
+      plotly
+      torch
+      torchvision
+      torchaudio
+      python-dotenv
+      notebook
+      matplotlib
     ]))
     ];
 }
