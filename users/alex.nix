@@ -71,6 +71,7 @@ in
     home.stateVersion = "23.11";  
       home.packages = with pkgs; [
             vscode
+            lunar-client
             firefox
             discord
             telegram-desktop
@@ -89,7 +90,11 @@ in
             jetbrains.datagrip
             jetbrains.dataspell
             neovide
-            jetbrains-toolbox
+            jetbrains.idea-ultimate
+            jetbrains.goland
+            jetbrains.datagrip
+            jetbrains.dataspell
+            distrobox
             virt-manager
             ticktick
             beeper
