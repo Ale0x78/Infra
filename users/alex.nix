@@ -76,6 +76,8 @@ in
             discord
             telegram-desktop
             steam
+            devpod-desktop
+            gnome.gnome-tweaks
             slack
             htop
             capitaine-cursors
@@ -101,7 +103,8 @@ in
             jetbrains.goland
             jetbrains.datagrip
             jetbrains.dataspell
-            distrobox
+            binutils
+            coreutils
             virt-manager
             ticktick
             beeper

@@ -103,6 +103,7 @@
     pyenv
     rbenv
     nodenv
+    nvfancontrol
     xwaylandvideobridge
     toolbox
     podman
