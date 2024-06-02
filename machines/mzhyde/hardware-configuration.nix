@@ -8,17 +8,6 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" ];
-  boot.initrd.kernelModules = [
-
-        # "nvidia"
-        # "nvidia_modeset"
-        # "nvidia_uvm"
-        # "nouveau"
-        # "nvidia_drm"
-   ];
-  boot.kernelModules = [ "kvm-intel" "vfio-pci"];
-  boot.kernelParams = [ "intel_iommu=on" "pcie_aspm=off"];
   boot.initrd.preDeviceCommands = ''
     DEVS="0000:01:00.0 0000:01:00.1"
     for DEV in $DEVS; do
@@ -26,6 +15,19 @@
     done
     modprobe -i vfio-pci
   '';
+
+  boot.initrd.availableKernelModules = [ "vfio-pci" "xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" "nvidia"];
+  boot.initrd.kernelModules = [
+
+        "nvidia"
+        "nvidia_modeset"
+        "nvidia_uvm"
+        # "nouveau"
+        "nvidia_drm"
+   ];
+  boot.kernelModules = [ "kvm-intel" ];
+  boot.kernelParams = [ "intel_iommu=on" "pcie_aspm=off"];
+
   boot.extraModulePackages = [ ];
   boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
 
