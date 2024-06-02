@@ -72,6 +72,7 @@ in
     home.stateVersion = "23.11";  
       home.packages = with pkgs; [
             vscode
+            looking-glass-client
             blueman
             virt-manager
             lunar-client
