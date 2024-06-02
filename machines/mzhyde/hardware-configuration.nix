@@ -17,8 +17,15 @@
         # "nouveau"
         # "nvidia_drm"
    ];
-  boot.kernelModules = [ "kvm-intel" ];
-  boot.kernelParams = [ "intel_iommu=on" ];
+  boot.kernelModules = [ "kvm-intel" "vfio-pci"];
+  boot.kernelParams = [ "intel_iommu=on" "pcie_aspm=off"];
+  boot.initrd.preDeviceCommands = ''
+    DEVS="0000:01:00.0 0000:01:00.1"
+    for DEV in $DEVS; do
+      echo "vfio-pci" > /sys/bus/pci/devices/$DEV/driver_override
+    done
+    modprobe -i vfio-pci
+  '';
   boot.extraModulePackages = [ ];
   boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
 
