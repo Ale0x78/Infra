@@ -53,6 +53,8 @@
   swapDevices = [ ];
 
   boot.zfs.extraPools = [ "zpool" ];
+    hardware.bluetooth.enable = true; # enables support for Bluetooth
+    hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
 
   # Disable the motherboards's builtin bluetooth
   # Thanks https://discourse.nixos.org/t/how-to-disable-the-bluetooth-of-my-intel-wifi-card/40407/4

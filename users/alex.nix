@@ -5,6 +5,7 @@ mkTuple = lib.gvariant.mkTuple;
 in 
 {
   programs.fish.enable = true;
+  
   home-manager.useGlobalPkgs = true;
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.alex.isNormalUser = true;
@@ -71,6 +72,8 @@ in
     home.stateVersion = "23.11";  
       home.packages = with pkgs; [
             vscode
+            blueman
+            virt-manager
             lunar-client
             firefox
             discord
