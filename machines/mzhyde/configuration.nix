@@ -8,7 +8,7 @@
       home-manager.nixosModules.home-manager
       ../../os/boot.nix
       ../../os/nixos-pkgs.nix
-      # ../../os/nvidia.nix
+      ../../os/nvidia.nix
 
       ../../os/comms.nix
       ../../os/gfx.nix
