@@ -24,6 +24,11 @@
       fsType = "zfs";
     };
 
+  specialisation."VFIO".configuration = {
+    system.nixos.tags = [ "with-vfio" ];
+    vfio.enable = true;
+  };
+
   fileSystems."/nix" =
     { device = "zpool/nix";
       fsType = "zfs";
@@ -111,7 +116,7 @@
     xwaylandvideobridge
     toolbox
     podman
-    nvidia-podman
+    # nvidia-podman
     podman-desktop
     starship
     cowsay
