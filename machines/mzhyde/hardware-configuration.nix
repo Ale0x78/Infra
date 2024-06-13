@@ -13,7 +13,7 @@
    ];
   boot.kernelModules = [ "kvm-intel" "vfio_pci" "vfio_iommu_type1" "vfio"
   ];
-  boot.kernelParams = [ "intel_iommu=on" "pcie_aspm=off"];
+  boot.kernelParams = [ "intel_iommu=on"];
 
   boot.extraModulePackages = [ ];
   boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;

@@ -9,9 +9,10 @@
       ../../os/boot.nix
       ../../os/nixos-pkgs.nix
       ../../os/nvidia.nix
-
+      ../../os/nvidia-pcie-passthrough.nix
       ../../os/comms.nix
       ../../os/gfx.nix
+      ../../os/school.nix
 
       ../../users/alex.nix
       ../../os/python3.nix
@@ -76,23 +77,37 @@
   time.timeZone = "US/Eastern";
      
   virtualisation.containers.enable = true;
-  virtualisation.libvirtd = {
-    enable = true;
-    onBoot = "ignore";
-    onShutdown = "shutdown";
-    qemu = {
-      package = pkgs.qemu_kvm;
-      runAsRoot = false;
-      swtpm.enable = true;
-      ovmf = {
-        enable = true;
-        packages = [(pkgs.OVMF.override {
-          secureBoot = true;
-          tpmSupport = true;
-        }).fd];
-      };
-    };
-  };
+  # virtualisation.libvirtd = {
+  #   enable = true;
+  #   onBoot = "ignore";
+  #   onShutdown = "shutdown";
+  #   qemu = {
+  #     package = pkgs.qemu_kvm;
+  #     runAsRoot = false;
+  #     swtpm.enable = true;
+  #     ovmf = {
+  #       enable = true;
+  #       packages = [(pkgs.OVMF.override {
+  #         secureBoot = true;
+  #         tpmSupport = true;
+  #       }).fd];
+  #     };
+  #   };
+  # };
+
+virtualisation.libvirtd = {
+  enable = true;
+  qemuOvmf = true;
+  qemuRunAsRoot = false;
+  onBoot = "ignore";
+  onShutdown = "shutdown";
+};
+
+  security.pam.loginLimits = [
+
+    { domain = "@kvm"; item = "memlock"; type = "-"   ; value = "unlimited"; }
+    ];
+  
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
