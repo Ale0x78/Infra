@@ -9,7 +9,7 @@
       ../../os/boot.nix
       ../../os/nixos-pkgs.nix
       ../../os/nvidia.nix
-      ../../os/nvidia-pcie-passthrough.nix
+      # ../../os/nvidia-pcie-passthrough.nix
       ../../os/comms.nix
       ../../os/gfx.nix
       ../../os/school.nix
