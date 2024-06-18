@@ -18,7 +18,7 @@
   boot.extraModulePackages = [ ];
   boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
 
-  boot.blacklistedKernelModules = ["r8169" "rtw_8821ce" "nouveau"];
+  boot.blacklistedKernelModules = ["r8169" "rtw_8821ce" "nouveau" "rtw88_8821ce"]; # TODO: There should be an easier way to do this!
 
   swapDevices = [ ];
 
