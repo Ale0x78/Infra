@@ -25,10 +25,10 @@
       fsType = "zfs";
     };
 
-  specialisation."VFIO".configuration = {
-    system.nixos.tags = [ "with-vfio" ];
-    vfio.enable = true;
-  };
+  # specialisation."VFIO".configuration = {
+   # system.nixos.tags = [ "with-vfio" ];
+   # vfio.enable = true;
+  # };
 
   fileSystems."/nix" =
     { device = "zpool/nix";
