@@ -12,6 +12,11 @@ let
 in { pkgs, lib, config, ... }: {
 
 
+  specialisation."VFIO".configuration = {
+   system.nixos.tags = [ "with-vfio" ];
+   vfio.enable = true;
+  };
+
   options.vfio.enable = with lib;
     mkEnableOption "Configure the machine for VFIO";
 
@@ -29,14 +34,9 @@ in { pkgs, lib, config, ... }: {
         "vfio"
         "vfio_iommu_type1"
         "kvm-intel"
-        # "nvidia"
-        # "nvidia_modeset"
-        # "nvidia_uvm"
-        # "nvidia_drm"
       ];
 
       kernelParams = [
-        # enable IOMMU
         "intel_iommu=on"
         "kvm.ignore_msrs=1"
         "kvm.report_ignored_msrs=0"

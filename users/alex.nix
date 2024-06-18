@@ -92,7 +92,6 @@ in
             gnomeExtensions.space-bar
             gnomeExtensions.unite
             gnomeExtensions.top-bar-organizer
-            brave
             google-chrome
             autossh
             git
@@ -111,8 +110,6 @@ in
             binutils
             coreutils
             virt-manager
-            ticktick
-            beeper
             texliveFull
           ];
       programs.git = {

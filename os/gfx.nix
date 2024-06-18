@@ -10,7 +10,6 @@
   sound.enable = true;
   programs.dconf.enable = true;
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
-  # environment.sessionVariables = { NIXOS_OZONE_WL = "1"; };
   services.displayManager.sddm.wayland.enable = true;
   # Enable a bunch of other thinngs
   hardware = {

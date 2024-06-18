@@ -20,26 +20,6 @@
 
   boot.blacklistedKernelModules = ["r8169" "nouveau"];
 
-  fileSystems."/" =
-    { device = "zpool/root";
-      fsType = "zfs";
-    };
-
-  fileSystems."/nix" =
-    { device = "zpool/nix";
-      fsType = "zfs";
-    };
-
-  fileSystems."/var" =
-    { device = "zpool/var";
-      fsType = "zfs";
-    };
-
-  fileSystems."/home" =
-    { device = "zpool/home";
-      fsType = "zfs";
-    };
-
   swapDevices = [ ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking

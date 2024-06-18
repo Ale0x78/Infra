@@ -18,28 +18,16 @@
       ../../os/python3.nix
     ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  # networking.hostId = "d5abb711";
   systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
   fileSystems."/" =
     { device = "zpool/root";
       fsType = "zfs";
     };
 
-  # specialisation."VFIO".configuration = {
-   # system.nixos.tags = [ "with-vfio" ];
-   # vfio.enable = true;
-  # };
-
   fileSystems."/nix" =
     { device = "zpool/nix";
       fsType = "zfs";
     };
-
-  # fileSystems."/home/alex/libvirt" = 
-  # {
-  #   device = "zpool/libvirt";
-  #   fsType = "zfs";
-  # };
 
   fileSystems."/var" =
     { device = "zpool/var";
