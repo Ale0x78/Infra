@@ -117,9 +117,9 @@ virtualisation.libvirtd = {
     nodenv
     nvfancontrol
     xwaylandvideobridge
-    toolbox
+    distrobox
     podman
-    # nvidia-podman
+    nvidia-podman
     podman-desktop
     starship
     cowsay
