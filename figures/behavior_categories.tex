@@ -1,0 +1,16 @@
+\begin{table}[t]
+    
+    \caption{Manual criteria to identify cloaking behavior established by Zhang \etal{}}
+    \resizebox{\columnwidth}{!}{%\centering
+    \begin{tabular}{lc}
+        \toprule
+        Month & \textbf{Number of URLs} \\
+        \midrule
+User-Interactions & \begin{tabular}[c]{@{}l@{}}"UserActivation.*", \\ "MouseEvent.*",\\ "*.onclick", \\ "*.isFocused",\\ "*.requestPermission", \\ "Permissions.*",\\ "Window.matchMedia"\end{tabular} \\
+Fingerprinting    & List of fingerprinting APIs identified by Su \etal{}\todocite{Junha's paper}                                                                                                                                                                          \\
+Bot Behavior      & "Window.sleep", "Crypto.randomBytes"  \\
+        \bottomrule
+    \end{tabular}
+    }
+\label{tab:behaviorcategories}
+\end{table}
