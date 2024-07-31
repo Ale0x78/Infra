@@ -11,12 +11,6 @@ let
   ];
 in { pkgs, lib, config, ... }: {
 
-
-  specialisation."VFIO".configuration = {
-   system.nixos.tags = [ "with-vfio" ];
-   vfio.enable = true;
-  };
-
   options.vfio.enable = with lib;
     mkEnableOption "Configure the machine for VFIO";
 

@@ -9,7 +9,7 @@
       ../../os/boot.nix
       ../../os/nixos-pkgs.nix
       ../../os/nvidia.nix
-      # ../../os/nvidia-pcie-passthrough.nix
+      ../../os/nvidia-pcie-passthrough.nix
       ../../os/comms.nix
       ../../os/gfx.nix
       ../../os/school.nix
@@ -17,6 +17,12 @@
       ../../users/alex.nix
       ../../os/python3.nix
     ];
+
+ 
+  specialisation."VFIO".configuration = {
+   system.nixos.tags = [ "with-vfio" ];
+   vfio.enable = true;
+  };
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
   fileSystems."/" =
@@ -105,7 +111,9 @@
     go
     gopls
     pyenv
+    tailscale
     rbenv
+    usbutils
     nodenv
     nvfancontrol
     xwaylandvideobridge

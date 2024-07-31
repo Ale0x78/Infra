@@ -69,7 +69,7 @@ in
       };
     };
     # nixpkgs.config = import ../os/nixos-pkgs.nix;
-    home.stateVersion = "23.11";  
+    home.stateVersion = "24.05";  
       home.packages = with pkgs; [
             vscode
             sshuttle
@@ -97,7 +97,6 @@ in
             git
             fish
             zsh
-            tailscale
             protonup-qt
             ryujinx
             jetbrains.datagrip
