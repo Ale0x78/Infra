@@ -79,6 +79,7 @@ in
             lunar-client
             firefox
             discord
+            gnome.gnome-bluetooth
             telegram-desktop
             steam
             devpod-desktop
@@ -94,6 +95,7 @@ in
             gnomeExtensions.top-bar-organizer
             google-chrome
             autossh
+            heroic-unwrapped
             git
             fish
             zsh
