@@ -81,6 +81,9 @@ in
             discord
             gnome.gnome-bluetooth
             telegram-desktop
+            krita
+            brave
+            openconnect
             steam
             devpod-desktop
             gnome.gnome-tweaks
@@ -95,7 +98,6 @@ in
             gnomeExtensions.top-bar-organizer
             google-chrome
             autossh
-            heroic-unwrapped
             git
             fish
             zsh

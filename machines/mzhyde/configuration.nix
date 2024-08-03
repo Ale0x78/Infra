@@ -13,7 +13,7 @@
       ../../os/comms.nix
       ../../os/gfx.nix
       ../../os/school.nix
-
+      ../../os/gaming.nix
       ../../users/alex.nix
       ../../os/python3.nix
     ];
@@ -58,9 +58,9 @@
 
   # Disable the motherboards's builtin bluetooth
   # Thanks https://discourse.nixos.org/t/how-to-disable-the-bluetooth-of-my-intel-wifi-card/40407/4
-    # services.udev.extraRules = {
-    # SUBSYSTEM="usb"; ATTR{idVendor}="8087"; ATTR{idProduct}="0a2a"; ATTR{authorized}="0";
-    # };
+    services.udev.extraRules = ''
+      SUBSYSTEM="usb"; ATTR{idVendor}="13d3"; ATTR{idProduct}="3533"; ATTR{authorized}="0";
+    '';
 
   # networking.hostName = "MzHyde"; # Define your hostname.
   # Pick only one of the below networking options.
@@ -112,6 +112,7 @@
     gopls
     pyenv
     tailscale
+    lutris
     rbenv
     usbutils
     nodenv
