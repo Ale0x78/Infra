@@ -79,6 +79,7 @@ in
             firefox
             discord
             gnome.gnome-bluetooth
+            joycond
             telegram-desktop
             krita
             brave
