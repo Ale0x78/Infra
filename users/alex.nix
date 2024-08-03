@@ -100,6 +100,7 @@ in
             autossh
             git
             fish
+            lutris
             zsh
             protonup-qt
             ryujinx
