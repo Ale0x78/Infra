@@ -59,7 +59,7 @@
   # Disable the motherboards's builtin bluetooth
   # Thanks https://discourse.nixos.org/t/how-to-disable-the-bluetooth-of-my-intel-wifi-card/40407/4
     services.udev.extraRules = ''
-      SUBSYSTEM="usb", ATTR{idVendor}="13d3", ATTR{idProduct}="3533", ATTRS{busnum}=="2",  ATTR{authorized}="0";
+      SUBSYSTEM="usb", ATTR{idVendor}="13d3", ATTR{idProduct}="3533", ATTR{authorized}="0";
     '';
 
   # networking.hostName = "MzHyde"; # Define your hostname.
