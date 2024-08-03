@@ -74,7 +74,6 @@ in
             vscode
             sshuttle
             looking-glass-client
-            blueman
             virt-manager
             lunar-client
             firefox
