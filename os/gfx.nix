@@ -15,8 +15,8 @@
   hardware = {
     steam-hardware.enable = true;
     bluetooth.enable = true;
-    pulseaudio.enable = true;
-    pulseaudio.support32Bit = true;
+    pulseaudio.enable = false;
+    # pulseaudio.support32Bit = true;
   };
 
   xdg.portal = {
