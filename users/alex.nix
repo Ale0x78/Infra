@@ -82,6 +82,7 @@ in
             joycond
             telegram-desktop
             krita
+            lanius
             brave
             openconnect
             steam
