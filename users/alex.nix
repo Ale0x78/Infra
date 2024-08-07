@@ -87,7 +87,6 @@ in
             brave
             openconnect
             steam
-            devpod-desktop
             gnome.gnome-tweaks
             slack
             htop
