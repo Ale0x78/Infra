@@ -34,14 +34,12 @@
     nvidiaSettings = false;
 
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
-    package = config.boot.kernelPackages.nvidiaPackages.latest;
-    # package = pkgs.linuxPackages_latest.nvidiaPackages.beta;
+    # package = config.boot.kernelPackages.nvidiaPackages.beta;
+    package = pkgs.linuxPackages_latest.nvidiaPackages.latest;
   };
 
   hardware.opengl = {
     enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
     extraPackages = with pkgs; [nvidia-vaapi-driver];
   };
 }

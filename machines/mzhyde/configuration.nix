@@ -113,7 +113,6 @@
     gopls
     pyenv
     tailscale
-    lutris
     rbenv
     usbutils
     nodenv

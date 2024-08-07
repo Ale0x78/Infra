@@ -7,7 +7,7 @@
   services.xserver.desktopManager.gnome.extraGSettingsOverridePackages = [ pkgs.gnome.mutter ];
   # services.xserver.displayManager.sddm.enable = true;
   # services.xserver.desktopManager.plasma6.enable = true;
-  sound.enable = true;
+  # sound.enable = true;
   programs.dconf.enable = true;
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
   services.displayManager.sddm.wayland.enable = true;

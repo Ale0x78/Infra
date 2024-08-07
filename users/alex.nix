@@ -5,7 +5,9 @@ mkTuple = lib.gvariant.mkTuple;
 in 
 {
   programs.fish.enable = true;
-  
+  # home-manager.extraSpecialArgs = {
+  #   inherit pkgs;
+  # };
   home-manager.useGlobalPkgs = true;
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.alex.isNormalUser = true;
@@ -82,7 +84,6 @@ in
             joycond
             telegram-desktop
             krita
-            lanius
             brave
             openconnect
             steam
