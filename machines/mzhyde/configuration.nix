@@ -120,7 +120,6 @@
     xwaylandvideobridge
     distrobox
     podman
-    nvidia-podman
     podman-desktop
     starship
     cowsay
