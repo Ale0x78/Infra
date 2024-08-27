@@ -128,17 +128,6 @@
     "electron-25.9.0"
   ];
 
-  fonts.packages = with pkgs; [
-    noto-fonts
-    noto-fonts-cjk
-    noto-fonts-emoji
-    liberation_ttf
-    (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono"]; })
-    mplus-outline-fonts.githubRelease
-    dina-font
-    proggyfonts
-    jetbrains-mono
-  ];
 
 
   # Some programs need SUID wrappers, can be configured further or are
