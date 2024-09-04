@@ -6,6 +6,7 @@
       ./hardware-configuration.nix
 
       home-manager.nixosModules.home-manager
+      ../../os/thebasics.nix
       ../../os/nixos-pkgs.nix
       ../../os/nvidia.nix
       ../../os/comms.nix
@@ -87,42 +88,6 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    wget
-    helix
-    neovim
-    nmap
-    nil
-    binutils
-    coreutils
-    gwe
-    rustup
-    go
-    gopls
-    pyenv
-    tailscale
-    rbenv
-    usbutils
-    nodenv
-    nvfancontrol
-    xwaylandvideobridge
-    distrobox
-    podman
-    podman-desktop
-    starship
-    cowsay
-    fortune
-    btop
-    tmux
-    zellij
-    pciutils
-    resilio-sync
-    obsidian
-    qFlipper
-    sunshine
-    # cosmic-term
-  ];
   # Freaking obsidian making me do this
   nixpkgs.config.permittedInsecurePackages = [
     "electron-25.9.0"

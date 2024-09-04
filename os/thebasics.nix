@@ -35,8 +35,7 @@
       qFlipper
       sunshine
       # cosmic-term
-  ];
-
+    ];
   fonts.packages = with pkgs; [
     noto-fonts
     noto-fonts-cjk
