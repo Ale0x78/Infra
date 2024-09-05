@@ -41,35 +41,7 @@ in
 };
 
 
-    dconf.settings = {
-        "org/gnome/desktop/interface".color-scheme = "prefer-dark";
-        "org/gnome/mutter" = {
-          experimental-features = [ "scale-monitor-framebuffer" ];
-        };
 
-      "org/gnome/desktop/interface" = {
-        enable-hot-corners = false;
-        # All the below are installed at the system level
-        # Could instead use `gtk.cursorTheme`, etc. and reference the actual packages
-        cursor-theme = "capitaine-cursors";
-        document-font-name = "Merriweather 11";
-        font-name = "IBM Plex Sans Arabic 11";
-        monospace-font-name = "FiraCode Nerd Font 10";
-      };
-
-      "org/gnome/shell".enabled-extensions = [
-
-      ];
-
-      "com/raggesilver/BlackBox" = {
-        style-preference = mkUint32 2;
-        opacity = mkUint32 87;
-        terminal-padding = mkTuple [(mkUint32 4) (mkUint32 4) (mkUint32 4) (mkUint32 4)];
-        theme-dark = "Pencil Dark";
-        use-sixel = true;
-        floating-controls = true;
-      };
-    };
     # nixpkgs.config = import ../os/nixos-pkgs.nix;
     home.stateVersion = "24.05";  
       home.packages = with pkgs; [
@@ -80,14 +52,14 @@ in
             lunar-client
             firefox
             discord
-            gnome.gnome-bluetooth
+            gnome-bluetooth
             joycond
             telegram-desktop
             krita
             brave
             openconnect
             steam
-            gnome.gnome-tweaks
+            gnome-tweaks
             slack
             htop
             capitaine-cursors
