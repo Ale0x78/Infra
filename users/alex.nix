@@ -62,6 +62,7 @@ in
             gnome-tweaks
             slack
             htop
+            ladybird
             capitaine-cursors
             gnomeExtensions.forge
             gnomeExtensions.logo-menu
