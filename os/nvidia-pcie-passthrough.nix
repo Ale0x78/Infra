@@ -40,7 +40,7 @@ in { pkgs, lib, config, ... }: {
         ("vfio-pci.ids=" + lib.concatStringsSep "," gpuIDs);
     };
 
-    hardware.opengl.enable = true;
+    hardware.graphics.enable = true;
 
     virtualisation.spiceUSBRedirection.enable = true;
   };

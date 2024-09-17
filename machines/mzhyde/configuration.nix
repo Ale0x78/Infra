@@ -18,6 +18,7 @@
       ../../os/gaming.nix
       ../../users/alex.nix
       ../../os/python3.nix
+      ../../os/thebasics.nix
     ];
 
  
@@ -96,62 +97,7 @@
 
     { domain = "@kvm"; item = "memlock"; type = "-"   ; value = "unlimited"; }
     ];
-  
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    wget
-    helix
-    neovim
-    nmap
-    nil
-    binutils
-    coreutils
-    gwe
-    rustup
-    go
-    gopls
-    pyenv
-    tailscale
-    rbenv
-    usbutils
-    nodenv
-    nvfancontrol
-    xwaylandvideobridge
-    distrobox
-    podman
-    podman-desktop
-    starship
-    cowsay
-    fortune
-    btop
-    tmux
-    zellij
-    pciutils
-    resilio-sync
-    obsidian
-    qFlipper
-    sunshine
-    # cosmic-term
-  ];
-  # Freaking obsidian making me do this
-  nixpkgs.config.permittedInsecurePackages = [
-    "electron-25.9.0"
-  ];
-
-  fonts.packages = with pkgs; [
-    noto-fonts
-    noto-fonts-cjk
-    noto-fonts-emoji
-    liberation_ttf
-    (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono"]; })
-    mplus-outline-fonts.githubRelease
-    dina-font
-    proggyfonts
-    jetbrains-mono
-  ];
 
   # This option defines the first version of NixOS you have installed on this particular machine,
   # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
