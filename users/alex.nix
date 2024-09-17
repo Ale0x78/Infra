@@ -94,9 +94,6 @@ in
         enable = true;
         userName  = "Ale0x78";
         userEmail = "anahape@ncsu.edu";
-        extraConfig = {
-          safe.directory = ["/etc/nixos"];
-        };
       };
       programs.fish = {
         enable = true;
