@@ -1,10 +1,11 @@
-{ pkgs, home-manager, lib, ... }:
+{ pkgs, home-manager, lib, catppuccin, ... }:
 let 
 mkUint32 = lib.gvariant.mkUint32;
 mkTuple = lib.gvariant.mkTuple; 
 in 
 {
   programs.fish.enable = true;
+  catppuccin.enable = true;
   # home-manager.extraSpecialArgs = {
   #   inherit pkgs;
   # };
