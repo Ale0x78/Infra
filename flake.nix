@@ -44,6 +44,7 @@
         inherit self
           nixpkgs
           nixpkgs-stable
+          catppuccin
           home-manager;
       };
 
@@ -55,7 +56,7 @@
             upkgs = nixpkgs-stable.legacyPackages.${system};
           };
         }
-
+        catppuccin.nixosModules.catppuccin
         nixpkgs.nixosModules.notDetected
 
 
