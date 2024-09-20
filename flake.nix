@@ -14,6 +14,7 @@
     , nixpkgs
     , nixpkgs-stable
     , home-manager
+    , catppuccin
     , ... }:
   let
 
