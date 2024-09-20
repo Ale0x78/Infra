@@ -19,6 +19,7 @@
       ../../users/alex.nix
       ../../os/python3.nix
       ../../os/thebasics.nix
+      ../../os/localSSH.nix
     ];
 
  

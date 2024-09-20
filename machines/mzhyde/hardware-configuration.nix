@@ -16,7 +16,8 @@
   boot.kernelParams = [ "intel_iommu=on"];
 
   boot.extraModulePackages = [ ];
-  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
+  # boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
+  boot.kernelPackages = pkgs.linuxPackages_6_10;
 
   boot.blacklistedKernelModules = []; # TODO: There should be an easier way to do this!
 
