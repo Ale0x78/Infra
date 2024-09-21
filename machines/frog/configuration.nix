@@ -14,7 +14,7 @@
       ../../os/gnome.nix
       ../../os/school.nix
       ../../os/gaming.nix
-      ../../users/mark.nix
+      ../../users/gilly.nix
       ../../os/python3.nix
       ../../os/thebasics.nix
     ];
