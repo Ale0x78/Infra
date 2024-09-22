@@ -6,7 +6,9 @@ programs.nix-ld.enable = true; # Needed for Heroic launcher
   ];
   services.sunshine.enable = true;
   # programs.lutris.enable = true;
-  
+  environment.systemPackages = [
+    pkgs.ferium
+  ];
   hardware.steam-hardware.enable = true;
   services.sunshine.package = pkgs.sunshine.override {cudaSupport = true;};
   hardware.graphics.enable32Bit = true;

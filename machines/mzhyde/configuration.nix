@@ -13,7 +13,6 @@
       ../../os/comms.nix
       ../../os/gfx.nix
       ../../os/gnome.nix
-      ../../os/gnome.nix
       ../../os/school.nix
       ../../os/gaming.nix
       ../../users/alex.nix

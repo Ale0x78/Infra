@@ -28,8 +28,8 @@ in
         monospace-font-name = "FiraCode Nerd Font 10";
       };
 
-      "org/gnome/shell".enabled-extensions = [
-
+      "org/gnome/shell".enabled-extensions = with pkgs.gnomeExtensions; [
+          caffeine.extensionUuid
       ];
 
       "com/raggesilver/BlackBox" = {

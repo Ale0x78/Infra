@@ -74,6 +74,7 @@ in
             gnomeExtensions.space-bar
             gnomeExtensions.unite
             gnomeExtensions.top-bar-organizer
+            gnomeExtensions.caffeine
             google-chrome
             autossh
             git
