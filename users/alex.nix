@@ -68,13 +68,6 @@ in
             htop
             ladybird
             capitaine-cursors
-            gnomeExtensions.forge
-            gnomeExtensions.logo-menu
-            gnomeExtensions.vitals
-            gnomeExtensions.space-bar
-            gnomeExtensions.unite
-            gnomeExtensions.top-bar-organizer
-            gnomeExtensions.caffeine
             google-chrome
             autossh
             git

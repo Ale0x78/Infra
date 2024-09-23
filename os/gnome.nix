@@ -29,6 +29,12 @@ in
       };
 
       "org/gnome/shell".enabled-extensions = with pkgs.gnomeExtensions; [
+          forge.extensionUuid
+          logo-menu.extensionUuid
+          vitals.extensionUuid
+          space-bar.extensionUuid
+          unite.extensionUuid
+          top-bar-organizer.extensionUuid
           caffeine.extensionUuid
       ];
 
@@ -42,5 +48,14 @@ in
       };
     };
 
+      home.packages = with pkgs.gnomeExtensions; [
+        forge
+        logo-menu
+        vitals
+        space-bar
+        unite
+        top-bar-organizer
+        caffeine
+      ];
   };
 }
