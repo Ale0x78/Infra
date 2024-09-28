@@ -74,10 +74,10 @@ in
     };
 
       home.packages = with pkgs.gnomeExtensions; [
-        forge
-        logo-menu
+        # forge
+        # logo-menu
         vitals
-        space-bar
+        # space-bar
         unite
         top-bar-organizer
         caffeine
