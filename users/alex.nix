@@ -59,8 +59,7 @@ in
             gnome-bluetooth
             joycond
             telegram-desktop
-            krita
-            brave
+            krita     
             openconnect
             steam
             gnome-tweaks
@@ -68,7 +67,6 @@ in
             htop
             ladybird
             capitaine-cursors
-            google-chrome
             autossh
             git
             fish
