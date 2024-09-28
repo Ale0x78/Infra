@@ -9,7 +9,7 @@ in
       enable = true;
       displayManager.gdm.enable = true;
       desktopManager.gnome.enable = true;
-    }
+    };
 
     nixpkgs.overlays = [
       # GNOME 46: triple-buffering-v4-46
