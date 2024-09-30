@@ -8,7 +8,7 @@
       scipy # probably redundant to pandas
       pandas
       statsmodels
-      scikitlearn
+      # scikitlearn
       pymongo
       psycopg2
       plotly
@@ -17,6 +17,7 @@
       torchaudio
       python-dotenv
       notebook
+      jupyter-core
       matplotlib
       seaborn
     ]))

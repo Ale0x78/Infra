@@ -9,6 +9,7 @@ in
       enable = true;
       displayManager.gdm.enable = true;
       desktopManager.gnome.enable = true;
+      desktopManager.gnome.extraGSettingsOverridePackages = [ pkgs.mutter ];
     };
 
     nixpkgs.overlays = [
@@ -76,10 +77,10 @@ in
       home.packages = with pkgs.gnomeExtensions; [
         # forge
         # logo-menu
-        vitals
+        # vitals
         # space-bar
-        unite
-        top-bar-organizer
+        # unite
+        # top-bar-organizer
         caffeine
       ];
   };

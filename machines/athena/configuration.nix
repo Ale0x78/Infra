@@ -12,7 +12,7 @@
       ../../os/nvidia-pcie-passthrough.nix
       ../../os/comms.nix
       ../../os/gfx.nix
-      ../../os/gnome.nix
+      ../../os/kde.nix
       ../../os/school.nix
       ../../os/gaming.nix
       ../../users/alex.nix
