@@ -6,9 +6,9 @@
   # services.xserver.desktopManager.gnome.enable = true;
   # services.xserver.desktopManager.gnome.extraGSettingsOverridePackages = [ pkgs.mutter ];
 
-  # services.xserver.enable = true;
-  # services.displayManager.sddm.enable = true;
-  # services.desktopManager.plasma6.enable = true;
+  services.xserver.enable = true;
+  services.displayManager.sddm.enable = true;
+  services.desktopManager.plasma6.enable = true;
 
   
   # Enable a bunch of other thinngs
@@ -19,14 +19,14 @@
     # pulseaudio.support32Bit = true;
   };
 
-  # xdg.portal = {
-  #   enable = true;
-  #   wlr.enable = true;
-  #   extraPortals = with pkgs; [
-  #     xdg-desktop-portal-gtk
+  xdg.portal = {
+    enable = true;
+    wlr.enable = true;
+    # extraPortals = with pkgs; [
+      # xdg-desktop-portal-gtk
   #     xdg-desktop-portal-gnome
   #   ];
-  # };
+  };
 
 
 

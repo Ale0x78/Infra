@@ -5,7 +5,7 @@ mkTuple = lib.gvariant.mkTuple;
 in 
 {
   programs.fish.enable = true;
-  catppuccin.enable = true;
+  # catppuccin.enable = true;
   # gtk.catppuccin.enable = true;
   # gtk.catppuccin.gnomeShellTheme = true;
   # home-manager.extraSpecialArgs = {
