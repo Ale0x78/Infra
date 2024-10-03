@@ -12,9 +12,9 @@
 
   outputs = inputs@{ self
     , nixpkgs
+    , catppuccin
     , nixpkgs-stable
     , home-manager
-    , catppuccin
     , ... }:
   let
 

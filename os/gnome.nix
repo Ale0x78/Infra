@@ -28,7 +28,7 @@ in
         });
       })
     ];
-    nixpkgs.config.allowAliases = false;
+    # nixpkgs.config.allowAliases = false;
 
     home-manager.users.alex = { pkgs, ...}: {
     nixpkgs = {

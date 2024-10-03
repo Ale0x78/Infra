@@ -5,7 +5,7 @@ mkTuple = lib.gvariant.mkTuple;
 in 
 {
   programs.fish.enable = true;
-  # catppuccin.enable = true;
+
   # gtk.catppuccin.enable = true;
   # gtk.catppuccin.gnomeShellTheme = true;
   # home-manager.extraSpecialArgs = {
@@ -52,12 +52,14 @@ in
             vscode
             sshuttle
             looking-glass-client
+            nixd
             virt-manager
             lunar-client
             firefox
             discord
             gnome-bluetooth
             joycond
+            starship
             telegram-desktop
             krita     
             openconnect
@@ -95,4 +97,10 @@ in
         enable = true;
       };
   };
+
+  # catppuccin.enable = true;
+  # programs.starship = {
+  #   enable = true;
+  #   catppuccin.enable = true;
+  # };
 }
