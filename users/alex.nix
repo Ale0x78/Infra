@@ -49,8 +49,9 @@ in
     # nixpkgs.config = import ../os/nixos-pkgs.nix;
     home.stateVersion = "24.05";  
       home.packages = with pkgs; [
-            vscode
             sshuttle
+            vscode
+            ferium
             looking-glass-client
             nixd
             virt-manager
