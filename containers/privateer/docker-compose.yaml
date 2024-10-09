@@ -1,0 +1,12 @@
+services:
+  privateer:
+    restart: unless-stopped
+  depends_on:
+    - task_queue_broker
+    - database
+  ports:
+    - "127.0.0.1:5901:5901/tcp" # Make sure this is only localhost
+  build:
+    context: .
+    dockerfile: dockerfile
+  image: vv8_crawler_worker

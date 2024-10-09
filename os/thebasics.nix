@@ -6,7 +6,6 @@
       helix
       neovim
       nmap
-      nil
       binutils
       coreutils
       gwe

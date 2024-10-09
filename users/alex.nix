@@ -54,6 +54,8 @@ in
             ferium
             looking-glass-client
             nixd
+            docker-compose
+            podman-compose
             virt-manager
             lunar-client
             firefox
