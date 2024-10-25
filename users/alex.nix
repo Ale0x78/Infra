@@ -52,7 +52,6 @@ in
             sshuttle
             vscode
             ferium
-            looking-glass-client
             nixd
             docker-compose
             podman-compose

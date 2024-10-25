@@ -14,7 +14,7 @@
     # pulseaudio.support32Bit = true;
   };
 
-
+  # programs.river.enable = true;
 
 
 }

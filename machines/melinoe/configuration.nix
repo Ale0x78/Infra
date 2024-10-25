@@ -11,10 +11,13 @@
       ../../os/nvidia.nix
       ../../os/comms.nix
       ../../os/gfx.nix
+      ../../os/gnome.nix
+      # ../../os/kde.nix
       ../../os/school.nix
       ../../os/gaming.nix
       ../../users/alex.nix
       ../../os/python3.nix
+      ../../os/localSSH.nix
     ];
 
   # Bootloader.
