@@ -69,7 +69,6 @@ in
             gnome-tweaks
             slack
             htop
-            ladybird
             capitaine-cursors
             autossh
             git
