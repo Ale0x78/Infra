@@ -58,7 +58,7 @@
   swapDevices = [{
     device = "/dev/disk/by-label/swap";
   }];
-  zramSwap.enable = true;
+  # zramSwap.enable = true;
 
   boot.zfs.extraPools = [ "zpool" ];
     hardware.bluetooth.enable = true; # enables support for Bluetooth
