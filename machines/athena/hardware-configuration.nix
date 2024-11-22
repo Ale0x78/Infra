@@ -16,11 +16,11 @@
   boot.kernelParams = [ "intel_iommu=on"];
 
   boot.extraModulePackages = [ ];
-  # boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
-  boot.kernelPackages = pkgs.linuxPackages_6_11;
+  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
+  # boot.kernelPackages = pkgs.linuxPackages_6_11;
 
   boot.blacklistedKernelModules = [];
-
+  boot.zfs.package = pkgs.zfs_unstable;
   swapDevices = [ ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
