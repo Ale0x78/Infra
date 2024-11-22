@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-programs.nix-ld.enable = true; # Needed for Heroic launcher 
+programs.nix-ld.enable = true; # Needed for Heroic launcher
   programs.nix-ld.libraries = with pkgs; [
   ];
   # services.sunshine.enable = true;
@@ -28,6 +28,14 @@ programs.nix-ld.enable = true; # Needed for Heroic launcher
     # dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
     # localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
   };
+
+  security.wrappers.sunshine = {
+    owner = "root";
+    group = "root";
+    capabilities = "cap_sys_admin+p";
+    source = "${pkgs.sunshine}/bin/sunshine";
+  };
+
   # services.sunshine = {
   #   enable = true;
   #   autoStart = true;

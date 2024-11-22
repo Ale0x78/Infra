@@ -2,7 +2,6 @@
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "nixpkgs/nixos-24.05";
-    catppuccin.url = "github:catppuccin/nix";
 
     home-manager = {
       url = "github:nix-community/home-manager/master";
@@ -12,7 +11,6 @@
 
   outputs = inputs@{ self
     , nixpkgs
-    , catppuccin
     , nixpkgs-stable
     , home-manager
     , ... }:
@@ -44,7 +42,6 @@
         inherit self
           nixpkgs
           nixpkgs-stable
-          catppuccin
           home-manager;
       };
 
@@ -56,7 +53,6 @@
             upkgs = nixpkgs-stable.legacyPackages.${system};
           };
         }
-        catppuccin.nixosModules.catppuccin
         nixpkgs.nixosModules.notDetected
 
 

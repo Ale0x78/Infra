@@ -19,11 +19,11 @@
       ../../users/alex.nix
       ../../os/python3.nix
       ../../os/thebasics.nix
-      # ../../os/localSSH.nix
+      ../../os/localSSH.nix
       ../../os/virtual.nix
     ];
 
- 
+
   specialisation."VFIO".configuration = {
    system.nixos.tags = [ "with-vfio" ];
    vfio.enable = true;
@@ -55,7 +55,10 @@
       fsType = "vfat";
     };
 
-  swapDevices = [ ];
+  swapDevices = [{
+    device = "/dev/disk/by-label/swap";
+  }];
+  zramSwap.enable = true;
 
   boot.zfs.extraPools = [ "zpool" ];
     hardware.bluetooth.enable = true; # enables support for Bluetooth
@@ -75,7 +78,7 @@
 
   # Set your time zone.
   time.timeZone = "US/Eastern";
-     
+
 
 
 

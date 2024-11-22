@@ -1,22 +1,17 @@
-{ pkgs, home-manager, lib, catppuccin, ... }:
-let 
+{ pkgs, home-manager, lib, ... }:
+let
 mkUint32 = lib.gvariant.mkUint32;
-mkTuple = lib.gvariant.mkTuple; 
-in 
+mkTuple = lib.gvariant.mkTuple;
+in
 {
   programs.fish.enable = true;
 
-  # gtk.catppuccin.enable = true;
-  # gtk.catppuccin.gnomeShellTheme = true;
-  # home-manager.extraSpecialArgs = {
-  #   inherit pkgs;
-  # };
   home-manager.useGlobalPkgs = true;
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.alex.isNormalUser = true;
   users.users.alex = {
     shell = pkgs.fish;
-    extraGroups = [   
+    extraGroups = [
       "wheel"
       "networkmanager" # this is actually in the nixos documentation on networkmanager
       "video"
@@ -35,7 +30,6 @@ in
     }
   ];
   home-manager.users.alex = { pkgs, ...}: {
-    imports = [catppuccin.homeManagerModules.catppuccin];
     nixpkgs = {
       config = {
         allowUnfree = true;
@@ -47,9 +41,10 @@ in
 
 
     # nixpkgs.config = import ../os/nixos-pkgs.nix;
-    home.stateVersion = "24.05";  
+    home.stateVersion = "24.05";
       home.packages = with pkgs; [
             sshuttle
+            zed-editor
             vscode
             ferium
             nixd
@@ -63,7 +58,7 @@ in
             joycond
             starship
             telegram-desktop
-            krita     
+            krita
             openconnect
             steam
             gnome-tweaks
@@ -99,9 +94,4 @@ in
       };
   };
 
-  # catppuccin.enable = true;
-  # programs.starship = {
-  #   enable = true;
-  #   catppuccin.enable = true;
-  # };
 }
