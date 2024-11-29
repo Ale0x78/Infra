@@ -1,8 +1,8 @@
 { pkgs, home-manager, lib, ... }:
-let 
+let
 mkUint32 = lib.gvariant.mkUint32;
-mkTuple = lib.gvariant.mkTuple; 
-in 
+mkTuple = lib.gvariant.mkTuple;
+in
 {
     programs.dconf.enable = true;
     services.xserver = {
@@ -11,25 +11,25 @@ in
       desktopManager.gnome.enable = true;
       desktopManager.gnome.extraGSettingsOverridePackages = [ pkgs.mutter ];
     };
+    environment.systemPackages = with pkgs; [
+      pkgs.gnome-tweaks
+    ];
   # services.xserver.desktopManager.gnome.extraGSettingsOverridePackages = [ pkgs.mutter ];
 
     # nixpkgs.overlays = [
-    #   # GNOME 46: triple-buffering-v4-46
+    #   # GNOME 47: triple-buffering-v4-47
     #   (final: prev: {
-    #     gnome = prev.gnome.overrideScope (gnomeFinal: gnomePrev: {
-    #       mutter = gnomePrev.mutter.overrideAttrs (old: {
-    #         src = pkgs.fetchFromGitLab  {
-    #           domain = "gitlab.gnome.org";
-    #           owner = "vanvugt";
-    #           repo = "mutter";
-    #           rev = "triple-buffering-v4-46";
-    #           hash = "sha256-fkPjB/5DPBX06t7yj0Rb3UEuu5b9mu3aS+jhH18+lpI=";
-    #         };
-    #       });
+    #     mutter = prev.mutter.overrideAttrs (old: {
+    #       src = pkgs.fetchFromGitLab  {
+    #         domain = "gitlab.gnome.org";
+    #         owner = "vanvugt";
+    #         repo = "mutter";
+    #         rev = "triple-buffering-v4-47";
+    #         hash = "sha256-JaqJvbuIAFDKJ3y/8j/7hZ+/Eqru+Mm1d3EvjfmCcug=";
+    #       };
     #     });
     #   })
     # ];
-    # # nixpkgs.config.allowAliases = false;
 
     home-manager.users.alex = { pkgs, ...}: {
     nixpkgs = {
@@ -77,8 +77,8 @@ in
 
       home.packages = with pkgs.gnomeExtensions; [
         # forge
-        # logo-menu
-        # vitals
+        logo-menu
+        vitals
         # space-bar
         # unite
         # top-bar-organizer

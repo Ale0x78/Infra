@@ -8,14 +8,17 @@
       nmap
       binutils
       coreutils
+      cmake
       gwe
       rustup
+      wl-clipboard
       go
       gopls
       pyenv
       tailscale
       rbenv
       usbutils
+      signal-desktop
       nodenv
       nvfancontrol
       xwaylandvideobridge
@@ -23,6 +26,7 @@
       podman
       podman-desktop
       starship
+      alacritty
       cowsay
       fortune
       btop

@@ -38,8 +38,41 @@
     # package = config.boot.kernelPackages.nvidiaPackages.beta;
   };
 
-  hardware.graphics = {
-    enable = true;
-    extraPackages = with pkgs; [nvidia-vaapi-driver];
+
+
+
+  # Direct Rendering Infrastructure (DRI) support, both for 32-bit and 64-bit, and 
+  # Make sure opengl is enabled
+  hardware = {
+    graphics = {
+      enable = true;
+      enable32Bit = true;
+      # Install additional packages that improve graphics performance and compatibility.
+      extraPackages = with pkgs; [
+
+        intel-media-driver # LIBVA_DRIVER_NAME=iHD
+        vaapiIntel # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
+        vaapiVdpau
+        libvdpau-va-gl
+        vulkan-validation-layers
+
+      ];
+    };
   };
+
+
+  environment.variables = {
+    GBM_BACKEND = "nvidia-drm";
+    LIBVA_DRIVER_NAME = "nvidia";
+    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+  };
+
+  environment.systemPackages = with pkgs; [
+
+    clinfo
+    virtualglLib
+    vulkan-loader
+    vulkan-tools
+
+  ];
 }
