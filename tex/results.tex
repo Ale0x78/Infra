@@ -1,54 +1,41 @@
 \section{Results}
 \label{sec:results}
-% \subsection{Emerging Browser APIs}
 
-
-
-% \subsection{Modern Web APIs in phishing}
-% \subsection{First-party script analysis}
-% \subsubsection{Cloaking, Data exfiltration, and imitation}
-% \subsubsection{API association}
-% \subsubsection{Experimental MDN APIs and adoption}
-% \subsubsection{WASM usage}
-% \subsection{Fingerprinting API usage}
-% \subsection{Phishing page v. target pages}
-% \subsection{Browser API usage between feeds}
-% \subsubsection{Clustering and kit isolation}
 
 \subsection{General browser API Trends}
-\paperFinding{We observe a changing pattern in browser API usage in phishing bages, identifying overall increases and decreases in APIs, but also isolating spikes and dips within the dataset}
+\paperFinding{We observe a changing pattern in browser API usage in phishing badges, identifying overall increases and decreases in APIs, but also isolating spikes and dips within the dataset}
 
 \begin{itemize}
     \item We only see a decrease in \textit{Privacy Sandbox related API calls}
-    \item Looking at individual API calls in scripts, we see that the most common apis introduced are fingerprinting APIs. \todowrite{Also, window.fetchLater is not an IDL api}
-    \item Looking at MDN categories we see that a mixture of fingerprinting APIs, and network IO apis are being introduced, while also seeing a pattern of File API usage in phishing \todowrite{This is not just file.blob right?}
-    \item Looking at a spike pattern we see a unique selection of fingerprinting and network IO APIs. 
-    \item The top APIs that we see a dip in are Plugin related, which is not deprecated according to MDN, however we do see their usage resurface \todowrite{This might need a deeper dive into, why. Do we have kits on them?}
-    \item \textbf{Why do we care?} This shows that you need to keep an updated list of browser API behavior because we don't see the same 100 APIs through! \todowrite{Can we expand on this by also showing the APIs that show up in all the pages? Should this just go into a discussion?} 
+    \item Looking at individual API calls in scripts, we see that the most common APIs introduced are fingerprinting APIs. 
+    \item Looking at MDN categories, we see that a mixture of fingerprinting APIs and network IO APIs are being introduced while also seeing a pattern of File API usage in phishing.
+    \item Looking at a spike pattern, we see a unique selection of fingerprinting and network IO APIs. 
+    \item The top APIs we see a dip in are plugin-related, which is not deprecated according to MDN. However, we see their usage resurface \todowrite{This might need a deeper dive into why. Do we have kits on them?}
+    \item \textbf{Why do we care?} This shows that you need to keep an updated list of browser API behavior because we don't see the same 100 APIs through! \todowrite{Can we expand on this by also showing the APIs on all the pages? Should this go into a discussion?} 
     
 \end{itemize}
 
 \paperFinding{We find that \uicloackingprecent{} of the total urls sampled use some form of User-interaction API that was classified in Crawlphish}
 
 \begin{itemize}
-    \item Overall fingerprinting APIs are much more popular.
-    \item There is still a pattern with requesting Notifications in these pages
-    \item Most of this behavior ix XXXX party \todowrite{This section requres new experiments}
+    \item Overall, fingerprinting APIs are much more popular.
+    \item There is still a pattern of requesting Notifications on these pages
+    \item Most of this behavior ix XXXX party \todowrite{This section requires new experiments}
 \end{itemize}
-\todowrite{Natural question that follows is... seasonality?}
+\todowrite{The natural question that follows is... seasonality?}
 
 
 
 
-\paperFinding{We find that phishing pages adapt experimental browser APIs, specifically we observe 141,702 domains that use at least one browser API marked experimental}
+\paperFinding{We find that phishing pages adapt experimental browser APIs. Specifically, we observe 141,702 domains that use at least one browser API marked experimental}
 \begin{itemize}
     \item The most common APIs are UA Client Histes, followed by Network information, and WebGPU. (all fingerprinting)
-    \item Speculation Rules API makes an appearence, and is very rare in tranco top websites! We see one API appear in phishing that is not found in the wild yet. \todowrite{Have you considered... time of crawling}
+    \item Speculation Rules API appears and is rare in tranco top websites! One API appears in phishing that has not been found in the wild yet. \todowrite{Have you considered... time of crawling}
 \end{itemize}
-\paperFinding{The difference between a phishing page and the page they are impersenating is most then just fingerprinting ones}
+\paperFinding{The difference between a phishing page and the page they are impersonating is more than just fingerprinting ones}
 \begin{itemize}
-    \item On average, out of the 24 traget pages we looked at, there are more then 40 API calls that show up in the phishing version, that are not in the home page (and login if applicable) for the brand. 
-    \item On the scale of individual APIs, these differences are not just fingerprinting related, but also include DOM related calls, as well as networking related calls. From the point of view of just top APIs that are different, common APIs that we see in phishing are redirection, fingerprinting, and DOM manipulation.
+    \item On average, out of the 24 target pages we looked at, more than 40 API calls show up in the phishing version that are not on the home page (and login, if applicable) for the brand. 
+    \item On the scale of individual APIs, these differences are not just fingerprinting-related but also include DOM-related and networking-related calls. From the point of view of just top APIs that are different, common APIs that we see in phishing are redirection, fingerprinting, and DOM manipulation.
 \end{itemize}
 \input{figures/wasm_counts}
 \paperFinding{2,512 of phishing urls load a WASM module}
@@ -60,29 +47,31 @@
 
 \subsection{Phishing specific behavior}
 
-\paperFinding{We find that \precentNonDeterm{} of the scripts loaded from phishing pages exhibit non-determenistic behavior} On average, \todowrite{I took shit notes on this w/o units, these numbers need to be double checked} 49 API calls differ between executions of the same script hash ($\sigma{}=120.5$). The average number of APIs executed per script is around 62 distinct browser APIs. We present the MDN categorization of these APIs in Table-\ref{tab:sameScriptDiffAPI_MDN}.
+\paperFinding{We find that \precentNonDeterm{} of the scripts loaded from phishing pages exhibit non-deterministic behavior} On average, \todowrite{I took shit notes on this w/o units, these numbers need to be double checked} 49 API calls differ between executions of the same script hash ($\sigma{}=120.5$). The average number of APIs executed per script is around 62 distinct browser APIs. We present the MDN categorization of these APIs in Table-\ref{tab:sameScriptDiffAPI_MDN}.
 \input{figures/sameScriptDiffAPI_MDN}
-\input{main}
-\paperFinding{Most common behavior in first party scripts found in phishing pages is DOM manipulation, followed by fingerprinting, and network IO}
+\paperFinding{Most common behavior in first-party scripts found in phishing pages is DOM manipulation, followed by fingerprinting and network IO}
 
 \begin{itemize}
-    \item Most first party scripts do not eval anything. However 2.5\% \todowrite{This needs to be double checked}, do eval. Most common APIs that are hidden behind an eval are XXX, XXX. \todowrite{This}
-    \item We see 5,374 distinct browser APIs that show up in first party scripts more then 1000 times.
+    \item Most first-party scripts do not evaluate anything. However, 1.6\%  do eval.
+    \item Top APIs behind 1 level of evals are network IO related APIs, like "XMLHttpRequest.setRequestHeader", "Response.json", or cloaking-related APIs like "Window.location" and "Window.addEventListner"
+    \item browser APIs behind two levels of evil are mostly fingerprinting APIs with the exception of "TrustedTypePolicy.createScript" which is usually used in conjunction with scripts that call eval, and creating same origin Documents, and inserting DOM elements. 
+    \item Browser APIs were mostly DOM API calls behind 3,4 or 5 levels. 
+    \item We see 5,374 distinct browser APIs in first-party scripts more than 1000 times.
 \end{itemize}
 
-\paperFinding{We find fingerprinting APIs that appear in some of our feeds but not other}
+\paperFinding{We find fingerprinting APIs that appear in some of our feeds but not others}
 \begin{itemize}
-    \item This point to phishing pages potential fingerprinting some feeds
+    \item This points to phishing pages potentially fingerprinting some feeds
     \item Some creative use of Encoding API 
     \item \todowrite{WAIT THIS HAD WEBGPU STUFF LAST RUN?}
 \end{itemize}
 
 
 
-\paperFinding{We find that when it comes to network IO, XXX\% of phishing pages exfiltrate data using javascript, and the most commonly use XXX, XXX, and XXX API calls for it}
-\todowrite{This}
+\paperFinding{We find that when it comes to network IO, 1401.59 pages per day use XMLHttp for network io, 947.20/day use "Window.fetch", 860.07/day use "Navigator.sendBeacon," 7.01/day use TRCPeerConnection}
 
-\paperFinding{We find XXXX, and XXXX Apis were used to redirect the user using client-side javascript in XXX urls}
+
+\paperFinding{We find XXXX and XXXX AIPs were used to redirect the user using client-side javascript in XXX urls}
 
 \subsection{Detection}
 \todowrite{Wishlist!}

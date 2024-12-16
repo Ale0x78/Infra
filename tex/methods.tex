@@ -14,7 +14,7 @@ Our data collecting has a diverse set of techniques just at the deployment stage
 \todowrite{Table of top hostnames for scripts...}
 \subsection{Data post processing}
 
-VisibleV8 comes with built in post-processors that are able to isolate browser API calls per origin that they are called in, and the url of the script executing (in case of a script embedded in the HTML, the origin is the script url).
+VisibleV8 comes with built-in post-processors that can isolate browser API calls per origin that they are called in and the URL of the script executing (in the case of a script embedded in the HTML, the origin of is the script URL).
 
 \subsection{Analysis}
 
@@ -22,15 +22,15 @@ The provided log processors can handle isolating the browser APIs calls per orig
 
 \subsubsection{MDN APIs}
 
-Mozilla Developer Center's Web Docs \todocite{MDN}, is documentation on different browser APIs that can be used in the modern web. The documentation breaks down the APIs into \mdncategorytotal{} categories. They also label if an API category is classified as experimental, for example the Barcode Detection API. 
+Mozilla Developer Center's Web Docs \todocite{MDN}, is documentation on different browser APIs that can be used in the modern web. The documentation breaks down the APIs into \mdncategorytotal{} categories. They also label if an API category is classified as experimental, for example, the Barcode Detection API. 
 
 \subsubsection{Classifying Temporal behavior}
 
-We describe API behavior to either be an increase, decrease, dip (a decrease followed by an increase), or a spike (an increase followed by a decrease).
+We describe API behavior as an increase, decrease, dip (a decrease followed by an increase), or a spike (an increase followed by a decrease).
 
-We first isolate out 3,978 browser APIs that show up at least in 100 web pages, we use change point detection to identify the different sections within a time series of each API. For change point detection use use ruptures\todocite{ruptures}. We use an L1 cost function along with a Linearly penalized segmentation algorithm to find segmentation point of a deviation in the median.\todowrite{L2 (Change to the mean) makes more sense, no?}
+We first isolate out 3,978 browser APIs that show up at least in 100 web pages, we use change point detection to identify the different sections within a time series of each API. For change point detection use use ruptures\todocite{ruptures}. We use an L1 cost function along with a Linearly penalized segmentation algorithm to find the median's segmentation point of a deviation.\
 
-To filter out noise results, we only consider APIs that have at least 2 but no more then 5 segments.
+To filter out noise results, we only consider APIs with at least 2 but no more than 5 segments.
 
 \subsubsection{Cloaking identification}
 
