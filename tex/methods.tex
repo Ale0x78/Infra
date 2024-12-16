@@ -1,16 +1,20 @@
 \section{Methodology}
 \label{sec:methods}
-
+\subsection{Crawling infrastructure}
+\subsection{Data enrichment}
+\todowrite{isolating First party scripts, browser specific APIs w/ IDL, MDN categories}
+\subsection{Identifying trends }
+\subsection{Identifying kits}
 
 
 % % \input{figures/infra}
 % \subsection{Phishing Feeds and crawling}
 
-% We monitor Phishtank\todocite{PhishTank}, OpenPhish\todocite{OpenPhish}, PhishingDB\todocite{PhishingDB}, APWG\todocite{APWG}, and list of phishing urls from sms gateways\todocite{us or just drop this?}. 
+% We monitor Phishtank\todocite{PhishTank}, OpenPhish\todocite{OpenPhish}, PhishingDB\todocite{PhishingDB}, APWG\todocite{APWG}, and list of phishing urls from sms gateways\todocite{us or just drop this?}.
 
 % We crawled the pages ever 2 hours, using a automated crawler powered by the VisibleV8\todocite{VV8} patches.
 
-% The crawler gives us insight into all javascript method calls, and property accesses, that we filter down to browser API call using the chrome idl data. 
+% The crawler gives us insight into all javascript method calls, and property accesses, that we filter down to browser API call using the chrome idl data.
 
 % Our data collecting has a diverse set of techniques just at the deployment stage! docs has power-points that you have to click through to get to the page, we see a lot of blogspot, and scripts are hosted all over the place, including other phishing pages.
 
@@ -25,7 +29,7 @@
 
 % \subsubsection{MDN APIs}
 
-% Mozilla Developer Center's Web Docs \todocite{MDN}, is documentation on different browser APIs that can be used in the modern web. The documentation breaks down the APIs into \mdncategorytotal{} categories. They also label if an API category is classified as experimental, for example, the Barcode Detection API. 
+% Mozilla Developer Center's Web Docs \todocite{MDN}, is documentation on different browser APIs that can be used in the modern web. The documentation breaks down the APIs into \mdncategorytotal{} categories. They also label if an API category is classified as experimental, for example, the Barcode Detection API.
 
 % \subsubsection{Classifying Temporal behavior}
 
@@ -49,4 +53,3 @@
 % \input{figures/behavior_categories}
 
 % We hand created a criteria for API to match the categories of cloaking behavior classified in Crawlphish by Zhang. \etal{}\todocite{crawlphish}. We describe the criteria for every categories for Table-\ref{tab:behaviorcategories}.
-
