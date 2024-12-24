@@ -1,12 +1,30 @@
 \section{Methodology (1 page)}
 \label{sec:methods}
 \subsection{Crawling infrastructure}
+We injest records from OpenPhish, PhishTank, APWG, and PhishingDB. For a portion of the time perioud we also recive pages from a dataset of mobile specific phishing pages from Nahapetyan \etal{} and URLScan.
+
+We crawl the pages every 2 hours, using a automated crawler powered by the VisibleV8 patches.
+
+
 \input{figures/infra}
 \subsection{Data enrichment}
 \DraftToDo{isolating First party scripts, browser-specific APIs w/ IDL, MDN categories}
+
+We use the VisibleV8\todocite{VV8} patches to monitor the browser API calls, and property accesses. We use the Chrome IDL data to filter out the browser API calls from the noise.
+
+When we need further aggregation of the type of APIs we see, we use the MDN categories\todocite{MDN} to classify the APIs into categories. We obtain these categories by processing the markdown files in the MDN repository.
 \input{figures/behavior_categories}
 \subsection{Identifying trends }
+For anomoly detection, we use rapture\todocite{ruptures} to detect changepoints in the time series of API calls. We use the L1 cost function with a linearly penalized segmentation algorithm to find segments based on the mean deviation.
+
 \subsection{Identifying kits}
+To establish a data set with ground truth labels, we use KitPhisher\todocite{KitPhisher} to extract phishing kits for pages where the malicious actor accidently left the kit on the server.
+
+The core hypothesis of this work is that simularity in the browser API execution mean that the pages originate from the same phishing kit. To establish this simularity, we use the Jaccard index on the set of APIs that first party scripts execute. 
+
+We use HDBScan, with a minimum cluster size of 10, to cluster the pages based on the Jaccard index. We then use the ground truth labels from KitPhisher to evaluate the clustering. When ground truth is available, we use FMI (Fowlkes-Mallows Index), and V-measure to evaluate the clustering.
+
+In cases when we do not have ground truth, we use the silhouette score to evaluate the clustering.
 
 
 
