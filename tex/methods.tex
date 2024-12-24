@@ -5,6 +5,7 @@ We injest records from OpenPhish, PhishTank, APWG, and PhishingDB. For a portion
 
 We crawl the pages every 2 hours, using a automated crawler powered by the VisibleV8 patches.
 
+To establish a data set with ground truth labels, we use KitPhisher\todocite{KitPhisher} to extract phishing kits for pages where the malicious actor accidently left the kit on the server.
 
 \input{figures/infra}
 \subsection{Data enrichment}
@@ -13,20 +14,29 @@ We crawl the pages every 2 hours, using a automated crawler powered by the Visib
 We use the VisibleV8\todocite{VV8} patches to monitor the browser API calls, and property accesses. We use the Chrome IDL data to filter out the browser API calls from the noise.
 
 When we need further aggregation of the type of APIs we see, we use the MDN categories\todocite{MDN} to classify the APIs into categories. We obtain these categories by processing the markdown files in the MDN repository.
+
+In order to cut through the noise of cloacked pages and included third party scripts like google analytics, which prior work shows and we confirm is used by phishing pages, we isolate API sets that are executed by first party scripts (from now on called first party API set). To do this, we establish the root domian to be the domain that was submitted to the feeds, and the origin to be the domain that the script is loaded from. We consider a script first party only if it is loaded from the same domain that we aquared from our feeds (root domain). 
+\DraftToDo{explain how does this cut through the noise of cloacking}
+
+To establish which APIs are related to client-side cloacking as discussed by Zhang \etal{}\todocite{crawlphish}, we both manually create a list of APIs that fall under the categories described in the paper. As well as query only the APIs that were listed in the paper.
+\DraftToDo{Explain the difference\ldots{} Basically there is more APIs if you consider User-interaction as any click related stuff, and Fingerprint as ALL known FP apis}
+
 \input{figures/behavior_categories}
 \subsection{Identifying trends }
 For anomoly detection, we use rapture\todocite{ruptures} to detect changepoints in the time series of API calls. We use the L1 cost function with a linearly penalized segmentation algorithm to find segments based on the mean deviation.
+\DraftToDo{Go into detail how do we evaluate this. Also\ldots{} figure out how we are going to evaluate this.}
+VisibleV8 will de-duplicate the same script loaded by multiple pages via the sha3 hash of the script. In order to establish if scripts are having non-deterministic behavior, we pull the set of APIs that are executed by the script, and compare the set of APIs executed by the same script on different pages. We use the Jaccard index to establish the simularity between the sets of APIs.
 
 \subsection{Identifying kits}
-To establish a data set with ground truth labels, we use KitPhisher\todocite{KitPhisher} to extract phishing kits for pages where the malicious actor accidently left the kit on the server.
 
 The core hypothesis of this work is that simularity in the browser API execution mean that the pages originate from the same phishing kit. To establish this simularity, we use the Jaccard index on the set of APIs that first party scripts execute. 
 
-We use HDBScan, with a minimum cluster size of 10, to cluster the pages based on the Jaccard index. We then use the ground truth labels from KitPhisher to evaluate the clustering. When ground truth is available, we use FMI (Fowlkes-Mallows Index), and V-measure to evaluate the clustering.
+We use HDBScan, with a minimum cluster size of 10, to cluster the pages based on the Jaccard index. We then use the ground truth labels from KitPhisher to evaluate the clustering. When ground truth is available, we use Fowlkes-Mallows Index (geometric mean between percision and recall)\todocite{Normalised Clustering Accuracy: An Asymmetric External Cluster Validity Measure}, and V-measure to evaluate the clustering.
+\DraftToDo{Go into detail why V-measure and what it can tell us}
 
 In cases when we do not have ground truth, we use the silhouette score to evaluate the clustering.
-
-
+\DraftToDo{Go into detail why}
+\DraftToDo{Davies-Bouldin Index?}
 
 % \subsection{Phishing Feeds and crawling}
 
