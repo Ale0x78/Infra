@@ -34,7 +34,7 @@
     \RequirePackage{comment} % Provide comment environment
     \PassOptionsToPackage{inline}{enumitem}
     \RequirePackage{enumitem} % Customizes list environments
-    \PassOptionsToPackage{dvipsnames}{xcolor}
+    \PassOptionsToPackage{usenames,dvipsnames}{xcolor}
     \RequirePackage{xcolor} % Provides color
 }
 
@@ -232,12 +232,12 @@
 %\let\myparagraph\paragraph
 
 % Highlight box:
-% \newenvironment{boxed}
-%     {\begin{center}
-%     \begin{tabular}{|>{\centering\arraybackslash}p{0.9\textwidth}|}\hline\vspace{-3mm}\cellcolor{blue!10}}%
-%     {\\\hline
-%     \end{tabular}
-%     \end{center} }
+\newenvironment{boxed}
+    {\begin{center}
+    \begin{tabular}{|>{\centering\arraybackslash}p{0.9\textwidth}|}\hline\vspace{-3mm}\cellcolor{blue!10}}%
+    {\\\hline
+    \end{tabular}
+    \end{center} }
 
 
 

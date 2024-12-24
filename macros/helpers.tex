@@ -31,7 +31,7 @@
 %% =========================
 \newcommand{\code}[1]{\mintinline{javascript}{#1}}
 \newcommand{\greencode}[1]{\textcolor{aoenglish}{\code{#1}}}
-\newcommand{\etal}{\textit{et al.}}
+
 
 %% =========================
 %% STRINGS AND ABBREVIATIONS
@@ -72,3 +72,16 @@
 \newcommand{\flowsicon}{\faMailReply}
 \newcommand{\sanitizeicon}{\textcolor{green}{\faLock}}
 \newcommand{\hoticon}{\faFire}
+
+\newcommand{\DraftToDo}[1]{%
+\begin{mdframed}[backgroundcolor=red!10,linecolor=red!50]
+\textbf{TODO:} #1
+\end{mdframed}
+}
+
+% Note macro using royal purple
+\newcommand{\DraftNote}[1]{%
+\begin{mdframed}[backgroundcolor=RoyalPurple!20,linecolor=RoyalPurple!50]
+\textbf{Note for Kap:} #1
+\end{mdframed}
+}

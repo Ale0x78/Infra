@@ -1,18 +1,76 @@
-\section{Results}
+\section{Results (4-5 pages)} 
 \label{sec:results}
 
+\subsection{General trends (1 page)} 
+\subsubsection{Summary} 
+\DraftToDo{TOP MDN categories and coronations (we have looked at this w/ 3rd party + 1st party scripts, need to limit to just first party)}
 
-\subsection{Phishing pages compared to their targets}
-\subsection{Usage of emerging web functionality}
-\subsubsection{WASM}
-\subsubsection{Experimental APIs}
-\todowrite{find that phishing pages are most likely to use experimental apis (as labeled by MDN) through 3rd party scripts. This is intuitive, as the only novelty they can add to first party behavior is through clocking, or mimicking.}
-\subsection{Scripts in a phishing page}
+\DraftNote{More than 80\% of domains execute javascript in a first-party script. More than 60\% (out of total urls) execute it in a first-party script relative to the page submitted to the phishing page. Overall, the time series for the APIs is noisy and has no seasonality.}
+
+\subsubsection{Emerging APIs} 
+\DraftToDo{Need to tie Spikes to kits still}
+
+\DraftNote{We have emerging APIs (mostly experimental stuff) and need to write up what that means (and aggregate them by MDN category). More phishing pages execute Javascript than ones that don't.}
+
+\subsubsection{Declining APIs}
+\DraftNote{The AdGroup one that got deprecated, but other than that, we don't see anything fun}
+\DraftToDo{There is a theme coming up with this... We need to double-check this is true when we look at JUST first-party scripts. But there is a takeaway: once the ecosystem adopts an API, it stays there. }
+
+\subsubsection{Phishing pages compared to their targets}
+\DraftNote{Phishing pages differ from their target pages (on average by more than 50\% if you were to compute set similarity) mainly due to an increase in redirection, fingerprinting, and DOM manipulation APIs. This was done for the top 34 brands as reported by APWG.}
+
+\subsection{Adversarial behavior (1.5 pages)} 
+\subsubsection{Obfuscation}
+\DraftToDo{A while back, we looked at what APIs are hiding behind evals. I need to re-run that code but filter by first\_party scripts only}
+
+\DraftNote{We see a healthy dose of base64 encoding and Byte by Byte decoding. At some point, we see a spike in Web Crypto API, which is mainly getRandomValues, and decrypt is used only by 1K urls.}
+
 \subsubsection{Crawlphish related APIs}
+\DraftNote{Overall, from the categories in Crawlphish, fingerprinting is king, even if you follow the APIs they have in their tables. Regarding user interaction, we see much more DOM-related than browser permission requests. This is where we talk about that spike for bot detection that we see for generating random values.}
+
 \subsubsection{Fingerprinting APIs}
+\DraftToDo{Check first-party scripts for fingerprinting. I think they are drastically calling these APIs less.}
+
+\DraftNote{Fingerprinting APIs are constantly present due to the inclusion of 3rd party tracking scripts.}
+
 \subsubsection{Non-deterministic behavior}
-\subsection{Evaluating kit detection}
-\subsection{Kit clusters in the wild}
+\DraftNote{10\% of the scripts these pages load exhibit non-deterministic behavior. On average, the difference is about 50 APIs (set edit distance).}
+\input{figures/sameScriptDiffAPI_MDN}
+\subsection{Usage of emerging web features}
+\subsubsection{WASM}
+\DraftNote{We find a small portion of phishing pages use WASM modules. Most of the behavior for modules we could extract came from first-party scripts. Manually looking at the modules reveals anti-bot detection behavior.}
+% \input{figures/wasm_counts}
+
+
+\subsubsection{Experimental APIs}
+\DraftNote{We find that phishing pages are most likely to use experimental APIs (as labeled by MDN) through 3rd party scripts. This is intuitive, as the only novelty they can add to first-party behavior is clocking or mimicking.}
+
+
+
+\subsection{Evaluating kit detection (.5 pages)} 
+\DraftNote{FMI (think F1 score for clustering) is .97 for this. Adding noise (kits with only a single page) clusters them together... so}
+
+\DraftToDo{I want to rule out these kits being the same thing first, so I am gonna compare the files within the kit}
+
+
+\DraftToDo{Check if Kits tie to multiple or the same target from APWG}
+
+
+
+\DraftNote{Other than that, mostly done! All metrics look good, and the kits are distinguishable by their API sets when they execute more than 7 APIs.}
+
+\subsection{Kit clusters in the wild (1-2 page)}
+\DraftNote{Manually looking for the clusters for anything where the common API set is >15, things look like the same type of phishing page.}
+
+\DraftToDo{Figure out if there is a better way to merge the rolling clusters. We might need to take a step back and examine what we consider a candidate page to put into a cluster (a page that executes at least 7 APIs in a first-party script)}
+
+\DraftToDo{Establish the lifetime of clusters (assume kits), and see if we see seasonality in them}
+
+\DraftToDo{See if clusters (assume kits) tie to spikes in API usages}
+
+\DraftToDo{Do we see multiple clusters (assume kits) emerge w/ the same API usage at the same time}
+
+\DraftToDo{Check if clusters (assume kits) (cluster version) tie to multiple or the same target from APWG}
 
 %\subsection{General browser API Trends}
 %\paperFinding{We observe a changing pattern in browser API usage in phishing badges, identifying overall increases and decreases in APIs, but also isolating spikes and dips within the dataset}
@@ -60,7 +118,7 @@
 %\subsection{Phishing specific behavior}
 
 %\paperFinding{We find that \precentNonDeterm{} of the scripts loaded from phishing pages exhibit non-deterministic behavior} On average, \todowrite{I took shit notes on this w/o units, these numbers need to be double checked} 49 API calls differ between executions of the same script hash ($\sigma{}=120.5$). The average number of APIs executed per script is around 62 distinct browser APIs. We present the MDN categorization of these APIs in Table-\ref{tab:sameScriptDiffAPI_MDN}.
-%\input{figures/sameScriptDiffAPI_MDN}
+
 %\paperFinding{Most common behavior in first-party scripts found in phishing pages is DOM manipulation, followed by fingerprinting and network IO}
 
 %\begin{itemize}

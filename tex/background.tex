@@ -1,5 +1,31 @@
-\section{Background}
+\section{Background (1.5-2 pages)}
 \label{sec:background}
-\subsection{Phishing as a phenomena}
+\subsection{Phishing as a phenomenon}
+Phishing is a form of social engineering where an adversary pretends to be a trusted entity to steal a user's credentials or gain access to a machine/network/account that the user has access to.
+
+Workgroups tracking phishing saw an uptick in phishing domains in 202X; with a shift in what sectors are targeted.
+\DraftToDo{Pull latest trends according to APWG}
+
+As more organizations focus on phishing websites, anti-bot detection techniques have emerged in phishing pages. These techniques can be broadly classified into server-side and client-side techniques.
+Server-side techniques are stealthier; however, they rely on limited information.
+\DraftToDo{Summary of Oest's inside phishers mind, and the no-free-phish papers}
+Client-side techniques, while allowing for much richer evasive behavior, are more detectable via instrumented tools.
+\DraftToDo{List client-side techniques, who they have been studied (forced execution), how they can be studied (execution traces)}
 \subsection{Phishing as an ecosystem}
+Cybercrime, as a system, introduced phishing kits into the mix. These kits are ready to make phishing pages (or deployment scripts) sold in black markets. 
+\DraftToDo{Write about what kits are, how prior work has studied them}
+A real cost is associated with executing javascript on the phishing page, as accounts with a browser fingerprint go for a higher value on elicit markets. 
+\DraftToDo{Write up Sheep-In-World's findings and RwLB's findings}
+Even URL features of a phishing link contain techniques that have evolved to respond to anti-phishing research. 
+\DraftToDo{URL shorteners (cite us), landing pages (cite netcraft), abuse of free webhosting (cite the free web hosting paper)}
 \subsection{Adversarial JavaScript}
+Phishing pages are not the only places where JavaScript may behave adversarially. 
+
+Obfuscation renders static analysis hard.
+
+Prior work in studying browser fingerprinting invalid creative usage of browser APIs to identify specific users. 
+
+Prior work in Malware and Exploit Kit detection has looked at linking them together via static features and machine learning.
+
+The dynamic nature of JavaScript leads to many creative ways to hide.
+\DraftNote{This is my attempt to have a little thread to link back to Eval + editing script tags analysis we do}

@@ -2,6 +2,7 @@
 \usepackage{style/usenix-2020-09}
 \usepackage{svg}
 \usepackage[draft]{style/wspr}
+% \usepackage{style/wspr}
 \usepackage{enumitem}
 \usepackage{graphicx}
 \usepackage{float}
@@ -9,7 +10,8 @@
 %\usepackage{draftwatermark}
 %\SetWatermarkText{Draft Preprint}
 %\SetWatermarkScale{0.2}
-
+\usepackage[dvipsnames]{xcolor}
+\usepackage{mdframed}
 
 \usepackage{titleps}
 
@@ -17,7 +19,6 @@
 %  \sethead{\textit{Preliminary Draft --- 2023-10-31}}{}{}
 %}
 %\pagestyle{draftheader}
-
 
 
 \graphicspath{ {./images/} }
@@ -39,7 +40,7 @@
 \setlist[questions,2]{label=(\alph*),ref=\thequestionsi(\alph*)}
 \setlist[questions]{topsep=0pt,itemsep=-1ex,partopsep=1ex,parsep=1ex}
 
-\title{\Large \bf Crawling the Deceptive Depths:\\Investigating Browser API usage in phishing web-pages}
+\title{\Large \bf On browser API usage in phishing}
 
 %for single author (just remove % characters)
 % \author{
@@ -57,7 +58,8 @@
 
 
 \maketitle
-
+\input{macros/helpers}
+\input{macros/numbers}
 
 \input{tex/abstract.tex}
 
@@ -68,6 +70,8 @@
 \input{tex/related_work.tex}
 \input{tex/limitations_future_work.tex}
 \input{tex/conclusion.tex}
+\input{tex/usenix_req}
+\input{tex/appendix.tex}
 
 \bibliographystyle{plain}
 \bibliography{bib/rel_work.bib}
