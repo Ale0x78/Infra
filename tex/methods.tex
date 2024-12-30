@@ -24,6 +24,7 @@ To establish which APIs are related to client-side cloacking as discussed by Zha
 \input{figures/behavior_categories}
 \subsection{Identifying trends }
 For anomoly detection, we use rapture\todocite{ruptures} to detect changepoints in the time series of API calls. We use the L1 cost function with a linearly penalized segmentation algorithm to find segments based on the mean deviation.
+In order to filter out noise in trends from the miss-balance of pages we get from different feeds, we ignore any API trends that strongly corolate with the number of pages we get from all feeds.
 \DraftToDo{Go into detail how do we evaluate this. Also\ldots{} figure out how we are going to evaluate this.}
 VisibleV8 will de-duplicate the same script loaded by multiple pages via the sha3 hash of the script. In order to establish if scripts are having non-deterministic behavior, we pull the set of APIs that are executed by the script, and compare the set of APIs executed by the same script on different pages. We use the Jaccard index to establish the simularity between the sets of APIs.
 
