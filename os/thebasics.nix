@@ -46,7 +46,7 @@
     # noto-fonts-cjk
     # noto-fonts-emoji
     liberation_ttf
-    (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono"]; })
+    nerd-fonts.fira-code
     mplus-outline-fonts.githubRelease
     dina-font
     proggyfonts
