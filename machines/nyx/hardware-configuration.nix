@@ -2,7 +2,19 @@
 # and may be overwritten by future invocations.  Please make changes
 # to /etc/nixos/configuration.nix instead.
 { config, lib, pkgs, modulesPath, ... }:
-
+let
+  zfsCompatibleKernelPackages = lib.filterAttrs (
+    name: kernelPackages:
+    (builtins.match "linux_[0-9]+_[0-9]+" name) != null
+    && (builtins.tryEval kernelPackages).success
+    && (!kernelPackages.${config.boot.zfs.package.kernelModuleAttribute}.meta.broken)
+  ) pkgs.linuxKernel.packages;
+  latestKernelPackage = lib.last (
+    lib.sort (a: b: (lib.versionOlder a.kernel.version b.kernel.version)) (
+      builtins.attrValues zfsCompatibleKernelPackages
+    )
+  );
+in
 {
   imports =
     [ (modulesPath + "/installer/scan/not-detected.nix")
@@ -16,9 +28,9 @@
   boot.kernelParams = [ "intel_iommu=on"];
 
   boot.extraModulePackages = [ ];
-  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
+  # boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
   # boot.kernelPackages = pkgs.linuxPackages_6_11;
-
+  boot.kernelPackages = latestKernelPackage;
   boot.blacklistedKernelModules = [];
   boot.zfs.package = pkgs.zfs_unstable;
   swapDevices = [ ];
