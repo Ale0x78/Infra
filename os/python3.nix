@@ -3,7 +3,7 @@
 ## Thanks to https://www.reddit.com/r/NixOS/comments/1aq58xv/jupyter_and_python_on_nixos/
 {
   environment.systemPackages = with pkgs; [
-    (python312.withPackages (ps: with ps; [
+    (python313.withPackages (ps: with ps; [
       numpy # these two are
       scipy # probably redundant to pandas
       pandas
