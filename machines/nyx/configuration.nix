@@ -55,10 +55,10 @@
       fsType = "vfat";
     };
 
-  swapDevices = [{
-    device = "/dev/disk/by-label/swap";
-  }];
-  zramSwap.enable = true;
+  # swapDevices = [{
+  #   device = "/dev/disk/by-label/swap";
+  # }];
+  # zramSwap.enable = true;
 
   boot.zfs.extraPools = [ "zpool" ];
     hardware.bluetooth.enable = true; # enables support for Bluetooth
