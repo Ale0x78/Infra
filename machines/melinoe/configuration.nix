@@ -12,7 +12,7 @@
       ../../os/comms.nix
       ../../os/gfx.nix
       ../../os/gnome.nix
-      ../../os/lazyvim.nix
+      # ../../os/lazyvim.nix
       # ../../os/kde.nix
       ../../os/school.nix
       ../../os/gaming.nix
