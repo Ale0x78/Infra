@@ -17,6 +17,7 @@
       ../../os/school.nix
       ../../os/gaming.nix
       ../../users/alex.nix
+      ../../os/sync.nix
       # ../../os/python3.nix
       ../../os/thebasics.nix
       ../../os/localSSH.nix
