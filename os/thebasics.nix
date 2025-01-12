@@ -22,7 +22,7 @@
       signal-desktop
       nodenv
       nvfancontrol
-      xwaylandvideobridge
+      # xwaylandvideobridge
       distrobox
       podman
       podman-desktop
