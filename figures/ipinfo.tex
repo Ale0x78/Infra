@@ -1,0 +1,31 @@
+\begin{lstlisting}[language=JavaScript, caption={IP Registry Detection Method}, label={lst:ipregistry}]
+  \resizebox{\columnwidth}{!}{%\centering
+  async getIpregistry() {
+      await this.$http({
+          method: "get",
+          url: "https://api.ipregistry.co/?key=" + this.key
+      }).then(e => {
+          const r = e.location.country.code,
+              i = e.user_agent.os.name,
+              o = e.security,
+              s = e.connection.type,
+              c = ["cdn", "hosting", "education"];
+          var l = e.location.region.code,
+              d = l ? l.split("-") : "NY",
+              m = e.location.city ? e.location.city : "NEW YORK",
+              g = e.location.postal ? e.location.postal : "10028";
+          if (sessionStorage.setItem("state", d), 
+              sessionStorage.setItem("city", m), 
+              sessionStorage.setItem("postal", g), 
+              this.whitelist.length > 0 && this.whitelist.indexOf(r) == -1 || 
+              !this.allow_pc && i != "iOS" && i != "Android" || 
+              this.is_tor && c.indexOf(s) != -1) 
+              return window.location = "https://www.usps.com/", !1;
+          this.is_ip_detection && Object.values(o).forEach(w => {
+              if (w) return window.location = "https://www.usps.com/", !1
+          })
+      })
+  }
+  }
+ \end{lstlisting}
+
