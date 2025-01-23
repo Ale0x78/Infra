@@ -16,15 +16,15 @@ In this section, we will summarize the general characteristics we observed about
 
 % In addition to this, we find that 5,281 pages use WebAssembly. For the pages that invoke WebAssembly.compile since the module is passed down via base64, we pull 33 WASM distinct modules (from both first party and third party scripts) and establish 23 are used for bot detection, and 3 for captcha .
 
+\input{figures/ipinfo}
 
-
-\paperFinding{Phishing pages make network requests using javascript before any user interaction} We check how common data exfiltration-related is in our dataset. We report a full breakdown of the categories in Table~\ref{tab:exfil_calls}. In the top 3 are \textit{XMLHttpRequest.send} and \textit{Window.fetch}, viewing the arguments passed to these functions through the VisibleV8 Logs, we see that out of 220,377 requests that were made via javascript
-
+\paperFinding{Phishing pages make network requests using javascript before any user interaction} We check how common data exfiltration-related is in our dataset. We report a full breakdown of the categories in Table~\ref{tab:exfil_calls}. In the top 3 are \textit{XMLHttpRequest.send} and \textit{Window.fetch}, viewing the arguments passed to these functions through the VisibleV8 Logs, we see that out of 220,377 requests were made via JavaScript.
+We
 \input{figures/exfil_calls.tex}
 
 \paperFinding{Changepoints in browser API usage map to the introduction of newly bundled packages or new techniques} Using the PELT and the parameters described in Section~\ref{sec:methods}, we can detect 405 APIs (288 of which are not DOM related) have a timeseries that can be segmented into timeslices based on divination from the mean.
 \subsection{Browser APIs and Adversarial Techniques}
-\paperFinding{We see a mixture of obfuscation techniques in our dataset} 
+\paperFinding{We see a mixture of obfuscation techniques in our dataset} Over 22,000 pages hide javascript evaluation behind a single eval state, but 744 pages have chains of evals. While we find 12,781 pages requesting a javascript object used for AES encryption, we only see 1,224 pages that call decrypt during the visit. We see 12.5\% of pages invoke a base64 or URL decoding API, frequently associated with obfuscation \cite{jsufp}. We also identify 125 scripts that are present at different eval depth\todowrite{What is an eval depth}
 
 \paperFinding{Very few (992 out of 800,000) pages request pop-up permission upon the page loading} This is a smaller fraction of pages than in Crawlphish. This could be a result of Firefox, citing low engagement with the notifications, started requiring user interaction to trigger the popup\todocite{Mozila release} at the end of November 2019, when crawlphish's data collection ended. The lack of pop-up requests could also be explained by our \textbf{Finding-XX} regarding usage of Fetch and XMLHttpRequest or by the overwhelming amount of the pages (67\%) registering at least one HTMLElement event handler, which would be classified as a \textit{Click-through} by Crawlphish's taxonomy. We report a full breakdown of APIs related to the crawlphish categorization of client-side cloaking in Table~\ref{tab:crawlphish}.
 
@@ -34,12 +34,9 @@ We also see a lower usage of \textit{Navigator.userAgent}, the javascript proper
 \paperFinding{Out of 846,397 pages, 650,782 execute at least one of the APIs, 244,591 execute at least 5, and 128,229 execute at least 10} We find that
 
 \subsection{Browser APIs and Phishing Kits}
-\paperFinding{Browser API sets help to identify the existence of a standard kit among different pages} For the XXX pages from XXX kits, we compute an XXXX by XXX matrix of distances using the Jaccard index. The FMI (harmonic mean of TP and TN) comes to \textbf{0.92} with the v-measure of \textbf{0.87}. Using a higher $\beta$ value for the V-measure, we can see that the model is more complete than homogeneous, meaning it tends to merge clusters. It should be noted that HDBSCAN gave us similar results as DBSCAN with a relatively low epsilon value, though, for a data source with larger quantities of data, we would recommend limiting the epsilon manually, setting it as a max similar to the ratio. In eight different cases, HDBSCAN clustered together pages with zero similarity. 
+\paperFinding{Browser API sets help to identify the existence of a standard kit among different pages} For the 2,461 pages from 162 kits, we compute an 2,461 by 2,461 matrix of distances using the Jaccard index. The FMI (harmonic mean of TP and TN) comes to \textbf{0.97} with the v-measure of \textbf{0.81}. Using a higher $\beta$ value for the V-measure, we can see that the model is more complete than homogeneous, meaning it tends to merge clusters. It should be noted that HDBSCAN gave us similar results as DBSCAN with a relatively low epsilon value, though, for a data source with larger quantities of data, we would recommend limiting the epsilon manually, setting it as a max similar to the ratio. In eight different cases, HDBSCAN clustered together pages with zero similarity. 
 
-\begin{lstlisting}[language=JavaScript, caption={IP Registry Detection Method}, label={lst:ipregistry}]
-
-\end{lstlisting}
-
+HDBSCAN allows for single kit clusters; given some points are distant enough from everything else, the algorithm can isolate some single points as solo clusters. Clustering all pages that we have kits for, even if they do not meet the requirement of having at least 2 page, with support for single clusters enabled, we see an FMI of 0.80, with a V-measure of 0.78. 
 \paperFinding{Filtering out different types of APIs gives negligible returns while lowering how many pages you can try to cluster} We experiment with two setups, removing all DOM-related APIs and removing all getters from the sets. There are XXX kits that have pages executing enough APIs to meet our criteria for clustering.
 
 \paperFinding{Clusters of pages via API similarity display either very busy or drawn out campaigns} Clustering temporal clusters and merging them using the methods described in Section-~\ref{sec:methods}, we see clusters well-formed clusters with the average silhouette score of 0.74 ($\sigma=0.06$, median=0.73). Merging those clusters, based on the requirement of the new merged cluster having at least eight browser APIs in common between all pages and sharing at least four pages across the cluster, gives us a total of 15,401 clusters, from a total of 473,704 pages. 
