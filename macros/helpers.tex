@@ -98,3 +98,28 @@
 \textbf{Note from Brad:} #1
 \end{mdframed}
 }
+
+\begin{lstlisting}[style=JavaScript, caption={JavaScript Listing}]
+(function () {
+  var user = getCookie("username");
+  document.getElementById("#date-field").innerHTML = new Date();
+  document.getElementById("#greetings").innerHTML =
+    "<p>Hello, " + user.name + ".</p>";
+})()
+
+function getCookie(cname) {
+  var name = cname + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(';');
+  for(var i = 0; i < ca.length; ++i) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+\end{lstlisting}
