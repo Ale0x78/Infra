@@ -1,0 +1,21 @@
+\begin{table}[t]
+  
+  \caption{Occurrences of APIs that trigger a browser pop up, either by design or because they require user specified permission}
+  % \resizebox{\columnwidth}{!}{
+  \centering{
+  \begin{tabular}{l|c}
+    \textbf{APIs}                             & \textbf{URLs} \\ \hline
+    \textit{Geolocation.getCurrentPosition()} & 498           \\
+    \textit{Notification.requestPermission()} & 169           \\
+    \textit{MediaDevices.getUserMedia()}      & 154          \\
+    \textit{Window.alert()}                   & 107           \\
+    \textit{Accelerometer()}                  & 64            \\
+    \textit{Gyroscope()}                      & 11            \\
+    \textit{Clipboard.readText()}             & 6             \\
+    \textit{Navigator.requestMIDIAccess()}    & 2             \\
+    \textit{Window.prompt()}                  & 1             
+    
+    \end{tabular}
+  \label{tab:popups}
+  }
+\end{table}

@@ -1,0 +1,24 @@
+\begin{table}[t]
+    
+  \caption{Summary of data exfiltration related API calls in our dataset}
+  \centering{
+  \begin{tabular}{l|c}
+      \textbf{Browser API} & \textbf{Distinct URLs} \\ \hline
+      XMLHttpRequest.send & 129,998 \\ 
+      Storage.setItem & 105,273 \\ 
+      Window.fetch & 100,334 \\ 
+      HTMLDocument.cookie\footnote{We specifically looked at instances of a cookie being set} & 75,346 \\ 
+      MessagePort.postMessage & 72,496 \\ 
+      DedicatedWorker\footnote{DedicatedWorkerGlobalScope}.postMessage & 38,009 \\ 
+      WebSocket.send & 28,563 \\ 
+      Window.postMessage & 20,129 \\ 
+      Navigator.sendBeacon & 13,862 \\ 
+      IDBFactory.open & 12,663 \\ 
+      Worker.postMessage & 10,511 \\ 
+      IDBObjectStore.put & 7,968 \\ 
+      ServiceWorker.postMessage & 5,613 \\ 
+      IDBObjectStore.add & 326 \\ 
+  \end{tabular}
+  \label{tab:exfil_calls}
+  }
+\end{table}

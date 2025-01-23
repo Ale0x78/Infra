@@ -1,31 +1,27 @@
 \section{Background (1.5-2 pages)}
 \label{sec:background}
+
+In this section we provide a helpful background on current developments in phishing as a phenomenon and adverserial javascript techniques, as well as an overview of the parties involved in the phishing ecosyste.
 \subsection{Phishing as a phenomenon}
-Phishing is a form of social engineering where an adversary pretends to be a trusted entity to steal a user's credentials or gain access to a machine/network/account that the user has access to.
+Phishing is a form of social engineering where an adversary pretends to be a trusted entity to steal a user's credentials or gain access to a specific machine, network, or account to which the user has access. While delivery mechanisms vary, the most common way of phishing inevitably leads to a web page that requests some personal information (usually credentials) from the user. 
 
-Workgroups tracking phishing saw an uptick in phishing domains in 202X; with a shift in what sectors are targeted.
-\DraftToDo{Pull latest trends according to APWG}
+While a basic phishing site is relatively simple to deploy and send through social media or email, the ecosystem has proven to be an ever-changing landscape. Workgroups tracking phishing saw an uptick in phishing domains in 202X, with a shift in what sectors are targeted throughout every year. In Q3 of 2020, the APWG reported SAAS and webmail services as the most targeted sectors, with 31\% of all phishing attacks targeting them\todocite{\url{https://docs.apwg.org/reports/apwg_trends_report_q3_2020.pdf}}. In Q3 of 2021 it was the financial sector\todocite{\url{https://docs.apwg.org/reports/apwg_trends_report_q4_2021.pdf}} and in 2024 it is Social media\todocite{\url{https://docs.apwg.org/reports/apwg_trends_report_q4_2023.pdf}}. In the 3rd quarter of 2024, the Anti-Phishing Working Group (APWG) reported 900,000 phishing attacks. Besides detection, to be able to identify trends in the ecosystem, security researchers need to be able to group a large number of pages through a higher level of abstraction.
 
-As more organizations and academics turn to studying phishing websites, anti-bot detection techniques have emerged in the ecosystem. These techniques can be broadly classified into server-side and client-side techniques.
-Server-side techniques are stealthier; however, they rely on limited information.
-\DraftToDo{Summary of Oest's inside phishers mind, and the no-free-phish papers}
-Client-side techniques, while allowing for much richer evasive behavior, are more detectable via instrumented tools.
-\DraftToDo{List client-side techniques, who they have been studied (forced execution), how they can be studied (execution traces)}
+As more organizations and academics turn to studying phishing websites and develop methods of trying to identify them, anti-analysis and anti-bot detection techniques have emerged in the ecosystem. These are no different from anti-debugging techniques found in malware; the end goal is to make detection and analysis of the page as tricky as possible. 
+These techniques can be broadly classified into server-side and client-side techniques.
+Server-side techniques are stealthier; however, they rely on limited information. These can be studied by getting your hands on a zip bundle to set up the page (sometimes called a phishing kit). Most server-side techniques rely on pre-compiled denylists or allowlists of IP addresses, user agents, or referrers (the page from which the link is visited as identified by an HTTP header). The cloaking outcome can also vary; the page can redirect to a benign page, a long-dead phishing page, or send you off to an affiliate marketing page. Some pages may be simple checkpoints and choose to forward you to the actual phishing page should they decide you are not an analyst or a bot. 
+
+Client-side techniques, while allowing for much richer evasive behavior, are more detectable via instrumented tools. With the rise of fingerprinting on the web, driven by tracking scripts of advertisers and analytics companies, phishing pages turned to using browser fingerprinting APIs to identify real users and exfiltrating the fingerprinting to associate with the credentials harvested. Phishing pages utilize Browser APIs to trigger permission pop-ups to identify headless browsers (without a user interface usually used for crawling) and automated crawlers that can not interact with the full browser UI. Prior work has also identified captchas and click-through pages as a form of client-side cloaking, which requires more sophisticated crawlers to combat.
+
+Even URL features of a phishing link contain techniques that have evolved to respond to anti-phishing research. Phishing pages frequently use URL shorteners (public or private) to obfuscate the final destination, landing pages requiring a user to follow hyperlinks to the actual page, and free web hostings with trustworthy TLDs. 
+
 \subsection{Phishing as an ecosystem}
-Cybercrime, as a system, introduced phishing kits into the mix. These kits are ready to make phishing pages (or deployment scripts) sold in black markets. 
-\DraftToDo{Write about what kits are, how prior work has studied them}
-A real cost is associated with executing javascript on the phishing page, as accounts with a browser fingerprint go for a higher value on elicit markets. 
-\DraftToDo{Write up Sheep-In-World's findings and RwLB's findings}
-Even URL features of a phishing link contain techniques that have evolved to respond to anti-phishing research. 
-\DraftToDo{URL shorteners (cite us), landing pages (cite Netcraft), abuse of free web hosting (cite the free web hosting paper)}
+As an ecosystem, phishing attacks have two major branches: cybercrime as a service and credential sales. While you could develop a phishing page, set up hosting for it, adapt the latest cloaking techniques to your page, deliver the page through SMS, Email, or social media, and leverage the accounts for the financial game, the ecosystem as a whole has compartmentalized these into different segments. Phishing kits (bundles of software providing ready-to-deploy phishing pages) rose in popularity in illicit markets, varying in value, sophistication, and features. One stage higher from just selling kits is Phishing-as-a-service providers, which will do the majority of the technical challenges. Both of these enable massive phishing attacks with lower technical barriers to entry, so naturally, they attracted the attention of researchers and analysis studies. Prior work has shown that phishing kits are not above stealing from their costumers \todocite{No free Fish}, adapt and borrow features from others \todocite{MSR}, and sometimes are tied to specific actors \todocite{Unit42}.
+
+The credential sales part of the ecosystem has also adapted to modern MFA/2FA practices. With prior work showing that a browser fingerprint is sometimes enough to trick their protections\todocite{WolfInSheep}, an actual cost is associated with executing javascript on the phishing page\todocite{RWLB}, as accounts with a browser fingerprint go for a higher value on elicit markets. While phishing pages can risk storing the credentials on servers that can be taken down, some have shown that they should be sent to chat channels for ingestion.
+
+
 \subsection{Adversarial JavaScript}
-Phishing pages are not the only places where JavaScript may behave adversarially. 
+The dynamic nature of javascript enables a variety of techniques for concealing from analysis and detection. Javascript obfuscation can transform a known malicious sample into an undetectable one. WebPack enables bundling benign and malicious scripts and wrangling them to make static analysis harder. The other side of obfuscation is evasions; while not nearly there to make code comprehension (via human or machine) harder, malicious actors have deployed time bombs, offloading parts of the malicious script to be read from the DOM or via a network request, and dynamic code generation to evade revealing the entire malicious behavior and thus detection.\todocite{https://www.usenix.org/system/files/usenixsecurity24-pantelaios.pdf}
 
-Obfuscation renders static analysis hard.
-
-Prior work in studying browser fingerprinting invalid creative usage of browser APIs to identify specific users. 
-
-Prior work in Malware and Exploit Kit detection has looked at linking them together via static features and machine learning.
-
-The dynamic nature of JavaScript leads to many creative ways to hide.
-\DraftNote{This is my attempt to have a little thread to link back to Eval + editing script tags analysis we do}
+The research community has tried tacking these techniques by developing deobfuscators, employing machine learning techniques from static features to identify similarities between known malicious and unknown samples, and developing force-execution engines, executing parts of the code that may trigger the malicious behavior or the next stage of an evasion.
