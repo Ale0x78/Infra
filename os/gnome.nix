@@ -12,25 +12,8 @@ in
       desktopManager.gnome.extraGSettingsOverridePackages = [ pkgs.mutter ];
     };
     environment.systemPackages = with pkgs; [
-      pkgs.gnome-tweaks
+      gnome-tweaks
     ];
-  # services.xserver.desktopManager.gnome.extraGSettingsOverridePackages = [ pkgs.mutter ];
-
-    # nixpkgs.overlays = [
-    #   # GNOME 47: triple-buffering-v4-47
-    #   (final: prev: {
-    #     mutter = prev.mutter.overrideAttrs (old: {
-    #       src = pkgs.fetchFromGitLab  {
-    #         domain = "gitlab.gnome.org";
-    #         owner = "vanvugt";
-    #         repo = "mutter";
-    #         rev = "triple-buffering-v4-47";
-    #         hash = "sha256-JaqJvbuIAFDKJ3y/8j/7hZ+/Eqru+Mm1d3EvjfmCcug=";
-    #       };
-    #     });
-    #   })
-    # ];
-
     home-manager.users.alex = { pkgs, ...}: {
     nixpkgs = {
       config = {

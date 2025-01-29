@@ -1,16 +1,13 @@
 { config, lib, pkgs, ... }:
 
 {
-programs.nix-ld.enable = true; # Needed for Heroic launcher
-  programs.nix-ld.libraries = with pkgs; [
-  ];
   # services.sunshine.enable = true;
-  # programs.lutris.enable = true;
   environment.systemPackages = [
+    pkgs.heroic
     pkgs.ferium
   ];
   hardware.steam-hardware.enable = true;
-  services.sunshine.package = pkgs.sunshine.override {cudaSupport = true;};
+  # services.sunshine.
   hardware.graphics.enable32Bit = true;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -34,6 +31,7 @@ programs.nix-ld.enable = true; # Needed for Heroic launcher
     autoStart = true;
     capSysAdmin = true;
     openFirewall = true;
+    # package = pkgs.sunshine.override {cudaSupport = true;};
   };
 
 

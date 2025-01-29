@@ -2,6 +2,11 @@
 
 {
   virtualisation.containers.enable = true;
+  # virtualisation.lxd = {
+    # enable = true;
+    # recommendedSysctlSettings = true;
+    # lxcPackage = pkgs.lxc;
+  # };
 
   virtualisation.libvirtd = {
     enable = true;

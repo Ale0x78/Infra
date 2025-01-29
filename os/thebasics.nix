@@ -46,6 +46,7 @@
     # noto-fonts-cjk
     # noto-fonts-emoji
     liberation_ttf
+    fira-code
     nerd-fonts.fira-code
     mplus-outline-fonts.githubRelease
     dina-font
