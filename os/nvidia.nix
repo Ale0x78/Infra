@@ -10,7 +10,7 @@
     # Modesetting is required.
     modesetting.enable = true;
     prime = {
-        reverseSync.enable = true;
+        sync.enable = true;
         
         intelBusId = "PCI:0:2:0";
         nvidiaBusId = "PCI:1:0:0";
@@ -43,6 +43,10 @@
     # package = config.boot.kernelPackages.nvidiaPackages.beta;
   };
 
+  environment.sessionVariables = rec {
+    CLUTTER_PAINT = "disable-clipped-redraws:disable-culling";
+    CLUTTER_VBLANK = "true";
+  };
 
 
 
