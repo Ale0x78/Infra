@@ -15,7 +15,11 @@ RUN apt update && \
     apt-get install -y tigervnc-standalone-server && \
     apt install -y tigervnc-common && \ 
     apt install -y gnome-terminal && \
-    apt install -y procps
+    apt install -y procps && \
+    apt install -y x11-utils \
+    apt install -y dbus-x11 \
+    apt install -y libx11-6 \
+    apt install -y libx11-xcb1 
 
 
 ENV DISPLAY=:1 \
@@ -27,4 +31,4 @@ ENV DISPLAY=:1 \
 
 COPY ./entrypoint.sh /entrypoint.sh
 
-CMD ["/entrypoint.sh"]
+CMD ["bash", "/entrypoint.sh"]
