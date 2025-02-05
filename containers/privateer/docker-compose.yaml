@@ -7,4 +7,5 @@ services:
       dockerfile: Dockerfile
     ports:
       - "127.0.0.1:5901:5901/tcp" # Make sure this is only localhost
+      - "127.0.0.1:6901:6901/tcp" # Make sure this is only localhost
 

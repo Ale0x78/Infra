@@ -52,6 +52,7 @@ in
             podman-compose
             virt-manager
             lunar-client
+            nexusmods-app
             firefox
             discord
             gnome-bluetooth
