@@ -14,7 +14,10 @@ in
     };
   };
 
-
+  environment.systemPackages = with pkgs; [
+     libsForQt5.bismuth
+     catppuccin-kde
+  ];
   services.desktopManager.plasma6.enable = true;
   services.displayManager.sddm.wayland.enable = true;
 
