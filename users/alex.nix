@@ -43,27 +43,23 @@ in
     # nixpkgs.config = import ../os/nixos-pkgs.nix;
     home.stateVersion = "24.05";
       home.packages = with pkgs; [
-            sshuttle
             zed-editor
-            vscode
             ferium
             nixd
             docker-compose
             podman-compose
             virt-manager
             lunar-client
+            prismlauncher
             nexusmods-app
             firefox
             discord
-            gnome-bluetooth
             joycond
             starship
             telegram-desktop
             krita
             openconnect
             steam
-            gnome-tweaks
-            slack
             htop
             capitaine-cursors
             autossh
@@ -73,13 +69,6 @@ in
             zsh
             protonup-qt
             ryujinx
-            jetbrains.datagrip
-            jetbrains.dataspell
-            neovide
-            jetbrains.idea-ultimate
-            jetbrains.goland
-            jetbrains.datagrip
-            jetbrains.dataspell
             binutils
             coreutils
             virt-manager
@@ -93,6 +82,15 @@ in
       programs.fish = {
         enable = true;
       };
+  };
+
+  programs.git = {
+          config = {
+            init = {
+              defaultBranch = "main";
+              pull.rebase = false; # Merge!
+            };
+          };
   };
 
 }
