@@ -27,16 +27,15 @@
       podman
       podman-desktop
       starship
-      alacritty
+      kitty
       cowsay
       fortune
       btop
       binwalk
       tmux
+      ferium
       zellij
       pciutils
-      resilio-sync
-      obsidian
       qFlipper
       sunshine
       # cosmic-term
