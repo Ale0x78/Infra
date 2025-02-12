@@ -1,13 +1,13 @@
 %
 % File          : wspr.sty
 % Description   : WSPR Lab Latex Macros
-% Last Modified : Feb 3, 2022
+% Last Modified : 2024-04-02
 % By            : Brad Reaves
 % NSF Code Based on siis-latex2.sty by Patrick McDaniel
 % 
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{wspr}[2022/02/03 WSPR Lab LaTeX Macros]
+\ProvidesPackage{wspr}[2024/04/02 WSPR Lab LaTeX Macros]
 
 % --------------- LaTeX Engine Tweaks --------------
 
@@ -36,6 +36,7 @@
     \RequirePackage{enumitem} % Customizes list environments
     \PassOptionsToPackage{usenames,dvipsnames}{xcolor}
     \RequirePackage{xcolor} % Provides color
+    \RequirePackage{seqsplit} % Used in better verbatim (below)
 }
 
 % --------------- Debug Option--------------------
@@ -54,15 +55,28 @@
 \DeclareOption{draft}{ % Begin Option
      \def\WSPRDRAFT{} % True for later definitions
      \AtEndPreamble{%
-        \RequirePackage{todonotes} %provides nice \todo notes in margin
         \PassOptionsToPackage{l2tabu,orthodox}{nag}
         \RequirePackage{nag} % detect deprecated use of latex packages and commands
-        \RequirePackage{lineno}
+        % Make margin notes parbox big enough for todo notes
+        \setlength {\marginparwidth }{0.8in} 
+        \setlength {\marginparsep }{0.1in}
+        \RequirePackage{todonotes} %provides nice \todo notes in margin
     } %AtEndPreamble
     \AtBeginDocument{%
-        \linenumbers % Turn on line numbers
         \pagestyle{plain} % Turn on page numbers
     } %AtBeginDocument
+} % End Option
+
+% --------------- LineNo Option--------------------
+ %% Use this to turn on line numbers in the margin
+\DeclareOption{lineno}{ % Begin Option
+     \def\WSPRLINENO{} % True for later definitions
+     \AtEndPreamble{%
+        \RequirePackage{lineno}
+     } %AtEndPreamble
+     \AtBeginDocument{%
+        \linenumbers % Turn on line numbers
+     } %AtBeginDocument
 } % End Option
 
 % --------------- Typography Options --------------------
@@ -183,6 +197,45 @@
     }
     \newcommand{\taskpart}[1]{\vspace{4pt}\noindent\textit{#1} --}
 } % End NSF Option
+
+% --------------- DoD White Paper Formatting --------------------
+
+
+% NSF Proposal Stuff
+\DeclareOption{dod-wp}{ % Begin Option
+    %% Style-specific packages
+    \def\WSPRDODWP{}
+
+    % Require packages
+    \AtEndPreamble{%
+        \RequirePackage{mathptmx} % Times New Roman for text and math
+        
+        \PassOptionsToPackage{margin=1in}{geometry}
+        \RequirePackage{geometry}
+        
+        \PassOptionsToPackage{font=small}{caption}
+
+        %% Set section header spacing
+        \PassOptionsToPackage{compact,tiny}{titlesec}
+        \RequirePackage{titlesec}
+        \titlespacing{\section}{0pt}{2ex}{1ex}
+        \titlespacing{\subsection}{0pt}{1ex}{0ex}
+        \titlespacing{\subsubsection}{0pt}{0.5ex}{0ex}
+    } %end AtEndPreamble
+
+
+
+    %% Set bib spacing
+    \let\OLDthebibliography\thebibliography
+    \renewcommand\thebibliography[1]{
+        \OLDthebibliography{#1}
+        \setlength{\parskip}{0pt}
+        \setlength{\itemsep}{0pt plus 0.3ex}
+    } % End \renewcommand
+
+} % End DoD-WP Option
+
+
 % ----------------  Catchall Option -----------------
 
 \DeclareOption*{
@@ -209,29 +262,40 @@
 \newcommand{\todocite}[1]{\notetext{[#1]}}
 \newcommand{\todoref}[1]{\notetext{[ref:#1}]}
 \newcommand{\todowrite}[1]{\notetext{Write:#1\ldots}}
-\providecommand{\todonum}[1]{\notetext{XXX}}
+\providecommand{\todonum}{\notetext{XXX}\xspace}
 
 %todo: generate authors programatically: https://tex.stackexchange.com/questions/145420/dynamically-define-commands/153304
 
+% --------------- Content Macros ---------------------
+
+%%%% Tricky Abbreviations %%%%%
+
+\newcommand{\ie}{\emph{i.e.,}\xspace}
+\newcommand{\eg}{\emph{e.g.,}\xspace}
+\newcommand{\al}{~\emph{et~al.}}
+
+%%%% Research Goal and Questions %%%%%
+
+\newcommand{\researchgoal}[3]{\underline{To aid} #1 \underline{in} #2 
+                                \underline{through} #3.}
+
+\newcommand{\researchquestion}[1]{\textbf{RQ #1:}}
+\newcommand{\RQ}[1]{\researchquestion{#1}}%helper macro
+
+%%%% Finding Counter %%%%
+
+\newcounter{paperFindingCounter}
+\newcommand{\paperFinding}[1]{\refstepcounter{paperFindingCounter}\vspace{0em}\noindent
+    \textbf{Finding \arabic{paperFindingCounter}}: \textit{#1}.}
 
 % ---------------- Formatting ----------------------
 
-% Useful when you need to scrunch section headings,
-% but be careful of the 'compact' argument if you are submitting
-% a paper, as you will likely violate the template
-%\usepackage[compact,noindentafter]{titlesec}
-%\titlespacing{\section}{0pt}{2ex}{1ex}
-%\titlespacing{\subsection}{0pt}{1ex}{0ex}
-%\titlespacing{\subsubsection}{0pt}{0.5ex}{0ex}
+%%%% Custom Paragraph Headings %%%%
 
-% Replace's Will's custom \myparagraph in a better way
-%\usepackage{titlesec}
-%\titleformat{\paragraph}[runin]{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}[:]
-%\titlespacing*{\paragraph}{0pt}{0.25em}{0.5em}
-% For legacy code
-%\let\myparagraph\paragraph
+\newcommand{\myparagraph}[1]{\vspace{0em}\noindent\textbf{#1}:}
+\newcommand{\myparagraphi}[1]{\vspace{0em}\noindent\textit{#1}:}
 
-% Highlight box:
+%%%% Highlight box: %%%%
 \newenvironment{boxed}
     {\begin{center}
     \begin{tabular}{|>{\centering\arraybackslash}p{0.9\textwidth}|}\hline\vspace{-3mm}\cellcolor{blue!10}}%
@@ -240,24 +304,12 @@
     \end{center} }
 
 
-
-% Item separator
+%%%% Shrink item separator length %%%%
 \newcommand{\itembase}{\setlength{\itemsep}{-2pt}}
 
-\newcommand{\myparagraph}[1]{\vspace{0em}\noindent\textbf{#1}:}
-\newcommand{\myparagraphi}[1]{\vspace{0em}\noindent\textit{#1}:}
+%%%% Better Verbatim Environment
+% Verbatim with word wrapping and hyphen %
 
-% Finding Counter
-
-\newcounter{paperFindingCounter}
-\newcommand{\paperFinding}[1]{\refstepcounter{paperFindingCounter}\vspace{0em}\noindent\textbf{Finding \arabic{paperFindingCounter}}: \textit{#1}.}
-
-\newcommand{\researchquestion}[1]{\textbf{RQ #1:}}
-\newcommand{\RQ}[1]{\researchquestion{#1}}%helper macro; original command name is too long
-
-\usepackage{seqsplit}
-%Verbatim with word wrapping and hyphen
-%\DeclareTextFontCommand{\ttt}{\ttfamily\lefthyphenmin=0\righthyphenmin=0\hyphenchar\font`\-\relax}
 \newcommand{\ttt}[1]{%
   \begingroup
     \protect\renewcommand{\seqinsert}{\ifmmode\allowbreak\else\-\fi}%
@@ -276,3 +328,21 @@
     \protect\texttt{\protect\seqinsert{\protect\seqsplit{\footnotesize#1}}}%
   \endgroup
 }
+
+% ---------------- Old Code ----------------------
+
+
+% Useful when you need to scrunch section headings,
+% but be careful of the 'compact' argument if you are submitting
+% a paper, as you will likely violate the template
+%\usepackage[compact,noindentafter]{titlesec}
+%\titlespacing{\section}{0pt}{2ex}{1ex}
+%\titlespacing{\subsection}{0pt}{1ex}{0ex}
+%\titlespacing{\subsubsection}{0pt}{0.5ex}{0ex}
+
+% Replace's Will's custom \myparagraph in a better way
+%\usepackage{titlesec}
+%\titleformat{\paragraph}[runin]{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}[:]
+%\titlespacing*{\paragraph}{0pt}{0.25em}{0.5em}
+% For legacy code
+%\let\myparagraph\paragraph
