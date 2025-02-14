@@ -9,6 +9,8 @@
       pandas
       statsmodels
       scikit-learn
+      pynput
+      hdbscan
       pymongo
       psycopg2
       # plotly
