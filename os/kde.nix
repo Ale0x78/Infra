@@ -5,7 +5,7 @@ mkTuple = lib.gvariant.mkTuple;
 in 
 {
   services.xserver.enable = true;
-
+  services.displayManager.sddm.settings.General.DisplayServer = "wayland";
 
   services = {
     displayManager.sddm = {
