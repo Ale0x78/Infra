@@ -34,21 +34,25 @@
   fileSystems."/" =
     { device = "zpool/root";
       fsType = "zfs";
+      options = [ "zfsutil" ];
     };
 
   fileSystems."/nix" =
     { device = "zpool/nix";
       fsType = "zfs";
+      options = [ "zfsutil" ];
     };
 
   fileSystems."/var" =
     { device = "zpool/var";
       fsType = "zfs";
+      options = [ "zfsutil" ];
     };
 
   fileSystems."/home" =
     { device = "zpool/home";
       fsType = "zfs";
+      options = [ "zfsutil" ];
     };
 
   fileSystems."/boot" =
