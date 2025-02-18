@@ -10,7 +10,7 @@
       statsmodels
       scikit-learn
       pynput
-      hdbscan
+      # hdbscan
       pymongo
       psycopg2
       # plotly
