@@ -15,7 +15,7 @@
             settings.options.localAnnounceEnabled = false;
             dataDir = "/home/alex/Sync";    # Default folder for new synced folders
             configDir = "/home/alex/.config/syncthing";   # Folder for Syncthing's settings and keys
-            folders = {
+            settings.folders = {
                 "Ravka" = {
                     path = "/home/alex/Ravka";
                 };
