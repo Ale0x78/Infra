@@ -25,7 +25,7 @@ in
    ];
   boot.kernelModules = [ "kvm-intel" "vfio_pci" "vfio_iommu_type1" "vfio"
   ];
-  boot.kernelParams = [ "intel_iommu=on"];
+  boot.kernelParams = [ "intel_iommu=on" "nvidia_drm.fbdev=1"];
 
   boot.extraModulePackages = [ ];
   # boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
