@@ -1,4 +1,4 @@
-{ pkgs, home-manager, lib, ... }:
+{ pkgs, home-manager,nixos-cosmic, lib, ... }:
 let 
 mkUint32 = lib.gvariant.mkUint32;
 mkTuple = lib.gvariant.mkTuple; 

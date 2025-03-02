@@ -4,6 +4,7 @@
   # services.sunshine.enable = true;
   environment.systemPackages = [
     pkgs.heroic
+    pkgs.ryubing
     pkgs.ferium
   ];
   hardware.steam-hardware.enable = true;

@@ -23,13 +23,14 @@ in
 
   };
     dconf.settings = {
-        "org/gnome/desktop/interface".color-scheme = "prefer-dark";
         "org/gnome/mutter" = {
           experimental-features = [ "scale-monitor-framebuffer" ];
         };
 
       "org/gnome/desktop/interface" = {
         enable-hot-corners = false;
+        color-scheme = "prefer-dark";
+        icon-theme = "Adwaita";
         # All the below are installed at the system level
         # Could instead use `gtk.cursorTheme`, etc. and reference the actual packages
         cursor-theme = "capitaine-cursors";
@@ -42,6 +43,7 @@ in
           # forge.extensionUuid
           logo-menu.extensionUuid
           vitals.extensionUuid
+          # pop-shell.extensionUuid
           # space-bar.extensionUuid
           # unite.extensionUuid
           # top-bar-organizer.extensionUuid
@@ -62,6 +64,7 @@ in
         # forge
         logo-menu
         vitals
+        # pop-shell
         # space-bar
         # unite
         # top-bar-organizer

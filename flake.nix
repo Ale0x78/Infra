@@ -2,6 +2,7 @@
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "nixpkgs/nixos-24.05";
+    nixpkgs.follows = "nixos-cosmic/nixpkgs"; # NOTE: change "nixpkgs" to "nixpkgs-stable" to use stable NixOS release
     nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
     home-manager = {
       url = "github:nix-community/home-manager/master";
@@ -12,6 +13,7 @@
   outputs = inputs@{ self
     , nixpkgs
     , nixpkgs-stable
+    , nixos-cosmic
     , home-manager
     , ... }:
   let
@@ -54,6 +56,7 @@
           };
         }
         nixpkgs.nixosModules.notDetected
+        nixos-cosmic.nixosModules.default
         {
           nix.settings = {
             substituters = [ "https://cosmic.cachix.org/" ];
