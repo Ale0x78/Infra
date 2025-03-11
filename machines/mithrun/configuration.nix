@@ -23,7 +23,7 @@
       ../../os/thebasics.nix
       ../../os/localSSH.nix
       ../../os/virtual.nix
-      ../../os/hacking.nix
+      # ../../os/hacking.nix
     ];
 
 

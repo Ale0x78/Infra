@@ -4,14 +4,14 @@
 {
   nixpkgs.config.cudaSupport = true;
   environment.systemPackages = with pkgs; [
-    (python312.withPackages (ps: with ps; [
+    (python313.withPackages (ps: with ps; [
       numpy # these two are
       scipy # probably redundant to pandas
       pandas
       statsmodels
       scikit-learn
       pynput
-      hdbscan
+      # hdbscan
       pymongo
       psycopg2
       # plotly

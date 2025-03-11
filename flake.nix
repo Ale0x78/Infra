@@ -54,10 +54,10 @@
         }
         nixpkgs.nixosModules.notDetected
         {
-          nix.settings = {
-            substituters = [ "https://cosmic.cachix.org/" ];
-            trusted-public-keys = [ "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" ];
-          };
+          # nix.settings = {
+            # substituters = [ "https://cosmic.cachix.org/" ];
+            # trusted-public-keys = [ "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" ];
+          # };
         }
 
         # Config we want to apply to all systems

@@ -9,6 +9,7 @@
     services = {
         syncthing = {
             enable = true;
+            openDefaultPorts = true;
             user = "alex";
             settings.options.urAccepted = -1;
             settings.options.relaysEnabled = false;
@@ -27,5 +28,8 @@
                 };
             };
         };
-};
+    };
+    networking.firewall.interfaces."tailscale0".allowedTCPPorts = [22000 8384];
+    networking.firewall.interfaces."tailscale0".allowedUDPPorts = [22000];
+    networking.firewall.checkReversePath = "loose";
 }

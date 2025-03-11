@@ -9,6 +9,7 @@
       binutils
       coreutils
       gleam
+      apfs-fuse
       cmake
       gwe
       rustup

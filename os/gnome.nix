@@ -40,14 +40,16 @@ in
       };
 
       "org/gnome/shell".enabled-extensions = with pkgs.gnomeExtensions; [
-          # forge.extensionUuid
-          logo-menu.extensionUuid
-          vitals.extensionUuid
-          # pop-shell.extensionUuid
-          # space-bar.extensionUuid
-          # unite.extensionUuid
-          # top-bar-organizer.extensionUuid
-          caffeine.extensionUuid
+        blur-my-shell.extensionUuid
+        clipboard-indicator.extensionUuid
+        compiz-windows-effect.extensionUuid
+        day-progress.extensionUuid
+        logo-menu.extensionUuid
+        freon.extensionUuid
+        impatience.extensionUuid
+        media-controls.extensionUuid
+        user-themes.extensionUuid
+        caffeine.extensionUuid
       ];
 
       "com/raggesilver/BlackBox" = {
@@ -61,13 +63,15 @@ in
     };
 
       home.packages = with pkgs.gnomeExtensions; [
-        # forge
+        blur-my-shell
+        clipboard-indicator
+        compiz-windows-effect
+        day-progress
         logo-menu
-        vitals
-        # pop-shell
-        # space-bar
-        # unite
-        # top-bar-organizer
+        freon
+        impatience
+        media-controls
+        user-themes
         caffeine
       ];
   };
