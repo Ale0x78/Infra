@@ -32,6 +32,13 @@
    vfio.enable = true;
   };
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  nixpkgs.hostPlatform = {
+      gcc.arch = "alderlake";
+      gcc.tune = "alderlake";
+      system = "x86_64-linux";
+  };
+  
   systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
   fileSystems."/" =
     { device = "zpool/root";
