@@ -27,18 +27,41 @@
         binutils
         coreutils
         fortune 
+        zbar
         sshuttle
-
+        parallel
+        poetry
+        pyenv
 
         # Dev stuff
         helix
         podman
         nodejs
         rustup
-        pyenv
+        (pkgs.python312.withPackages (python-pkgs: with python-pkgs; [
+          # select Python packages here
+          pandas
+          imageio
+          requests
+          podman
+          zxing-cpp
+          tensorflow
+          docker
+          z3-solver
+          pymongo
+          psycopg2-binary
+          pyzbar
+          python-dotenv
+          opencv4
+          matplotlib
+          # hdbscan
+          numpy
+          pytorch
+        ]))
         pgcli
         mongodb-tools
         go
+        openconnect
         jdk
         mitmproxy
         ffmpeg
