@@ -42,13 +42,13 @@ in
       "org/gnome/shell".enabled-extensions = with pkgs.gnomeExtensions; [
         blur-my-shell.extensionUuid
         clipboard-indicator.extensionUuid
-        compiz-windows-effect.extensionUuid
+        # compiz-windows-effect.extensionUuid
         day-progress.extensionUuid
         logo-menu.extensionUuid
         freon.extensionUuid
-        impatience.extensionUuid
+        # impatience.extensionUuid
         media-controls.extensionUuid
-        user-themes.extensionUuid
+        # user-themes.extensionUuid
         caffeine.extensionUuid
       ];
 
@@ -65,13 +65,13 @@ in
       home.packages = with pkgs.gnomeExtensions; [
         blur-my-shell
         clipboard-indicator
-        compiz-windows-effect
+        # compiz-windows-effect
         day-progress
         logo-menu
         freon
-        impatience
+        # impatience
         media-controls
-        user-themes
+        # user-themes
         caffeine
       ];
   };
