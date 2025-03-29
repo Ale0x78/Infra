@@ -12,8 +12,8 @@
       ../../os/nvidia-pcie-passthrough.nix
       ../../os/comms.nix
       ../../os/gfx.nix
-      #../../os/kde.nix
-      ../../os/gnome.nix
+      ../../os/kde.nix
+      # ../../os/gnome.nix
       # ../../os/cosmic.nix
       ../../os/school.nix
       ../../os/gaming.nix
@@ -31,14 +31,14 @@
    system.nixos.tags = [ "with-vfio" ];
    vfio.enable = true;
   };
-  nix.settings.system-features = map (x: "gccarch-${x}") ((systems.architectures.inferiors.alderlake or []) ++ ["alderlake"]);
+  nix.settings.system-features = map (x: "gccarch-${x}") ((lib.systems.architectures.inferiors.alderlake or []) ++ ["alderlake"]);
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  nixpkgs.hostPlatform = {
-      gcc.arch = "alderlake";
-      gcc.tune = "alderlake";
-      system = "x86_64-linux";
-  };
+  # nixpkgs.hostPlatform = {
+  #     gcc.arch = "alderlake";
+  #     gcc.tune = "alderlake";
+  #     system = "x86_64-linux";
+  # };
   
   systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
   fileSystems."/" =
