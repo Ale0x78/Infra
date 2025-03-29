@@ -38,17 +38,22 @@
         podman
         nodejs
         rustup
-        (pkgs.python312.withPackages (python-pkgs: with python-pkgs; [
+        (pkgs.python313.withPackages (python-pkgs: with python-pkgs; [
           # select Python packages here
           pandas
           imageio
+          brotli
           requests
           podman
           zxing-cpp
-          tensorflow
+          tiktoken
+          # tensorflow
+          zstandard
+          # pynput
           docker
           z3-solver
           pymongo
+          # keyboard
           psycopg2-binary
           pyzbar
           python-dotenv
