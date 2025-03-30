@@ -31,7 +31,7 @@
    system.nixos.tags = [ "with-vfio" ];
    vfio.enable = true;
   };
-  nix.settings.system-features = map (x: "gccarch-${x}") ((lib.systems.architectures.inferiors.alderlake or []) ++ ["alderlake"]);
+  # nix.settings.system-features = map (x: "gccarch-${x}") ((lib.systems.architectures.inferiors.alderlake or []) ++ ["alderlake"]);
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # nixpkgs.hostPlatform = {
