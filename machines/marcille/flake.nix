@@ -24,6 +24,7 @@
         nmap
         fish
         cowsay
+        neovim
         binutils
         coreutils
         fortune 

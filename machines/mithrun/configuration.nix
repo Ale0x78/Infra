@@ -70,10 +70,12 @@
       fsType = "vfat";
     };
 
-  # swapDevices = [{
-  #   device = "/dev/disk/by-label/swap";
-  # }];
-  # zramSwap.enable = true;
+  swapDevices = [{
+    device = "/dev/disk/by-label/swap";
+  }];
+  zramSwap.enable = true;
+
+  boot.zfs.devNodes = "/dev/disk/by-id/ata-TOSHIBA_HDWG780UZSVA_94G0A1QRFWAJ-part1"
 
   boot.zfs.extraPools = [ "zpool" ];
     hardware.bluetooth.enable = true; # enables support for Bluetooth
