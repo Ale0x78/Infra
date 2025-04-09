@@ -23,12 +23,13 @@ In this section, we will evaluate our clustering approach against the ground tru
 
 \paperFinding{Clustering large quantities of phishing pages, based on their browser APIs, keeps pages deployed via the same kit together}
 Pages with ground truth labels for originating kits remain appropriately sorted out in the clustering of the \totalPagesClusterable{} pages, as out of the 3,505 pages clustered within the larger clusters, we maintain an FMI of 0.948 and a V-Score of 0.889, respectively.
-Manually inspecting the clusters, we observe that these clusters unique pages across deployment types (AWS, Cloudflare, DigitalOcean, etc.) and languages. For example, Cluster-e325887b comprises 487 pages across 5 unique tldr and contains pages engaging in voice-based phishing attacks (tech support scams) across Japanese, English, and German, varying phone numbers and errors in each. With over 400 APIs in common, it is clear that these pages' usage of keyboard intercepting APIs, Audio APIs, and Network APIs for IP intelligence caused the cluster to be formed.
+Manually inspecting the clusters, we observe that these clusters unique pages across deployment types (AWS, Cloudflare, DigitalOcean, etc.) and languages. For example, Cluster-e325887b comprises 487 pages across 5 unique tldr and contains pages engaging in voice-based phishing attacks (tech support scams) across Japanese, English, and German, varying phone numbers and errors in each, shown in Figure-\ref{fig:example}. With over 400 APIs in common, it is clear that these pages' usage of keyboard intercepting APIs, Audio APIs, and Network APIs for IP intelligence caused the cluster to be formed.
 
 \subsection{Temporal patterns of clusters}
 With \totalClusters{} clusters, we observe 4 temporal patterns: constant, abrupt, seasonal, and re-emergant. 
 
-\paperFinding{}
+\paperFinding{Majority of phishing  pages, originate from the same 50 clusters}
+\totalFromTop{} pages of pages that exectued javascript in a first party context (\totalPagesWithJavascriptFP{}) are sorted into one of the 50 top clusters.
 
 \subsection{Phishing Techniques across clusters}
 
