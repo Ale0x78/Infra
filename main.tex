@@ -16,6 +16,7 @@
 \usepackage{listings}
 \usepackage{adjustbox}
 \usepackage{titleps}
+\usepackage{subfig}
 
 %\newpagestyle{draftheader}{
 %  \sethead{\textit{Preliminary Draft --- 2023-10-31}}{}{}
@@ -29,8 +30,7 @@
 %\pagenumbering{arabic} 
 
 % \include{imports/authors}
-\include{imports/macros}
-\include{imports/numbers}
+
 \date{}
 \newcommand{\etal}{\textit{et al.}\xspace}
 \newcommand{\emse}{Public SMS Gateways}
@@ -42,7 +42,8 @@
 \setlist[questions,2]{label=(\alph*),ref=\thequestionsi(\alph*)}
 \setlist[questions]{topsep=0pt,itemsep=-1ex,partopsep=1ex,parsep=1ex}
 
-\title{On browser API usage in phishing}
+% \title{Characterizing Phishing Pages via Browser API usage differences}
+\title{School of Phish: differentiating phishing pages via browser API usage}
 
 %for single author (just remove % characters)
 % \author{
@@ -56,14 +57,16 @@
 % % {\rm Name}\\
 % %Name Institution
 % } % end author
-\input{tex/authors}
 
-
-\maketitle
 \input{macros/helpers}
 \input{macros/numbers}
 
+\input{tex/authors}
 \input{tex/abstract.tex}
+
+\maketitle
+
+
 
 \input{tex/introduction.tex}
 \input{tex/background.tex}
