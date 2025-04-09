@@ -3,27 +3,31 @@
 \label{sec:results}
 
 
-In this section, we will evaluate our clustersing approach against the ground truth, inspect the distribution of ground truth pages in teh final clusters, and report temporal patterns, and the commonality of phishing behaviors across those clusters. In total, we crawled for \daysCrawled{} days collecting browser traces from \totalPageWithJavascript{} pages, out of which only \totalPagesWithJavascriptFP{} qualified for clustering by executing at least 8 APIs and \totalPagesClusterable{} pages were not sorted by HDBSCAN into a cluster with no common APIs or placed as noise.
+In this section, we will evaluate our clustering approach against the ground truth, inspect the distribution of ground truth pages in the final clusters, and report temporal patterns and the commonality of phishing behaviors across those clusters. In total, we crawled for \daysCrawled{} days collecting browser traces from \totalPageWithJavascript{} pages, out of which only \totalPagesWithJavascriptFP{} qualified for clustering by executing at least 8 APIs and \totalPagesClusterable{} pages were not sorted by HDBSCAN into a cluster with no common APIs or placed as noise.
 
 
 \subsection{Cluster evaluation}
 
 \input{figures/intra_kit_sim.tex}
 
-\paperFinding{Pages from different kits employ vastly different APIs} Figure-~\ref{fig:intra_kit_sim} shows the distribution of Jecard-based similarity between pages from the same kit versus different kits. We observe that while most pages that had the same kit, as identified by KitPhisher, have around 90-100\% similarity, pages from different kits, even ones with similar themes, rarely exceed 60\% similarity. We leverage this in our clustering by treating $1 - \text{JI}(A,B)$ as a distance kernel of two pages. 
+\paperFinding{Pages from different kits employ vastly different APIs} Figure-~\ref{fig:intra_kit_sim} shows the distribution of Jecard-based similarity between pages from the same kit versus different kits. We observe that while most pages with the same kit, as identified by KitPhisher, have around 90-100\% similarity, pages from different kits, even ones with similar themes, rarely exceed 60\% similarity. We leverage this in our clustering by treating $1 - \text{JI}(A,B)$ as a distance kernel of two pages. 
 
-\paperFinding{Browser API usage unique identify phishing kits apart from eachother} Clustering pages from \totalKitPages{} pages across \totalKits{} kits, yeild \totalKitClusters{}. Evaluating these clusters against the ground truth labels for each page, we find that our clusters have an FMI-based accuracy of \gtFMI{}. The clusters have a V-Score of \gtVS{}, which increases with a higher $\beta$, meaning the clusters tend to combine two kits into one instead of splitting pages from the same kit across multiple clusters. These pages remain properly sorted out, as out of the 3,505 pages clustered within the larger clusters, we maintain an FMI of 0.948 and a V-Score of 0.889, respectively.
+\paperFinding{Browser API usage unique identify phishing kits apart from eachother} Clustering pages from \totalKitPages{} pages across \totalKits{} kits, yeild \totalKitClusters{}. Evaluating these clusters against the ground truth labels for each page, we find that our clusters have an FMI-based accuracy of \gtFMI{}. The clusters have a V-Score of \gtVS{}, which increases with a higher $\beta$, meaning the clusters tend to combine two kits into one instead of splitting pages from the same kit across multiple clusters.
 
 % Ignoring some types of APIs, reduces the number of pages you can cluster, while not impacting the FMI or V-Score
-\paperFinding{DOM APIs and property accesses play an essential role in identifying the underlying kit} With \TotalAPIs{} number browser APIs, feature reduction becomes an obvious goal. However, removing DOM-related APIs, or property reads, out of consideration drastically reduces the number of pages we can consider for ground truth evaluation while not increasing our overall accuracy. Evaluated our same methodology described in Section-~\ref{sec:methods} with all HTML-DOM, SVG, and CSS APIs removed and observed FMI-based accuracy of 0.93 and V-Score of 0.86. When all property reads were removed (often used in finterprinting\todocite{Junhua}), we saw FMI and V-Score of 0.93 and 0.85, respectively. In both cases, fewer pages and kits can be clustered as we reduce some pages below the required four distinct APIs.
+\paperFinding{DOM APIs and property accesses play an essential role in identifying the underlying kit} With \TotalAPIs{} number browser APIs, feature reduction becomes an obvious goal. However, removing DOM-related APIs, or property reads, out of consideration drastically reduces the number of pages we can consider for ground truth evaluation, not increasing our overall accuracy. Evaluated our same methodology described in Section-~\ref{sec:methods} with all HTML-DOM, SVG, and CSS APIs removed and observed FMI-based accuracy of 0.93 and V-Score of 0.86. When all property reads were removed (often used in finterprinting\todocite{Junhua}), we saw FMI and V-Score of 0.93 and 0.85, respectively. In both cases, we can cluster fewer pages and thus identify fewer kits.
 
 
 % We will discuss this later in the discussion, but it should be noted that we aggregate pages across different languages and deployment infra
 \input{figures/ms_defender.tex}
-Manually inspecting the clusters, we observe that these clusters unique pages across deployment types (AWS, Cloudflare, etc) and languages. For example, Cluster-e325887b comprises 487 pages across 5 unique tldr and contains pages engaging in voice-based phishing attacks (tech support scams) across Japanese, English, and German, varying phone numbers and errors in each. With over 400 APIs in common, it is clear that these pages' usage of keyboard intercepting APIs, Audio APIs, and Network APIs for IP intelligence caused the cluster to be formed.
+
+\paperFinding{Clustering large quantities of phishing pages, based on their browser APIs, keeps pages deployed via the same kit together}
+Pages with ground truth labels for originating kits remain appropriately sorted out in the clustering of the \totalPagesClusterable{} pages, as out of the 3,505 pages clustered within the larger clusters, we maintain an FMI of 0.948 and a V-Score of 0.889, respectively.
+Manually inspecting the clusters, we observe that these clusters unique pages across deployment types (AWS, Cloudflare, DigitalOcean, etc.) and languages. For example, Cluster-e325887b comprises 487 pages across 5 unique tldr and contains pages engaging in voice-based phishing attacks (tech support scams) across Japanese, English, and German, varying phone numbers and errors in each. With over 400 APIs in common, it is clear that these pages' usage of keyboard intercepting APIs, Audio APIs, and Network APIs for IP intelligence caused the cluster to be formed.
 
 \subsection{Temporal patterns of clusters}
-With \totalClusters{} clusters, we observe 4 temporal patterns: constant, bursty, 
+With \totalClusters{} clusters, we observe 4 temporal patterns: constant, abrupt, seasonal, and re-emergant. 
+
 \paperFinding{}
 
 \subsection{Phishing Techniques across clusters}
