@@ -27,7 +27,7 @@ However, we also look at prior work by Su \etal{} and Zhang \etal{} for categori
 
 \myparagraph{De-duplicating kit files} We crawl the URLs with KitPhisher to establish a ground truth dataset with URLs originating from the same kit. For zip files extracted via KitPhisher that have password-based encryption enabled, we use the SHA256 hash of the zip files to identify which domains yielded the same kit. For the remaining zip files, we further de-duplicate them into Kit-Families by looking at them as a set of SHA256 of source files\footnote{Source files identified via libmagic}. If the Jaccard index-based similarity ($JI(A,B) = \frac{|A \cap B|}{|A \cup B|}$) of these sets is equal to or greater than 90\%, we consider the two kits to be from the same family, and thus group all domains from both kits into the same group.
 
-\myparagraph{Adjusting for Cloudflare}: We find a high number of anomalies originate from cloudflare scripts on the same domain as the phishing pages. Since cloudflare scripts load from a url with a \textbf{`cdn-cgi'} in the url, for most of our analysis we do not consider scripts loaded from that endpoint. We however, do discuss the behaviors we were able to see from these scripts in Section-~\ref{sec:results}.
+\myparagraph{Adjusting for Cloudflare} We find a high number of anomalies originate from cloudflare scripts on the same domain as the phishing pages. Since cloudflare scripts load from a url with a \textbf{`cdn-cgi'} in the url, for most of our analysis we do not consider scripts loaded from that endpoint. We however, we do discuss the behaviors we were able to see from these scripts in Section-\ref{sec:results}.
 
 \input{figures/behavior_categories}
 \subsection{Identifying trends }
