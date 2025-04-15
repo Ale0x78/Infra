@@ -6,18 +6,17 @@
 In this section, we will evaluate our clustering approach against the ground truth, inspect the distribution of ground truth pages in the final clusters, and report temporal patterns and the commonality of phishing behaviors across those clusters. In total, we crawled for \daysCrawled{} days collecting browser traces from \totalPageWithJavascript{} pages, out of which only \totalPagesWithJavascriptFP{} qualified for clustering by executing at least 8 APIs and \totalPagesClusterable{} pages were not sorted by HDBSCAN into a cluster with no common APIs or placed as noise.
 
 
-\subsection{Cluster evaluation}
+\subsection{Characteristics of clusters}
 
 \input{figures/intra_kit_sim.tex}
 
-\paperFinding{Pages from different kits employ vastly different APIs} Figure-\ref{fig:intra_kit_sim} shows the distribution of Jecard-based similarity between pages from the same kit versus different kits. We observe that while most pages with the same kit, as identified by KitPhisher, have around 90-100\% similarity, pages from different kits, even ones with similar themes, rarely exceed 60\% similarity. We leverage this in our clustering by treating $1 - \text{JI}(A,B)$ as a distance kernel of two pages. 
+\paperFinding{Pages from different kits employ vastly different APIs} Figure-\ref{fig:intra_kit_sim} shows the distribution of Jecard-based similarity between pages from the same kit versus different kits. We observe that while most pages with the same kit, as identified by KitPhisher, have around 90-100\% similarity, pages from different kits, even ones with similar themes, rarely exceed 60\% similarity. We leverage this in our clustering by treating $1 - JI(A,B)$ as a distance kernel of two pages. 
 
 \paperFinding{Browser API usage unique identify phishing kits apart from eachother} Clustering pages from \totalKitPages{} pages across \totalKits{} kits, yeild \totalKitClusters{} clusters. Evaluating these clusters against the ground truth labels for each page, we find that our clusters have an FMI-based accuracy of \gtFMI{}. The clusters have a V-Score of \gtVS{}, which increases with a higher $\beta$, meaning the clusters tend to combine two kits into one instead of splitting pages from the same kit across multiple clusters.
 
 % Ignoring some types of APIs, reduces the number of pages you can cluster, while not impacting the FMI or V-Score
-\paperFinding{DOM APIs and property accesses play an essential role in identifying the underlying kit} With \TotalAPIs{} browser APIs, feature reduction becomes an obvious goal. However, removing DOM-related APIs, or property reads, out of consideration drastically reduces the number of pages we can consider for ground truth evaluation, not increasing our overall accuracy. Evaluated our same methodology described in Section-\ref{sec:methods} with all HTML-DOM, SVG, and CSS APIs removed and observed FMI-based accuracy of 0.93 and V-Score of 0.86. When all property reads were removed (often used in finterprinting\todocite{Junhua}), we saw FMI and V-Score of 0.93 and 0.85, respectively. In both cases, we can cluster fewer pages and thus identify fewer kits. Finally, to ensure that the distance metric is sufficient to isolate pages from different kits in most cases, we attempt to cluster all XXX pages from YYY kits, even if we only observed a single page from that kit. Allowing HDBSCAN to form singleton clusters, we see that these pages can still be differentiated from one another with an FMI of XXXX and V-Score of YYYY.
-
-
+\paperFinding{DOM APIs and property accesses play an essential role in identifying the underlying kit} With \TotalAPIs{} browser APIs, feature reduction becomes an obvious goal. However, removing DOM-related APIs, or property reads, out of consideration drastically reduces the number of pages we can consider for ground truth evaluation, not increasing our overall accuracy. Evaluated our same methodology described in Section-\ref{sec:methods} with all HTML-DOM, SVG, and CSS APIs removed and observed FMI-based accuracy of 0.93 and V-Score of 0.86. When all property reads were removed (often used in finterprinting\todocite{Junhua}), we saw FMI and V-Score of 0.93 and 0.85, respectively. In both cases, we can cluster fewer pages and thus identify fewer kits. 
+% Finally, to ensure that the distance metric is sufficient to isolate pages from different kits in most cases, we attempt to cluster all XXX pages from YYY kits, even if we only observed a single page from that kit. Allowing HDBSCAN to form singleton clusters, we see that these pages can still be differentiated from one another with an FMI of XXXX and V-Score of YYYY.
 % We will discuss this later in the discussion, but it should be noted that we aggregate pages across different languages and deployment infra
 \input{figures/ms_defender.tex}
 
@@ -25,16 +24,43 @@ In this section, we will evaluate our clustering approach against the ground tru
 Pages with ground truth labels for originating kits remain appropriately sorted out in the clustering of the \totalPagesClusterable{} pages, as out of the 3,505 pages clustered within the larger clusters, we maintain an FMI of 0.948 and a V-Score of 0.889, respectively.
 Manually inspecting the clusters, we observe that these clusters unique pages across deployment types (AWS, Cloudflare, DigitalOcean, etc.) and languages. For example, Cluster-e325887b comprises 487 pages across 5 unique tldr and contains pages engaging in voice-based phishing attacks (tech support scams) across Japanese, English, and German, varying phone numbers and errors in each, shown in Figure-\ref{fig:example}. With over 400 APIs in common, it is clear that these pages' usage of keyboard intercepting APIs, Audio APIs, and Network APIs for IP intelligence caused the cluster to be formed.
 
-\subsection{Temporal patterns of clusters}
-With \totalClusters{} clusters, we observe 4 temporal patterns: constant, abrupt, seasonal, and re-emergant. 
+\paperFinding{Majority of clusters map to a single brand} We observe that out of \totalClusters{} XXXX contain urls only marked by a single target brand by our threat intel sources. XXX clusters had two brand labels, however the most popular combination of these were "Meta,Facebook", "Facebook,Instigram", and "XXXX,YYYY", keeping the target parent organization the same. The cluster with the most diverse set of brand labels had XXXX, and was a microsoft support scam simular to Figure-\ref{fig:ms_defender}
 
-\paperFinding{Majority of phishing  pages, originate from the same 50 clusters}
-\totalFromTop{} pages of pages that exectued javascript in a first party context (\totalPagesWithJavascriptFP{}) are sorted into one of the 50 top clusters.
+\subsection{Temporal patterns of clusters}
+
+\paperFinding{Majority of phishing pages that execute, originate from the same 50 clusters}
+\totalFromTop{} pages of pages that exectued javascript in a first party context (\totalPagesWithJavascriptFP{}) are sorted into one of the 50 top clusters. XXX of these clusters are constantly present on these phishing feeds, while XXX are only seen for a small window of time. The top 10 clusters target XXX, YYY, and ZZZ companies respectively. We show the clusters over time in Figure-XXX. 
+
+\paperFinding{XXXX\% of the clusters, and by extension kits, are only seen once in the ecosystem} We observe a mostly binomial distribution when it comes to cluster lifetime. From manual examination, the main exception to these are clusters that would be seasonal within a year, for example, cluster XXXX targetting Austratial tax office.
+
+\paperFinding{XXXX\% of the clusters, exphibit weekly seasonalality} It should be noted, that we used time crawled for our indication of start time, however, by crawling once every hour, we closely aproximate the time these urls appear in the feeds. This seasonalality can signal regular re-deployment, or delay in detection due to low number of reports. By measuring which time-series for every cluster had a significant ACF values at lag 7 (weekly seasonality) we find that XXX clusters exphibit weekly seasonality. Out of these XXX are seen for longer then a month. We show the ACF graph for one of the clusters, XXXX targetting chage bank in Figure-XXX. Manually inspecting these clusters, a large portion of them are different iteration of fake shopping websites, with dynamically generated color schemes and titles. These clusters also appear on the feeds in unison. 
+
+\paperFinding{Clusters re-emerge after some downtime} The final type of temporal pattern we observe is re-emergence. We see XXX clusters not be detected by our threat intel sources, and then re-emerge. This could signal a mass-sale of a kit or just a test run by the author. Phishing kits, even on the client-side maintain a lengthy list of IP blocklists, with some (for example, cluster-XXXXX) exfiltrating IP address inteligence imidietly on load, which would enable the threat actor to curate a better blocklists, if they have not send these websites to any victims. 
 
 \subsection{Phishing Techniques across clusters}
 
+% UI interactivity is a dominant behavior!
+\paperFinding{UI interactivity is a universal behavior across clusters} Multi-stage phishing pages are very well documented in prior work, however we find that majority of clusters (XXX\%) register a click event listener using javascript. Though this could be as simple as submitting credentials using javascript, this highlights the need for researches to augment their crawlers in the future, to extract better and more complete execution traces from websites. 
+% Pop-up APIs have dropped in usage (explain why)
+
+\input{figures/crawlphish_all_categories.tex}
+
+\paperFinding{Pop-UP APIs are on a decline} We see only XXX cluster (XXX pages) call out to pop-up requesting APIs. Among these, the most popular was still Notification.requestPermission. This is a smaller fraction of pages than in Crawlphish. This could be a result of Firefox, citing low engagement with the notifications, started requiring user interaction to trigger the popup\cite{mozillaRestrictingNotificationPermission2019} at the end of November 2019, when crawlphish's data collection ended. Chrome has since discussed making modifications to the notification API to make the request less disruptive to the user-experiance\cite{IntroducingQuieterPermission}. The lack of pop-up requests could also be explained by our \textbf{Finding-XX} regarding usage of Fetch and XMLHttpRequest or by the overwhelming amount of the pages (67\%) registering at least one HTMLElement event handler, which would be classified as a \textit{Click-through} by Crawlphish's taxonomy. We report a full breakdown of APIs related to the crawlphish categorization of client-side cloaking in Table~\ref{tab:crawlphish}.
+% Mouse APIs are cluster specific
+
+\paperFinding{Mouse Detection API calls are specific to a small group of clusters}
+
+% Basic fingerprinting is dominant, but we see adoption of modern practices
+\paperFinding{Basic-fingerprinting API calls almost univeral across all clusters} Most popular fingerprinting API call by in phishing kits was \textbf{Navigator.userAgent}, some even adopting the newer, \textbf{Navigator.ClientHints} API.
+
+% Some clusters are old, as evident by their usage of deprecated APIs
+
+\paperFinding{We see a mixture of obfuscation techniques in our dataset} Despite best recommendations\cite {EvalJavaScriptMDN2025} to web developers, javascript's eval function remains a favorite for obfuscation and evasions \todocite{nikos}. Sometimes, a script is executed via `eval()', which evaluates yet another script itself; we measure this phenomenon as a level in \textbf{eval-depth}. A little over 22,000 pages hide javascript evaluation behind a single eval statement, but 744 pages have chains of evals. While we find 12,781 pages requesting a javascript object used for AES encryption, we only see 1,224 pages that call decrypt during the visit. We see 12.5\% of pages invoke a base64 or URL decoding API, frequently associated with obfuscation \cite{jsufp}. We also identify 125 identical scripts based on their script hash but present at different eval depths on different URLs.
 \section{Discussion (1 page)}
 \label{sec:discussion}
 \subsection{Why clusters?}
-\subsection{Dynamic analysis combat evasions}
+\subsection{What makes a kit identifiable?}
+\subsection{Dynamic analysis combats evasions}
+\section{Case studies (1 page)}
+
 % \subsubsection{}
