@@ -1,29 +1,27 @@
 \begin{table}[h]
   \caption{Summary of all API calls that match to a category identified by Crawlphish}
   \centering
-  \begin{tabular}{ll}
+  \begin{tabular}{lrr}
   \hline
-  \textbf{Category} & \textbf{URLs} \\
+  \textbf{Category} & \textbf{Clusters} & \textbf{Pages} \\
   \hline
-  \multicolumn{2}{l}{\textbf{User-Interaction}} \\
-  \quad Pop-up (Total) & 992 \\
-  \quad\quad Geolocation.getCurrentPosition & 498 \\
-  \quad\quad Notification.requestPermission & 169 \\
-  \quad\quad MediaDevices.getUserMedia & 154 \\
-  \quad\quad Window.alert & 107 \\
-  \quad\quad Accelerometer & 64 \\
-  \quad\quad Gyroscope & 11 \\
-  \quad\quad Clipboard.readText & 6 \\
-  \quad\quad Navigator.requestMIDIAccess & 2 \\
-  \quad\quad Window.prompt & 1 \\
-  \quad Mouse & 58 \\
-  \quad DomEvents & 520,359 \\
+  \multicolumn{3}{l}{\textbf{User-Interaction}} \\
+  \quad Pop-up (Total) & 104 & 1,323\\
+  \quad\quad Accelerometer & 7 & 63 \\
+  \quad\quad Clipboard.readText & 1 & 2 \\
+  \quad\quad Geolocation.getCurrentPosition & 55 & 479 \\
+  \quad\quad Gyroscope & 4 & 10 \\
+  \quad\quad MediaDevices.getUserMedia & 5 & 55 \\
+  \quad\quad Notification.requestPermission & 16 & 148 \\
+  \quad\quad Window.alert & 22 & 581 \\
+  \quad Mouse & 21 & 36 \\
+  \quad DomEvents & 10,402 & 362,700 \\
   \hline
   \multicolumn{2}{l}{\textbf{Fingerprint}} \\
+  \quad Total & 9,077 & 287,983  \\
   \quad Navigator.userAgent & 289,690 \\
   \quad HTMLDocument.cookie & 146,263 \\
   \quad HTMLDocument.referrer & 49,891 \\
-  \quad Total & 328,078 \\
   \hline
   \multicolumn{2}{l}{\textbf{Bot Detection}} \\
   \quad Timing & 79,017 \\
