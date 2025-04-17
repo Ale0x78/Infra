@@ -66,14 +66,9 @@
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-label/boot";
+    { device = "/dev/disk/by-label/BOOT";
       fsType = "vfat";
     };
-
-  swapDevices = [{
-    device = "/dev/disk/by-label/swap";
-  }];
-  zramSwap.enable = true;
 
   boot.zfs.devNodes = "/dev/disk/by-id/ata-TOSHIBA_HDWG780UZSVA_94G0A1QRFWAJ-part1";
 

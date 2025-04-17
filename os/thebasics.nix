@@ -20,7 +20,7 @@
       tailscale
       rbenv
       usbutils
-      signal-desktop
+      signal-desktop-bin
       nodenv
       nvfancontrol
       # xwaylandvideobridge
