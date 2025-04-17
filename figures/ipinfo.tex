@@ -1,27 +1,13 @@
-
-% \begin{adjustbox}{width=\columnwidth,keepaspectratio}
-\begin{lstlisting}[language=JavaScript,frame=L,caption={Example of a client-side IP check what ensures that the ISP type is not educational}, label={lst:ipban-snippet}]  % Start your code-block
-
+\setminted[javascript]{breaklines}
+\begin{minted}{javascript}
 await this.$http({
   method: "get",
   url: "https://api.ipregistry.co/?key=" + this.key
 }).then(e => {
-  const r = e.location.country.code,
-      i = e.user_agent.os.name,
-      o = e.security,
-      s = e.connection.type, 
-      /*The following is types of connections
-      the script will cloack away from*/
+  const s = e.connection.type, 
       c = ["cdn", "hosting", "education"];
     /*omitted for brevity*/
-    if (sessionStorage.setItem("state", d), 
-      sessionStorage.setItem("city", m), 
-      sessionStorage.setItem("postal", g), 
-      this.whitelist.length > 0 && this.whitelist.indexOf(r) == -1 || 
-      !this.allow_pc && i != "iOS" && i != "Android" || 
-      this.is_tor && c.indexOf(s) != -1) 
-        /Redirect*/
+    if (c.indexOf(s) != -1) 
+        /*Redirect*/
 })
-  
-\end{lstlisting}
-% \end{adjustbox}
+\end{minted}
