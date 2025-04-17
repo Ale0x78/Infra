@@ -1,12 +1,11 @@
 \section{Limitations and Future Work (.5 page)} 
 \label{sec:limitations}
-
+\subsection{Veriance}
+We collect API traces from these pages by remaining on these pages for 15 seconds. While this is in line with what prior work employs, lack of force execution, page interactions, and differeint system loads between runs, introduce noise into our measurement. As highlighted by other work \cite{subramani_phishinpatterns_2022}, modern phishing pages include a multi-step user experience, and future work can aim extrapolate the techniques used by pages at different stages via intrumented crawlers that interact with the pages. 
 \subsection{Bias sampling}
 While most phishing pages have been shown to race the clock against being listed on a blocklist eventually, prior work has shown that these blocklists can have blind spots. Prior work has also shown a bias towards certain targets in different feeds\todocite{Citation needed}. While we follow best practices in diversifying our sources for phishing pages,  
 \subsection{Limited Kit sophistication}
 The phishing kits in this paper were collected using \textbf{}{KitPhishr}; while this has been done in prior research, this requires a misconfiguration on the side of the deployer, thus the bias towards PHP, as it is relatively easy to miss-configure apache to allow downloading of the zip file if it is placed in the document root. However, modern backend web technologies, like ExpressJS, Flask, and even Go's built-in HTTP server, would nullify this weakness. The dataset of diverse phishing kits is hard to come by. It could only be obtained through gaining trust in communities where they are freely shared (i.e., Telegram groups, forums, or LinkedIn), direct purchasing, or honeypot setup similar to \cite{hanPhishEyeLiveMonitoring2016} but one that would enable deployment of any kits. 
-\subsection{Dataflow analysis}
-To avoid overfitting some pages and scripts, we look at overall sets of APIs used by phishing pages. However, future work can leverage ObjectID tags from VisibleV8 logs to effectively track the flow of some information between different browser APIs. Adding support for basic ES6 functions into VisibleV8 can also provide an avenue to identify complex client-side cloaking mechanisms, like setting a chain of timeouts and event handlers, and using the race condition as a trigger mechanism for redirection in an obfuscation-resilient way. 
 
 % \subsection{Obfuscation and Flow analysis}
 % \subsection{Automated submissions}
