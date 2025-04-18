@@ -1,13 +1,46 @@
-\begin{table}[t]
+\begin{table*}[t]
     
-    \caption{Manual criteria to identify cloaking behavior established by Zhang \etal{}}
-    \resizebox{\columnwidth}{!}{%\centering
-    \begin{tabular}{cl}
-        \textbf{Cloaking Category} & \multicolumn{1}{c}{\textbf{Required API calls}}                                                                                  \\ \hline
-        User Interaction           & \begin{tabular}[c]{@{}l@{}}Any permission requesting API call\\ FilePicker API calls \\ HTMLElement event listeners\end{tabular} \\ \hline
-        Fingerprinting             & \begin{tabular}[c]{@{}l@{}}HTMLDocument.cookie \\ HTMLDocument.referrer\\ Navigator.userAgent\end{tabular}                               \\ \hline
-        Bot Behavior               & \begin{tabular}[c]{@{}l@{}}Crypto.getRandomBytes\footnote{Since Math.random is a javascript builtin function, VisibleV8 does not have visibility into it's execution}\\ Window.setTimeout + Performance.now\end{tabular}                          
+    \caption{Manual mapping of Phishing techniques to browser APIs}
+    \resizebox{\textwidth}{!}{%\centering
+    \begin{tabular}{|l|l|p{10cm}|}
+        \hline
+        \textbf{Technique} & \textbf{Category} & \textbf{Identifying markers} \\
+        \hline
+        Fingerprinting extraction & Credential Harvesting & 10 Fingerprinting API calls and an exfiltration related API call from \cite{jsufp} \\
+        \hline
+        Client-side IP check & Evasion & 
+        \texttt{Window.fetch} \newline
+        \texttt{XMLHttpRequest.open} \\
+        \hline
+        Timing bot detection & Evasion & 
+        \texttt{Performance.now + Timeout} \\
+        \hline
+        Encryption & Obfuscation & 
+        \texttt{Subtlecrypto.decypt} \\
+        \hline
+        Encoding & Obfuscation & 
+        \texttt{TextDecoder.decode} \newline
+        \texttt{window.atob} \\
+        \hline
+        Dynamic script Evalution & Obfuscation & 
+        \texttt{eval} \\
+        \hline
+        Basic fingerprinting & Evasion & 
+        \texttt{HTMLDocument.cookie} \newline
+        \texttt{HTMLDocument.referrer} \newline
+        \texttt{Navigator.userAgent} \\
+        \hline
+        Dynamic script creation & Evasion & 
+        \texttt{HTMLScriptElement.text} \newline
+        \texttt{HTMLScriptElement.innerHTML} \\
+        \hline
+        Cloudflare Turnstiles & Evasion & 
+        \texttt{Window.turnstile} \newline
+        \texttt{Window.turnstileLoad} \newline
+        \texttt{Window.turnstileCallback} \\
+        \hline
         \end{tabular}
+        
     }
 \label{tab:behaviorcategories}
-\end{table}
+\end{table*}
