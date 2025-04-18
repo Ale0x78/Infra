@@ -4,7 +4,8 @@
 
 \input{figures/clusters_per_month.tex}
 
-In this section, we will evaluate our clustering approach against the ground truth, inspect the distribution of ground truth pages in the final clusters, and report temporal patterns and the commonality of phishing behaviors across those clusters. In total, we crawled for \daysCrawled{} days collecting browser traces from \totalPageWithJavascript{} pages, out of which only \totalPagesWithJavascriptFP{} qualified for clustering by executing at least 8 APIs. Furthermore, 99,464 pages were clustered as noise by HDBSCAN or formed a cluster where all the pages had no common APIs.
+In this section, we will evaluate our clustering approach against the ground truth, inspect the distribution of ground truth pages in the final clusters, and report temporal patterns and the commonality of phishing behaviors across those clusters. In total, we crawled for \daysCrawled{} days collecting browser traces from \totalPageWithJavascript{} pages, out of which only \totalPagesWithJavascriptFP{} qualified for clustering by executing at least 8 APIs. Furthermore, 99,464 pages were clustered as noise by HDBSCAN or formed a cluster where all the pages had no common APIs. As shown in Figure-\ref{fig:pages_clusters_per_month}, in constrast to the number of pages we observe monthly, we 
+
 
 \subsection{Characteristics of clusters}
 
