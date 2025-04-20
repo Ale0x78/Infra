@@ -49,8 +49,9 @@ After manually inspecting the clusters, we observed that these clusters have uni
 \input{figures/ipinfo.tex}
 
 \paperFinding{While rare, client-side IP reputation check is present across multiple clusters}. While only present in 504 clusters (19,869 pages), we identify 15 unique IP reputation APIs used by phishing pages as soon as the page loads. We present a full breakdown in Table-\-\ref{tab:ip_rep}. While not the most popular, \textit{api.ipregistry.co} presents an interesting case study, as it enables the identification of educational networks. Manual examination of pages from these clusters reveals snippets similar to Figure-\ref{fig:ip_example}
-
+\input{figures/ip_apis.tex}
 \input{figures/timeline.tex}
+
 \paperFinding{Pop-UP APIs are declining} We see only 104 clusters (1,323 pages) call out to pop-up requesting APIs. Among these, Geolocation.getCurrentPosition (55 clusters) was the most popular. While requiring a pop-up to interact with, this API can also play a crucial role in cloaking, as any VPN or proxy does not mask the results. 
 
 We observe a smaller fraction of the ecosystem (16 clusters, 148 pages) than \cite{crawlphish} employs this cloaking technique, especially when it comes to triggering a notification pop-up to verify user interaction. This could be a result of Firefox, citing low engagement with the notifications, started requiring user interaction to trigger the popup\cite{mozillaRestrictingNotificationPermission2019} at the end of November 2019, when crawlphish's data collection ended. Chrome has since discussed modifying the notification API to make the request less disruptive to the user experience\cite {IntroducingQuieterPermission}. The lack of pop-up requests could also be explained by our \textbf{Finding-XX} regarding usage of Fetch and XMLHttpRequest or by the overwhelming amount of the pages (67\%) registering at least one HTMLElement event handler, which would be classified as a \textit{Click-through} by Crawlphish's taxonomy. We report a full breakdown of APIs related to the crawlphish categorization of client-side cloaking in Table~\ref{tab:crawlphish}.  
