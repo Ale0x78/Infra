@@ -9,6 +9,7 @@ In this section, we will evaluate our clustering approach against the ground tru
 \paperFinding{Pages from different kits employ vastly different APIs} Figure~\ref{fig:intra_kit_sim} shows the distribution of Jecard-based similarity between pages from the same kit versus different kits. We observe that pages from different kits, even ones with similar themes, rarely exceed 60\% similarity,  while most pages with the same kit have around 90-100\% similarity. We leverage this in our clustering by treating $1 - JI(A,B)$ as a distance kernel of HDBSCAN. 
 \input{figures/intra_kit_sim.tex}
 \input{figures/example_embedding.tex}
+
 \paperFinding{Browser API usage unique identify phishing kits apart from each-other}Clustering pages from \totalKitPages{} pages across \totalKits{} kits, yield \totalKitClusters{} clusters. Evaluating these clusters against the ground truth labels for each page, we find that our clusters have an FMI-based accuracy of \gtFMI{}. The clusters have a V-Score of \gtVS{}, which increases with a higher $\beta$, meaning the clusters are homogeneous. In the ground truth data, this resolves into clusters comprising a few kits being mixed together, as opposed to pages from the same kit being split across multiple clusters. In the larger clusters, we find that this results in pages that appear to be from the same kit forming 3-4 clusters. 
 
 Pages with ground truth labels for originating kits remain appropriately sorted out in clustering the \totalPagesClusterable{} pages. We maintain an FMI of 0.95 and a V-Score of 0.89, respectively.
