@@ -79,6 +79,21 @@
 \end{mdframed}
 }
 
+\newboolean{showcomments}
+\setboolean{showcomments}{true} 
+
+\ifthenelse{\boolean{showcomments}}
+  {\newcommand{\nb}[2]{
+  \fbox{\bfseries\sffamily\small\texttt{#1}}
+     {\sf\small$\blacktriangleright$\texttt{\textcolor{red}{#2}}$\blacktriangleleft$}
+   }
+  }
+  {\newcommand{\nb}[2]{}
+   \newcommand{\cvsversion}{}
+  }
+  
+\newcommand\aknote[1]{\nb{Alex:}{#1}}
+
 % Note macro using royal purple
 \newcommand{\DraftNote}[1]{%
 \begin{mdframed}[backgroundcolor=RoyalPurple!20,linecolor=RoyalPurple!50]
