@@ -2,8 +2,7 @@
     
     \caption{Manual mapping of phishing techniques to browser APIs}
     \resizebox{\textwidth}{!}{%\centering
-    \begin{tabular}{|l|l|p{10cm}|}
-        \hline
+    \begin{tabular}{l|l|p{10cm}}
         \textbf{Technique} & \textbf{Category} & \textbf{Identifying markers} \\
         \hline
         Fingerprinting extraction & Credential Harvesting & 10 Fingerprinting API calls and an exfiltration related API call from ~\cite{jsufp} \\
@@ -46,11 +45,8 @@
         \texttt{Geolocation.getCurrentPosition} \newline
         \texttt{MediaDevices.getDisplayMedia} \newline
         \texttt{HID.requestDevice} \newline
-        \texttt{Gyroscope} \newline
-        \texttt{Window.confirm} \newline
-        \texttt{Window.alert} \newline
-        \texttt{Window.prompt} \newline
-        \texttt{Accelerometer} \newline
+        \texttt{Window.\{confirm|alert|prompt\}} \newline
+        \texttt{Accelerometer|Gyroscope} \newline
         \texttt{Window.showModalDialog} \newline
         \texttt{MediaDevices.getUserMedia} \newline
         \texttt{SyncManager.register} \newline
@@ -59,7 +55,6 @@
         \texttt{USB.requestDevice} \newline
         \texttt{Window.queryLocalFonts} \newline
         \texttt{Notification.requestPermission} \\
-        \hline
         \end{tabular}
         
     }

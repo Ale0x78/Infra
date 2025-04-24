@@ -18,6 +18,7 @@ Server-side techniques are stealthier, but they rely on limited information abou
 Most server-side techniques rely on precompiled deny-lists or allow-lists of IP addresses, user agents, or referers (the page from which the link is visited as identified by an HTTP header). 
 Although server-side code is usually inaccessible, researchers can still analyze it when phishers leave behind predeployment assets, usually in zip bundles called ``phishing kits.''
 
+
 Client-side techniques allow for richer evasion strategies, but they are also more detectable. 
 Phishing pages use browser APIs to trigger permission pop-ups to identify crawling browsers, which often cannot interact with the whole browser UI. 
 Because cloaking is technically very similar to legitimate bot-detection and abuse prevention, 
@@ -26,7 +27,7 @@ phishers also use CAPTCHAs and click-through pages as a form of client-side cloa
 Even the URL features of a phishing link contain techniques that have evolved to respond to anti-phishing research. Phishing pages frequently use URL shorteners (public or private) to obfuscate the final destination, landing pages requiring a user to follow hyperlinks to the actual page, and free web hosting with trustworthy top-level domains (TLDs). 
 
 \subsection{Phishing as an ecosystem}
-
+\input{figures/cloudflare}
 Phishing is a logistical and technical challenge because a phisher must develop an effective phishing page with cloaking; find robust hosting for it; entice a victim to browse to it through SMS, email, or social media; exfiltrate the phished data; then monetize the stolen credentials. This technical and logistical complexity, combined with interest from potential phishers, has created an underground economy to facilitate each step.
 
 Phishing facilitators sell bundles of customizable or ready-to-deploy phishing pages known as ``phishing kits.''
