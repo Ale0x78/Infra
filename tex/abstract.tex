@@ -5,7 +5,7 @@ In contrast, researchers and defenders continue to fight phishing on a page-by-p
   
 This paper aims to aid researchers and analysts in 
 studying phishing by automatically clustering pages in large datasets via the page's browser API usage.
-In most cases, our techniques separate pages by the underlying phishing kits they originate from.
+In most cases, our techniques separate pages by the underlying phishing kits from which they originate.
 Our system has an accuracy of 93\% on a ground-truth dataset of pages and kits collected from the wild. With a curated mapping of techniques to browser APIs and over 500,000 pages in which we identify 11,377 clusters, we explore what techniques are universal, widespread across kits, or kit-specific.
 We find UI interactivity and basic fingerprinting (User-agent, Cookies, and referer) to be the most universal techniques, present in 90\% and 80\% of the clusters, respectively. 
 On the other hand, mouse detection via the browser's mouse API is among the rarest behaviors, despite being used in a deployment of a 7-year-old open-source phishing kit. 
