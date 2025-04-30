@@ -25,12 +25,14 @@
         fish
         cowsay
         neovim
+        tmux
         binutils
         coreutils
         fortune 
         zbar
         sshuttle
         parallel
+        podman-compose
         poetry
         pyenv
 
@@ -46,6 +48,9 @@
           brotli
           requests
           podman
+          scipy
+          imagehash
+          seaborn
           zxing-cpp
           tiktoken
           # tensorflow
@@ -54,7 +59,6 @@
           docker
           z3-solver
           pymongo
-          # keyboard
           psycopg2-binary
           pyzbar
           python-dotenv
