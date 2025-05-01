@@ -48,7 +48,6 @@ in
             nixd
             docker-compose
             podman-compose
-            virt-manager
             lunar-client
             prismlauncher
             nexusmods-app
