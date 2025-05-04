@@ -1,7 +1,4 @@
 { config, lib, pkgs, ... }:
-
-
-
 ## This is directly from the NixOS wiki
 # https://nixos.wiki/wiki/Syncthing
 {
@@ -14,8 +11,7 @@
             settings.options.urAccepted = -1;
             settings.options.relaysEnabled = false;
             settings.options.localAnnounceEnabled = false;
-            dataDir = "/home/alex/Sync";    # Default folder for new synced folders
-            configDir = "/home/alex/.config/syncthing";   # Folder for Syncthing's settings and keys
+            configDir = "/home/alex/.config/syncthing";  
             settings.folders = {
                 "Ravka" = {
                     path = "/home/alex/Ravka";

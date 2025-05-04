@@ -1,7 +1,6 @@
 { config, lib, pkgs, home-manager, ... }:
 {
   environment.systemPackages = with pkgs; [
-      vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
       wget
       helix
       neovim
@@ -34,10 +33,7 @@
       btop
       binwalk
       tmux
-      ferium
-      zellij
-      pciutils
-      qFlipper
+      firefox
       sunshine
       # cosmic-term
     ];

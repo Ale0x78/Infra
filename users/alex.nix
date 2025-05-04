@@ -38,8 +38,6 @@ in
 
 };
 
-
-
     # nixpkgs.config = import ../os/nixos-pkgs.nix;
     home.stateVersion = "24.05";
       home.packages = with pkgs; [
@@ -51,7 +49,6 @@ in
             lunar-client
             prismlauncher
             nexusmods-app
-            firefox
             discord
             joycond
             starship
@@ -64,12 +61,13 @@ in
             autossh
             git
             fish
+            ferium
+            zellij
+            pciutils
+            qFlipper
             lutris
-            zsh
             protonup-qt
             ryujinx
-            binutils
-            coreutils
             virt-manager
             texliveFull
           ];

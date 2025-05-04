@@ -42,7 +42,6 @@ in
     home.stateVersion = "24.05";
       home.packages = with pkgs; [    
             virt-manager
-            firefox
             discord
             joycond
             krita
