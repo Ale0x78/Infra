@@ -12,12 +12,13 @@
       ../../os/nvidia-pcie-passthrough.nix
       ../../os/comms.nix
       ../../os/gfx.nix
-      ../../os/kde.nix
-      # ../../os/gnome.nix
+      # ../../os/kde.nix
+      ../../os/gnome.nix
       # ../../os/cosmic.nix
       ../../os/school.nix
       ../../os/gaming.nix
       ../../users/alex.nix
+      ../../users/lila.nix
       ../../os/sync.nix
       ../../os/python3.nix
       ../../os/thebasics.nix
