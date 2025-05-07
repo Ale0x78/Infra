@@ -5,6 +5,9 @@
     systemd.services.syncthing.environment.STNODEFAULTFOLDER = "true"; # Don't create default ~/Sync folder
     services = {
         syncthing = {
+            settings.devices = {
+                "marcille" = {id = "Q43KN23-H6WC3PK-TAO3XGH-27DB73J-F6GGDH2-FL4AQGM-LPLKLP6-VPIIAA7"; }; 
+            };
             enable = true;
             openDefaultPorts = true;
             user = "alex";
@@ -15,12 +18,11 @@
             settings.folders = {
                 "Ravka" = {
                     path = "/home/alex/Ravka";
+                    devices = [ "marcille" ];
                 };
-                "Fold" = {
-                    path = "/home/alex/Fold";
-                };
-                "Archives" = {
-                    path = "/home/alex/Fold";
+                "Ambrosia" = {
+                    path = "/home/alex/Ambrosia";
+                    devices = [ "marcille" ];
                 };
             };
         };
