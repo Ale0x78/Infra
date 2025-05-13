@@ -6,6 +6,7 @@
     pkgs.heroic
     pkgs.ryubing
     pkgs.ferium
+    pkgs.sunshine
   ];
   hardware.steam-hardware.enable = true;
   # services.sunshine.

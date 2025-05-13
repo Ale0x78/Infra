@@ -35,7 +35,6 @@
       tmux
       firefox
       sunshine
-      # cosmic-term
     ];
   fonts.packages = with pkgs; [
     noto-fonts

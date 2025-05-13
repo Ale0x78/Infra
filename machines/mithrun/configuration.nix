@@ -22,12 +22,11 @@
       ../../os/sync.nix
       ../../os/python3.nix
       ../../os/thebasics.nix
-      ../../os/localSSH.nix
       ../../os/virtual.nix
       # ../../os/hacking.nix
     ];
 
-
+  networking.hostId = "d5abb711";
   specialisation."VFIO".configuration = {
    system.nixos.tags = [ "with-vfio" ];
    vfio.enable = true;
@@ -40,7 +39,7 @@
   #     gcc.tune = "alderlake";
   #     system = "x86_64-linux";
   # };
-  
+
   systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
   fileSystems."/" =
     { device = "zpool/root";

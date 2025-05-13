@@ -5,6 +5,7 @@
 {
   boot.extraModprobeConfig = "options kvm_intel nested=1";
   services.xserver.videoDrivers = ["nvidia"];
+  hardware.nvidia-container-toolkit.enable = true;
   hardware.nvidia = {
 
     # Modesetting is required.
@@ -18,7 +19,7 @@
       };
     # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
     # Enable this if you have graphical corruption issues or application crashes after waking
-    # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead 
+    # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead
     # of just the bare essentials.
     powerManagement.enable = false;
 
@@ -44,7 +45,7 @@
 
 
 
-  # Direct Rendering Infrastructure (DRI) support, both for 32-bit and 64-bit, and 
+  # Direct Rendering Infrastructure (DRI) support, both for 32-bit and 64-bit, and
   # Make sure opengl is enabled
   hardware = {
     graphics = {

@@ -25,6 +25,7 @@
         fish
         cowsay
         neovim
+        ghidra-bin
         tmux
         binutils
         coreutils
