@@ -1,40 +1,16 @@
 { config, lib, pkgs, home-manager, ... }:
 {
   environment.systemPackages = with pkgs; [
-      wget
-      helix
-      neovim
-      nmap
       binutils
       coreutils
-      gleam
       apfs-fuse
-      cmake
-      gwe
-      rustup
-      wl-clipboard
-      go
-      gopls
-      pyenv
-      tailscale
-      rbenv
       usbutils
-      signal-desktop-bin
       nodenv
       nvfancontrol
-      # xwaylandvideobridge
-      distrobox
-      podman
-      podman-desktop
-      starship
-      kitty
+      tmux
+      btop
       cowsay
       fortune
-      btop
-      binwalk
-      tmux
-      firefox
-      sunshine
     ];
   fonts.packages = with pkgs; [
     noto-fonts
