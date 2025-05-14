@@ -10,6 +10,7 @@ in
   users.users.alex.isNormalUser = true;
   users.users.alex = {
     shell = pkgs.fish;
+    openssh.authorizedKeys.keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILvphn6PPLViN5laYyU3VNH8FkAjRtZlKeXQENTQXqtJ anahape@ncsu.edu"];
     extraGroups = [
       "wheel"
       "networkmanager" # this is actually in the nixos documentation on networkmanager
@@ -75,7 +76,6 @@ in
         userName  = "Ale0x78";
         userEmail = "anahape@ncsu.edu";
       };
-      home.file.".ssh/authorized_keys" = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILvphn6PPLViN5laYyU3VNH8FkAjRtZlKeXQENTQXqtJ anahape@ncsu.edu";
       programs.fish = {
         enable = true;
       };
