@@ -9,6 +9,7 @@
       ../../services/boot.nix
       ../../services/jellyfin.nix
       ../../services/localSSH.nix
+      ../../services/grafana.nix
 
       ../../users/alex.nix
 

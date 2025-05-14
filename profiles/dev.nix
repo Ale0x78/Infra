@@ -14,6 +14,7 @@
       nodenv
       nvfancontrol
       distrobox
+      nixd
       podman
       podman-desktop
       starship
