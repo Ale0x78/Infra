@@ -22,7 +22,11 @@
   fileSystems."/homelab" =
     { device = "zpool/homelab";
       fsType = "zfs";
-      options = [ "zfsutil" ];
+      options = [
+        "zfsutil"
+        "users"
+        "nofail"
+      ];
     };
 
   fileSystems."/nix" =

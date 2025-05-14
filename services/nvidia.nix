@@ -4,6 +4,7 @@
 # https://nixos.wiki/wiki/Nvidia
 {
   boot.extraModprobeConfig = "options kvm_intel nested=1";
+
   services.xserver.videoDrivers = ["nvidia"];
   hardware.nvidia-container-toolkit.enable = true;
   hardware.nvidia = {
@@ -77,6 +78,7 @@
     virtualglLib
     vulkan-loader
     vulkan-tools
+    nvfancontrol
 
   ];
 }

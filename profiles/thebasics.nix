@@ -6,7 +6,6 @@
       apfs-fuse
       usbutils
       nodenv
-      nvfancontrol
       tmux
       btop
       cowsay

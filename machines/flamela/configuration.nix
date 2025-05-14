@@ -7,6 +7,7 @@
 
       ../../services/comms.nix
       ../../services/boot.nix
+      ../../services/jellyfin.nix
 
       ../../users/alex.nix
 
