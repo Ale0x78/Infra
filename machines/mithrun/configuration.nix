@@ -6,24 +6,25 @@
       ./hardware-configuration.nix
 
       home-manager.nixosModules.home-manager
-      ../../os/boot.nix
-      ../../os/nixos-pkgs.nix
-      ../../os/nvidia.nix
-      ../../os/nvidia-pcie-passthrough.nix
-      ../../os/comms.nix
-      ../../os/gfx.nix
-      # ../../os/kde.nix
-      ../../os/gnome.nix
-      # ../../os/cosmic.nix
-      ../../os/school.nix
-      ../../os/gaming.nix
+      ../../profiles/nixos-pkgs.nix
+      ../../profiles/gfx.nix
+      ../../profiles/school.nix
+      ../../profiles/gaming.nix
+      ../../profiles/thebasics.nix
+      ../../profiles/virtual.nix
+      ../../profiles/hacking.nix
+      ../../profiles/dev.nix
+
       ../../users/alex.nix
       ../../users/lila.nix
-      ../../os/sync.nix
-      ../../os/python3.nix
-      ../../os/thebasics.nix
-      ../../os/virtual.nix
-      # ../../os/hacking.nix
+
+      ../../services/boot.nix
+      ../../services/nvidia.nix
+      ../../services/nvidia-pcie-passthrough.nix
+      ../../services/comms.nix
+      ../../services/gnome.nix
+      ../../services/sync.nix
+      ../../services/python3.nix
     ];
 
   networking.hostId = "d5abb711";

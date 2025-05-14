@@ -8,6 +8,7 @@
       ../../services/comms.nix
       ../../services/boot.nix
       ../../services/jellyfin.nix
+      ../../services/localSSH.nix
 
       ../../users/alex.nix
 

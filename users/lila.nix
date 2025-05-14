@@ -6,7 +6,6 @@ in
 {
   programs.fish.enable = true;
 
-  home-manager.useGlobalPkgs = true;
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.lila.isNormalUser = true;
   users.users.lila = {
@@ -40,7 +39,7 @@ in
 
     # nixpkgs.config = import ../os/nixos-pkgs.nix;
     home.stateVersion = "24.05";
-      home.packages = with pkgs; [    
+      home.packages = with pkgs; [
             virt-manager
             discord
             joycond

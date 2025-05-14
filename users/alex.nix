@@ -6,7 +6,6 @@ in
 {
   programs.fish.enable = true;
 
-  home-manager.useGlobalPkgs = true;
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.alex.isNormalUser = true;
   users.users.alex = {
@@ -76,6 +75,7 @@ in
         userName  = "Ale0x78";
         userEmail = "anahape@ncsu.edu";
       };
+      openssh.authorizedKeys.keys = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILvphn6PPLViN5laYyU3VNH8FkAjRtZlKeXQENTQXqtJ anahape@ncsu.edu";
       programs.fish = {
         enable = true;
       };
