@@ -47,6 +47,7 @@
           pandas
           imageio
           brotli
+          beautifulsoup4
           requests
           podman
           scipy
