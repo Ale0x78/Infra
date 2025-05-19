@@ -22,7 +22,7 @@
       ../../services/nvidia.nix
       ../../services/nvidia-pcie-passthrough.nix
       ../../services/comms.nix
-      ../../services/gnome.nix
+      ../../services/kde.nix
       ../../services/sync.nix
       ../../services/python3.nix
     ];
