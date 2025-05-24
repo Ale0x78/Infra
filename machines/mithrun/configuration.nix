@@ -12,8 +12,8 @@
       ../../profiles/gaming.nix
       ../../profiles/thebasics.nix
       ../../profiles/virtual.nix
-      ../../profiles/hacking.nix
       ../../profiles/dev.nix
+      ../../profiles/web.nix
 
       ../../users/alex.nix
       ../../users/lila.nix

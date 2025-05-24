@@ -12,6 +12,7 @@
     jetbrains.datagrip
     jetbrains.dataspell
     neovide
+    lmstudio
     webex
     jetbrains.idea-ultimate
     jetbrains.goland

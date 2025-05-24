@@ -12,15 +12,6 @@
 
       masscan
       gdb
-      pwndbg
       one_gadget
-
-
-
-      pkgs.python312.withPackages (pp: [
-        pp.pwntools
-        pp.pycryptodome
-        pp.python-lsp-server
-      ]);
     ];
 }
