@@ -10,7 +10,7 @@ Because some legitimate websites use web fingerprints as a secondary authenticat
 Phishing is ever-evolving and still growing in prevalence. Groups that track phishing saw an increase in phishing domains in the 2020s. The most popular target sectors vary each year, but include software-as-a-service  and webmail services (Q3 2020), financial services (Q3 of 2021), and social media (2024)~\cite{APWGPhishingActivity}. In Q3 2024 alone, the Anti-Phishing Working Group (APWG) reported 900,000 phishing attacks. 
 
 As more enterprises and researchers study and combat phishing, phishers respond with new countermeasures to prevent automated crawling and phishing detection, collectively called ``cloaking.''
-If a phishing page determines the client to be not a viable victim (e.g., a crawling bot, not in a specific country, etc.), it will take action to not serve real phishing content.
+If a phishing page determines the client to be not a viable victim (e.g., a crawling bot, not in a specific country, etc.), it take actions to not serve real phishing content.
 The page may simply halt with an empty DOM or redirect to a benign page, a long-dead phishing page, or an affiliate marketing page.
 
 Cloaking techniques can be broadly classified into server-side and client-side techniques~\cite{oest_inside_2018}.
@@ -40,6 +40,6 @@ The credential sales part of the ecosystem has also adapted to modern MFA/2FA pr
 
 
 \subsection{JavaScript}
-Originally meant as a way of adding interactivity to webpages. The \js{} ecosystem has evolved to allow varying low-level features to webpages through Browser APIs. HTML DOM APIs will allow you to modify page appearance, while LocalStorage and IndexDB will allow write access to the browser's internal storage buckets; meanwhile, the File System API can allow access to the user's real machine's storage. Browser APIs can be function calls (or constructors), property reads, and property writes. Most of the privileged functionality comes from function calls.  
+Originally meant as a way of adding interactivity to webpages. The \js{} ecosystem has evolved to allow varying low-level features to webpages through Browser APIs. HTML DOM APIs enable developers to modify page appearance, while LocalStorage and IndexDB allow write access to the browser's internal storage buckets; meanwhile, the File System API can allow access to the user's real machine's storage. Browser APIs can be function calls (or constructors), property reads, and property writes. Most of the privileged functionality comes from function calls.  
 
 The dynamic nature of JavaScript enables a variety of techniques for concealing itself from analysis and detection. JavaScript obfuscation can transform a known malicious sample into an undetectable one. Webpack enables bundling benign and malicious scripts and wrangling them to make static analysis harder. The other side of obfuscation is evasions; in addition to making code comprehension (via human or machine) harder, malicious actors have deployed time bombs, offloading parts of the malicious script to be read from the DOM or via a network request, and dynamic code generation to evade revealing the entire malicious behavior and thus detection.~\cite{fv8-sec24}
