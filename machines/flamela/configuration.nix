@@ -22,6 +22,7 @@
 
   time.timeZone = "US/Eastern";
   networking.hostId = "5677ca84";
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   networking = {
     interfaces = {
