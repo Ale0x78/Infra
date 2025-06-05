@@ -28,7 +28,7 @@
     settings = {
       server = {
         http_addr = "100.118.80.90";
-        http_port = 3000;
+        http_port = 8080;
       };
     };
   };
