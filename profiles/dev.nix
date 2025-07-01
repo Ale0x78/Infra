@@ -4,6 +4,7 @@
       wget
       helix
       neovim
+      slirp4netns
       gleam
       cmake
       gwe
