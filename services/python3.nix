@@ -15,9 +15,9 @@
       pymongo
       psycopg2
       # plotly
-      torch
-      torchvision
-      torchaudio
+      # torch
+      # torchvision
+      # torchaudio
       python-dotenv
       notebook
       jupyter-core
