@@ -41,37 +41,6 @@
   # };
 
   systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
-  fileSystems."/" =
-    { device = "zpool/root";
-      fsType = "zfs";
-      options = [ "zfsutil" ];
-    };
-
-  fileSystems."/nix" =
-    { device = "zpool/nix";
-      fsType = "zfs";
-      options = [ "zfsutil" ];
-    };
-
-  fileSystems."/var" =
-    { device = "zpool/var";
-      fsType = "zfs";
-      options = [ "zfsutil" ];
-    };
-
-  fileSystems."/home" =
-    { device = "zpool/home";
-      fsType = "zfs";
-      options = [ "zfsutil" ];
-    };
-
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-label/BOOT";
-      fsType = "vfat";
-    };
-
-  boot.zfs.devNodes = "/dev/disk/by-id/ata-TOSHIBA_HDWG780UZSVA_94G0A1QRFWAJ-part1";
-  boot.zfs.extraPools = [ "zpool" ];
   hardware.bluetooth.enable = true; # enables support for Bluetooth
   hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
 

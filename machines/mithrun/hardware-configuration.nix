@@ -20,31 +20,48 @@ in
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod"];
-  boot.initrd.kernelModules = [
-   ];
-  boot.kernelModules = [ "kvm-intel" "vfio_pci" "vfio_iommu_type1" "vfio"
-  ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" ];
+  boot.kernelModules = [ "kvm-intel" "vfio_pci" "vfio_iommu_type1" "vfio"];
   boot.kernelParams = [ "intel_iommu=on" "nvidia_drm.fbdev=1"];
-
   boot.extraModulePackages = [ ];
-  # boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
-  # boot.kernelPackages = pkgs.linuxPackages_6_11;
-  boot.kernelPackages = latestKernelPackage;
-  boot.blacklistedKernelModules = [];
-  boot.zfs.package = pkgs.zfs_unstable;
-  swapDevices = [ ];
 
-  # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
-  # (the default) this is the recommended approach. When using systemd-networkd it's
-  # still possible to use this option, but it's recommended to use it in conjunction
-  # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-  networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.enp6s0.useDHCP = lib.mkDefault true;
-  # networking.interfaces.wlp5s0.useDHCP = lib.mkDefault true;
-  # networking.interfaces.wlp7s0.useDHCP = lib.mkDefault true;
 
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  # hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-  hardware.cpu.intel.updateMicrocode = true;
+  boot.initrd.luks.devices."enc".device = "/dev/disk/by-uuid/2898c4e3-2ad9-4a5f-9ae8-9924d749d3ce";
+
+  fileSystems."/" =
+    { device = "/dev/disk/by-label/core";
+      fsType = "btrfs";
+      options = [ "subvol=root" "compress=zstd" "noatime"];
+    };
+
+  fileSystems."/home" =
+    { device = "/dev/disk/by-label/core";
+      fsType = "btrfs";
+      options = [ "subvol=home" "compress=zstd" "noatime"];
+    };
+
+  fileSystems."/nix" =
+    { device = "/dev/disk/by-label/core";
+      fsType = "btrfs";
+      options = [ "subvol=nix" "compress=zstd" "noatime"];
+    };
+
+ fileSystems."/var/log" =
+    { device = "/dev/disk/by-label/core";
+      fsType = "btrfs";
+      # enable noatime and zstd to the other subvolumes aswell
+      options = [ "subvol=log" "compress=zstd" "noatime" ];
+      # to have a correct log order
+      neededForBoot = true;
+    };
+
+  fileSystems."/boot" =
+    { device = "/dev/disk/by-uuid/D076-EEBE";
+      fsType = "vfat";
+      options = [ "fmask=0022" "dmask=0022" ];
+    };
+
+
+  services.btrfs.autoScrub.enable = true;
+  services.btrfs.autoScrub.interval = "weekly";
 }
