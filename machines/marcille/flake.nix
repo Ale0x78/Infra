@@ -32,6 +32,7 @@
         fortune 
         zbar
         sshuttle
+        android-tools
         parallel
         podman-compose
         poetry
@@ -40,7 +41,6 @@
         # Dev stuff
         helix
         podman
-        nodejs
         rustup
         (pkgs.python313.withPackages (python-pkgs: with python-pkgs; [
           # select Python packages here
@@ -75,6 +75,7 @@
         go
         openconnect
         jdk
+        nodejs_24
         mitmproxy
         ffmpeg
         ripgrep
