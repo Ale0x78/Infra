@@ -27,7 +27,7 @@ in
 
 
   boot.initrd.luks.devices."enc".device = "/dev/disk/by-uuid/2898c4e3-2ad9-4a5f-9ae8-9924d749d3ce";
-
+  boot.initrd.luks.devices."enc2".device = "/dev/disk/by-id/ata-TOSHIBA_HDWG780UZSVA_94G0A1QRFWAJ-part1";
   fileSystems."/" =
     { device = "/dev/disk/by-label/core";
       fsType = "btrfs";

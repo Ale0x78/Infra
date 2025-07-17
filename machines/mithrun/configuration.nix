@@ -14,6 +14,7 @@
       ../../profiles/virtual.nix
       ../../profiles/dev.nix
       ../../profiles/web.nix
+      ../../profiles/gamedev.nix
 
       ../../users/alex.nix
       ../../users/lila.nix
@@ -23,7 +24,7 @@
       ../../services/nvidia-pcie-passthrough.nix
       ../../services/comms.nix
       ../../services/gnome.nix
-      ../../services/sync.nix
+      # ../../services/sync.nix
       ../../services/python3.nix
     ];
   networking.hostId = "d5abb711";
