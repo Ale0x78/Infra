@@ -66,6 +66,12 @@
       options = [ "zfsutil" ];
     };
 
+  fileSystems."/home/archive" =
+    { device = "spool/archive";
+      fsType = "zfs";
+      options = [ "zfsutil" ];
+    };
+
   fileSystems."/boot" =
     { device = "/dev/disk/by-label/BOOT";
       fsType = "vfat";
