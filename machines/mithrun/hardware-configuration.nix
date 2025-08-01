@@ -20,48 +20,26 @@ in
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" ];
-  boot.kernelModules = [ "kvm-intel" "vfio_pci" "vfio_iommu_type1" "vfio"];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod"];
+  boot.initrd.kernelModules = [
+   ];
+  boot.kernelModules = [ "kvm-intel" "vfio_pci" "vfio_iommu_type1" "vfio"
+  ];
   boot.kernelParams = [ "intel_iommu=on" "nvidia_drm.fbdev=1"];
+
   boot.extraModulePackages = [ ];
 
+  boot.kernelPackages = latestKernelPackage;
+  boot.blacklistedKernelModules = [];
 
-  boot.initrd.luks.devices."enc".device = "/dev/disk/by-uuid/2898c4e3-2ad9-4a5f-9ae8-9924d749d3ce";
-  boot.initrd.luks.devices."enc2".device = "/dev/disk/by-id/ata-TOSHIBA_HDWG780UZSVA_94G0A1QRFWAJ-part1";
-  fileSystems."/" =
-    { device = "/dev/disk/by-label/core";
-      fsType = "btrfs";
-      options = [ "subvol=root" "compress=zstd" "noatime"];
-    };
-
-  fileSystems."/home" =
-    { device = "/dev/disk/by-label/core";
-      fsType = "btrfs";
-      options = [ "subvol=home" "compress=zstd" "noatime"];
-    };
-
-  fileSystems."/nix" =
-    { device = "/dev/disk/by-label/core";
-      fsType = "btrfs";
-      options = [ "subvol=nix" "compress=zstd" "noatime"];
-    };
-
- fileSystems."/var/log" =
-    { device = "/dev/disk/by-label/core";
-      fsType = "btrfs";
-      # enable noatime and zstd to the other subvolumes aswell
-      options = [ "subvol=log" "compress=zstd" "noatime" ];
-      # to have a correct log order
-      neededForBoot = true;
-    };
-
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/D076-EEBE";
-      fsType = "vfat";
-      options = [ "fmask=0022" "dmask=0022" ];
-    };
+  swapDevices = [ ];
 
 
-  services.btrfs.autoScrub.enable = true;
-  services.btrfs.autoScrub.interval = "weekly";
+  networking.useDHCP = lib.mkDefault true;
+
+
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  # hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  
+  hardware.cpu.intel.updateMicrocode = true;
 }
