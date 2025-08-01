@@ -41,6 +41,25 @@
   #     system = "x86_64-linux";
   # };
 
+
+# # Create datasets
+# zfs create zpool/root
+# zfs create spool/nix
+# zfs create zpool/var
+# zfs create zpool/home
+# zfs create spool/archive
+
+# # Mount root
+# mkdir -p /mnt
+# mount -t zfs zpool/root /mnt -o zfsutil
+
+# # Mount nix, var, home
+# mkdir /mnt/nix /mnt/var /mnt/home
+# mount -t zfs spool/nix /mnt/nix -o zfsutil
+# mount -t zfs zpool/var /mnt/var -o zfsutil
+# mount -t zfs spool/home /mnt/home -o zfsutil
+
+
   systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
   fileSystems."/" =
     { device = "zpool/root";
@@ -66,7 +85,7 @@
       options = [ "zfsutil" ];
     };
 
-  fileSystems."/home/archive" =
+  fileSystems."/home/alex/archive" =
     { device = "spool/archive";
       fsType = "zfs";
       options = [ "zfsutil" ];
