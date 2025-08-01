@@ -72,6 +72,7 @@
     };
 
   boot.zfs.devNodes = "/dev/disk/by-id/ata-TOSHIBA_HDWG780UZSVA_94G0A1QRFWAJ-part1";
+  boot.kernelParams = [ "zfs.zfs_arc_max=9663676416" ];
   boot.zfs.extraPools = [ "zpool" ];
   hardware.bluetooth.enable = true; # enables support for Bluetooth
   hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
