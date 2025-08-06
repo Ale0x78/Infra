@@ -34,7 +34,9 @@ In addition to data from our phishing feeds, we compile API usage from brand's o
 For Client-side IP checks, we manually looked through every \texttt{Window.fetch} and \texttt{XMLHttpRequest.open} argument URL given that argument was present in more then 50 phishing pages, and identified 15 that were IP reputation APIs. 
 \input{figures/behavior_categories}
 
-\myparagraph{Brand's Original page} OpenPhish and APWG's eCrime Exchange report the brand that a phishing page targets. We selected 5 out of the top 52 brands targeted based on the popularity by page number, as well as brands that represented seasonality targeted sectors (like IRS or banks) and collected VisibleV8 logs for their home pages and, when applicable, their login pages, to assess how similar phishing pages are to their target pages. Lin~\etal{} in ~\cite{linPhishSheepClothing2022} identified that phishing pages could effectively use browser fingerprints to bypass multi-factor authentication, and ~\cite{sanchez-rolaRodsLaserBeams2023} found that phishing pages deploy a plethora of 3rd party fingerprinting scripts, which differ from the scripts of the original page.
+\myparagraph{Brand's Original page} OpenPhish and APWG's eCrime Exchange report the brand that a phishing page targets. We selected 5 out of the top 52 brands targeted based on the popularity by page number, as well as brands that represented seasonality targeted sectors (like the IRS or banks) and collected VisibleV8 logs for their home pages and, when applicable, their login pages, to assess how similar phishing pages are to their target pages. 
+
+% Lin~\etal{} in ~\cite{linPhishSheepClothing2022} identified that phishing pages could effectively use browser fingerprints to bypass multi-factor authentication, and ~\cite{sanchez-rolaRodsLaserBeams2023} found that phishing pages deploy a plethora of 3rd party fingerprinting scripts, which differ from the scripts of the original page.
 
 \subsection{Identifying kits}
 
