@@ -1,9 +1,9 @@
 \begin{abstract}
 Phishing remains one of the most significant security challenges facing users, while the Anti-Phishing Work Group reported over one million phishing pages in the last year alone.
-Phishers achieve this scale by using phishing kits --- ready-to-deploy phishing websites --- to rapidly deploy phishing campaigns with similar data exfiltration, evasion, or mimicry techniques.
+Phishers achieve this scale by using phishing kits --- ready-to-deploy phishing websites --- to rapidly deploy phishing campaigns with marketable data exfiltration, evasion, or mimicry techniques.
 In contrast, researchers and defenders continue to fight phishing on a page-by-page basis, and they still rely on manual analysis to recognize static features for kit identification. 
   
-We leverage the complexity of 1,855,493 phishing pages' JavaScript logic to cluster 73\% of them into \totalClusters{} clusters, annotating the clusters with what phishing techniques they employ. This paper aims to aid researchers and analysts by automatically differentiating groups of phishing pages based on the underlying kit.
+We leverage the complexity of 1,855,493 phishing pages' JavaScript logic to cluster 73\% of them into \totalClusters{} clusters, annotating the clusters with what phishing techniques they employ. This paper aims to aid researchers and analysts by automatically differentiating groups of phishing pages based on the underlying kit, automating a previously manual process, and enabling the measurement of techniques per kit and how widespread some kits are.
 Our system has an accuracy of 93\% on a ground-truth dataset of pages and kits collected from the wild. With a curated mapping of techniques to browser APIs and over 500,000 pages in which we identify 11,377 clusters, we explore what techniques are universal, widespread across kits, or kit-specific.
 We find UI interactivity and basic fingerprinting (User-agent, Cookies, and referer) to be the most universal techniques, present in 90\% and 80\% of the clusters, respectively. 
 On the other hand, mouse detection via the browser's mouse API is among the rarest behaviors, despite being used in a deployment of a 7-year-old open-source phishing kit. 
