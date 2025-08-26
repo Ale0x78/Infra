@@ -2,8 +2,12 @@
 \label{sec:limitations}
 \myparagraph{Incorrect Ground truth mapping}
 While we manually validate our construction of kit families, we do not verify if the kit acquired is the kit deployed on the page. This remains an unexplored problem in the literature. Prior work has focused on studying the kits obtained from these sources, not necessarily validating that these kits were the ones deployed. 
+
+
 \myparagraph{Unexplored Page states}
 While we visit and loiter on phishing pages, we do not explore and interact with the pages. With recent work in LLM-powered crawlers, and ML-guided browser automation\cite{subramani_phishinpatterns_2022}, we leave this to future work to use to collect a more complete list of browser APIs executed by a phishing page, at all stages of the phishing page.
+
+
 \myparagraph{Non-clustered pages}
 For this paper, we ignored any page that did not execute at least eight distinct browser APIs in a first-party context. 376,762 pages did not execute any \js{} at all, meaning that they are limited to server-side cloaking, and dynamic page generation on the server-side for obfuscating static features, while a possibility, we consider server-side techniques out of scope for our research purposes. Most of the chunk of pages were disqualified for not executing enough browser APIs or executing many of them in a first-party context. Including all party scripts would have muddied the similarities with shared usage of standard libraries, which has been documented in prior work \cite{phishingvLegit}, and allowing executions from redirected pages could introduce features into our clustering from the benign pages they are redirecting to. Phishing pages that employ server-side cloaking could redirect the victim to a benign page that loads scripts in a first-party context relative to itself; however, this causes pages to be grouped based on the redirection target. This can be an avenue for future work to explore, as including first-party scripts relative to the origin (current page loaded) would become more valuable if the crawler is automated to interact with the phishing page, to extract behaviors.
 % \subsection{Variance}
