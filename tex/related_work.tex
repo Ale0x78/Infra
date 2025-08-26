@@ -25,8 +25,7 @@ In ~\cite{oest_inside_2018}, Oest~\etal{} manually analyzed phishing kits to est
 
 More recently, Lee~\etal{} in ~\cite{lee_beneath_2024} provides a server-side script (PHP) level analysis of phishing kits, finding that dynamically generated URLs are still standard in the ecosystem and observing seasonality in the kits they were able to obtain. 
 
-\myparagraph{Extending the understanding of the phishing ecosystem}
-
+\myparagraph{Characterizing phishing ecosystem}
 Similar to our methods, Rola~\etal{} in ~\cite{sanchez-rolaRodsLaserBeams2023} deployed a modified Chromium browser to gather data and analyze phishing website browser APIs utilizing a pre-selected API list focused on first and third-party scripts for phishing pages. They find that the majority of the most visited phishing pages (identified via browser telemetry data) deploy fingerprinting scripts, sometimes varying from the ones of the original brand they portray. At the same time, they accessed this at a script level, reinforcing our finding that phishing pages vary vastly from their original page.
 
 Oest~\etal{} in ~\cite{oest_sunrise_nodate} demonstrates the full lifecycle of a phishing campaign by employing the fact that phishing pages often copy assets from the target domain and refer the victim back to the original page afterward. By collaborating with a significant financial institution, they developed a framework for leveraging this data to track a phishing page from its deployment to blocklists flagging the page as phishing. ~\cite{oest_sunrise_nodate} observed all techniques highlighted by prior work: cloaking, user-specific URL generation, man-in-the-middle proxies, and short-lived bursty attacks. Expanding our understanding of the victim experience on a phishing website, Subramani~\etal{} in ~\cite{subramani_phishinpatterns_2022} developed a crawler. 
