@@ -5,7 +5,7 @@
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{booktabs}
-
+\usepackage{url}
 %\usepackage{draftwatermark}
 %\SetWatermarkText{Draft Preprint}
 %\SetWatermarkScale{0.2}
@@ -20,10 +20,6 @@
 \usepackage{subfig}
 \usepackage{diagbox}
 
-%\newpagestyle{draftheader}{
-%  \sethead{\textit{Preliminary Draft --- 2023-10-31}}{}{}
-%}
-%\pagestyle{draftheader}
 
 \graphicspath{ {./images/} }
 
@@ -48,22 +44,8 @@
 \setlist[contributions,2]{label=(\alph*),ref=\thecontributionsi(\alph*)}
 \setlist[contributions]{topsep=0pt,itemsep=-1ex,partopsep=1ex,parsep=1ex}
 
-% \title{Characterizing Phishing Pages via Browser API usage differences}
-% \title{Net Gains: Systematic Phishing Page Differentiation by JavaScript Behavior}
-\title{Characterizing the Phishing Landscape via JavaScript APIs}
+\title{Net Gains: Systematic Phishing Page Differentiation by JavaScript Behaviors}
 
-%for single author (just remove % characters)
-% \author{
-% {\rm Your N.\ Here}\\
-% Your Institution
-% \and
-% {\rm Second Name}\\
-% Second Institution
-% % copy the following lines to add more authors
-% % \and
-% % {\rm Name}\\
-% %Name Institution
-% } % end author
 
 \input{macros/helpers}
 \input{macros/numbers}
@@ -86,6 +68,7 @@
 \input{tex/related_work.tex}
 \input{tex/limitations_future_work.tex}
 \input{tex/conclusion.tex}
+\cleardoublepage
 \input{tex/usenix_req}
 \bibliographystyle{plain}
 \bibliography{bib/rel_work.bib, bib/relwork.bib}

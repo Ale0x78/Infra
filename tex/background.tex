@@ -1,7 +1,7 @@
 \section{Background}
 \label{sec:background}
 
-In this section, we provide a background on current developments in phishing as a phenomenon and adversarial JavaScript techniques, as well as an overview of the parties involved in the phishing ecosystem.
+In this section, we provide a background on current developments in phishing as a phenomenon and adversarial JavaScript techniques, as well as an overview of the parties involved in the phishing ecosystem. We also introduce a basic overview of the clustering techniques used in this work.
 
 \subsection{The Phenomenon of Phishing}
 Phishing is a form of social engineering where an adversary pretends to be a trusted entity to steal a user's credentials or gain access to a specific machine, network, or account to which the user has access. While delivery mechanisms vary, most phishing eventually leads to a webpage that requests some personal information (usually credentials) from the user. 
@@ -13,9 +13,9 @@ As more enterprises and researchers study and combat phishing, phishers respond 
 If a phishing page determines the client is not a viable victim (e.g., a crawling bot, not in a specific country, etc.), it takes actions not to serve real phishing content.
 The page may halt with an empty DOM or redirect to a benign page, a long-dead phishing page, or an affiliate marketing page.
 
-Cloaking techniques can be broadly classified into server-side and client-side techniques~\cite{oest_inside_2018}.
-Server-side techniques are stealthier, but they rely on limited information about the client.  
-Most server-side techniques rely on precompiled deny-lists or allow-lists of IP addresses, user agents, or referers (the page from which the link is visited as identified by an HTTP header). 
+Cloaking techniques are broadly classified into server-side and client-side techniques~\cite{oest_inside_2018}.
+Server-side techniques are stealthier, but they rely on limited information about the client.
+Most server-side techniques rely on precompiled blocklists or allowlists of IP addresses, user agents, or referers (the page from which the link is visited, as identified by an HTTP header). 
 % Although server-side code is usually inaccessible, researchers can still analyze it when phishers leave behind predeployment assets, usually in zip bundles called ``phishing kits.''
 
 
@@ -45,6 +45,6 @@ Originally meant as a way of adding interactivity to webpages. The \js{} ecosyst
 The dynamic nature of JavaScript enables a variety of techniques for concealing itself from analysis and detection. JavaScript obfuscation can transform a known malicious sample into an undetectable one. Webpack enables bundling benign and malicious scripts and wrangling them to make static analysis harder. The other side of obfuscation is evasions; in addition to making code comprehension (via human or machine) harder, malicious actors have deployed time bombs, offloading parts of the malicious script to be read from the DOM or via a network request, and avoid detection.~\cite{fv8-sec24}
 
 \subsection{Hierarchical clustering}
-This paper utilizes hierarchical clustering, an unsupervised learning technique for segmenting data into nested structures (clusters) to identify pages that share phishing kits from their client-side behaviors. Specifically, we use HDBSCAN, a hierarchical variant of the density-based DBSCAN clustering technique. Advantages of HDBSCAN include not requiring prior knowledge of the number of clusters, no hyper-parameter tuning required out of the box\footnote{Unlike DBSCAN, where you have to optimize towards an $\epsilon$ HDBSCAN picks the most stable clusters based on a center of mass}. HDBSCAN has been use by prior work for categorizing malware families \cite{fv8-sec24, Kizzle}.
+This paper utilizes hierarchical clustering, an unsupervised learning technique for segmenting data into nested structures (clusters) to identify pages that share phishing kits from their client-side behaviors. Specifically, we use HDBSCAN, a hierarchical variant of the density-based DBSCAN clustering technique. Advantages of HDBSCAN include not requiring prior knowledge of the number of clusters, no hyper-parameter tuning required out of the box\footnote{HDBSCAN picks the most stable clusters based on the excess of mass algorithm}. HDBSCAN has been use by prior work for categorizing malware families \cite{fv8-sec24, Kizzle}.
 When we can access ground truth, we utilize the V-measure and Fowlkes-Mallows index (FMI) to validate our clusters. Both are scores of 0 and 1 that address how well the clusters map to ground truth classes. V-measure (Validity measure) is the harmonic mean between completeness (all members of the same class are clustered together) and homogeneity (clusters only contain members of a single class) \cite{Rosenberg2007VMeasureAC}. FMI, on the other hand, is the geometric mean between precision and recall, providing a close analog for an F1 score in supervised learning.
 When we do not have ground truth for the pages, we use the silhouette score of all the clusters. Silhouette-score measures how well separated the clusters are, between -1 and 1. While usually used to fine-tune hyperparameters, we primarily use it to measure how well-formed the structures we extract out of HDBSCAN for all of the phishing pages are. Scores under zero signal overlapping structure, while scores above 0.5 and 0.7 indicate medium or firm separation, respectively. 
