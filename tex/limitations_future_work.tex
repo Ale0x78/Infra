@@ -5,6 +5,7 @@ While we manually validate our construction of kit families, we do not verify if
 
 \myparagraph{Unexplored Page states}
 While we visit and loiter on phishing pages, we do not explore and interact with the pages. Addressing this limitation would only improve our cluster evaluation metrics. Upon manual inspection, this is a source of the inaccuracy of clustering on the ground truth data, as some URLs are different paths on the same kit (including specific stages of the phishing page, or the root domain, which cloaks away). With recent work in LLM-powered crawlers, and ML-guided browser automation\cite{subramani_phishinpatterns_2022}, we leave this to future work to use to collect a more complete list of browser APIs executed by a phishing page, at all stages of the phishing page.
+
 \myparagraph{Multi-page memebr clusters}
 On the unlabeled dataset, our merge algorithm produces multi-member pages; these do not impact our findings for all techniques we categorize as rare, as they remain an upper estimate. For techniques we report as widespread (Fingerprinting and UI interactivity), we report distinct page numbers alongside the clusters to show that this assumption holds, as they appear in most of our pages clustered.
 % \myparagraph{Non-clustered pages}
