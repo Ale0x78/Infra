@@ -77,7 +77,7 @@
     };
 
   fileSystems."/nix" =
-    { device = "spool/nix";
+    { device = "zpool/nix";
       fsType = "zfs";
       options = [ "zfsutil" ];
     };
