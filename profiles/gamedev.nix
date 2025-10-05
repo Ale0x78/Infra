@@ -36,13 +36,13 @@ programs.vscode = {
     ms-dotnettools.vscode-dotnet-runtime
   ];
 };
-
-home.packages = [
-  dotnetCorePackages.dotnet_9.sdk # For Godot-Mono VSCode-Extension CSharp
-  godot-mono
+};
+home-manager.home.packages = [
+  pkgs.dotnetCorePackages.dotnet_9.sdk # For Godot-Mono VSCode-Extension CSharp
+  pkgs.godot-mono
 ];
 
 
 
-};
+
 }
