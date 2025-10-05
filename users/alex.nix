@@ -67,7 +67,6 @@ in
             qFlipper
             lutris
             protonup-qt
-            ryujinx
             virt-manager
             texliveFull
           ];

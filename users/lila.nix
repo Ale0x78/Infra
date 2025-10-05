@@ -52,7 +52,6 @@ in
             lutris
             zsh
             protonup-qt
-            ryujinx
           ];
       programs.git = {
         enable = true;
