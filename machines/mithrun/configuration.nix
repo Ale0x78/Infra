@@ -23,7 +23,7 @@
       ../../services/nvidia.nix
       ../../services/nvidia-pcie-passthrough.nix
       ../../services/comms.nix
-      ../../services/gnome.nix
+      ../../services/cosmic.nix
       # ../../services/sync.nix
       ../../services/python3.nix
     ];
@@ -59,6 +59,15 @@
 # mount -t zfs zpool/var /mnt/var -o zfsutil
 # mount -t zfs spool/home /mnt/home -o zfsutil
 
+
+  nix.settings = {
+    substituters = [
+      "https://nix-community.cachix.org"
+    ];
+    trusted-public-keys = [
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+    ];
+  };
 
   systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
   fileSystems."/" =
@@ -97,7 +106,9 @@
     };
 
   boot.zfs.devNodes = "/dev/disk/by-id/ata-TOSHIBA_HDWG780UZSVA_94G0A1QRFWAJ-part1";
-  boot.kernelParams = [ "zfs.zfs_arc_max=9663676416" ];
+  boot.kernelParams = [ "zfs.zfs_arc_max=6442450944" ]; # 6GB
+
+  
   boot.zfs.extraPools = [ "zpool" "spool" ];
   hardware.bluetooth.enable = true; # enables support for Bluetooth
   hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot

@@ -9,4 +9,8 @@ in
   services.displayManager.cosmic-greeter.enable = true;
 
   environment.sessionVariables.COSMIC_DATA_CONTROL_ENABLED = 1;
+  programs.firefox.preferences = {
+    # disable libadwaita theming for Firefox
+    "widget.gtk.libadwaita-colors.enabled" = false;
+  };
 }
