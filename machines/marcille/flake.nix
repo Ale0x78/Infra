@@ -39,6 +39,9 @@
         sshuttle
         android-tools
         parallel
+        codeql
+        rbenv 
+
         podman-compose
         uv
         container
