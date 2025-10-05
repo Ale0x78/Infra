@@ -105,7 +105,9 @@
       fsType = "vfat";
     };
 
-  boot.zfs.devNodes = "/dev/disk/by-id/ata-TOSHIBA_HDWG780UZSVA_94G0A1QRFWAJ-part1";
+  boot.zfs.pools.spool.devNodes = "/dev/disk/by-id/ata-TOSHIBA_HDWG780UZSVA_94G0A1QRFWAJ-part1"; # Archive data
+  
+  boot.zfs.pools.zpool.devNodes = "/dev/disk/by-id/nvme-WD_BLACK_SN770_1TB_22405U800412_1-part2"; # Host OS
   boot.kernelParams = [ "zfs.zfs_arc_max=6442450944" ]; # 6GB
 
   
