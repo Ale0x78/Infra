@@ -37,7 +37,7 @@ programs.vscode = {
   ];
 };
 };
-home-manager.home.packages = [
+home-manager.users.default.home.packages = [
   pkgs.dotnetCorePackages.dotnet_9.sdk # For Godot-Mono VSCode-Extension CSharp
   pkgs.godot-mono
 ];
