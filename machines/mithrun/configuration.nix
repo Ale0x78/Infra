@@ -73,31 +73,31 @@
   fileSystems."/" =
     { device = "zpool/root";
       fsType = "zfs";
-      options = [ "zfsutil" ];
+      options = [ "zfsutil" "noatime" ];
     };
 
   fileSystems."/nix" =
     { device = "zpool/nix";
       fsType = "zfs";
-      options = [ "zfsutil" ];
+      options = [ "zfsutil" "noatime" ];
     };
 
   fileSystems."/var" =
     { device = "zpool/var";
       fsType = "zfs";
-      options = [ "zfsutil" ];
+      options = [ "zfsutil" "noatime" ];
     };
 
   fileSystems."/home" =
     { device = "zpool/home";
       fsType = "zfs";
-      options = [ "zfsutil" ];
+      options = [ "zfsutil" "noatime" ];
     };
 
   fileSystems."/home/alex/archive" =
     { device = "spool/archive";
       fsType = "zfs";
-      options = [ "zfsutil" ];
+      options = [ "zfsutil" "noatime" ];
     };
 
   fileSystems."/boot" =
