@@ -14,7 +14,7 @@
       ../../profiles/virtual.nix
       ../../profiles/dev.nix
       ../../profiles/web.nix
-      ../../profiles/gamedev.nix
+      # ../../profiles/gamedev.nix
 
       ../../users/alex.nix
       ../../users/lila.nix
