@@ -25,6 +25,7 @@
         # general tools
         git
         curl
+        envsubst
         wget
         nmap
         fish
