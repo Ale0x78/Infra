@@ -23,8 +23,8 @@
       ../../services/nvidia.nix
       ../../services/nvidia-pcie-passthrough.nix
       ../../services/comms.nix
-      ../../services/cosmic.nix
-      # ../../services/sync.nix
+      ../../services/kde.nix
+      ../../services/sync.nix
       ../../services/python3.nix
     ];
   networking.hostId = "d5abb711";

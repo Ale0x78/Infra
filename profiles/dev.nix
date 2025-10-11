@@ -1,9 +1,14 @@
 { config, lib, pkgs, home-manager, ... }:
 {
+
+  services.ollama = {
+    enable = true;
+    acceleration = "cuda";
+    models = "/home/alex/archive/models";
+  };
   environment.systemPackages = with pkgs; [
       wget
       helix
-      ollama
       neovim
       gleam
       cmake

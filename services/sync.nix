@@ -17,7 +17,7 @@
             configDir = "/home/alex/.config/syncthing";  
             settings.folders = {
                 "Ravka" = {
-                    path = "/home/alex/Ravka";
+                    path = "/home/alex/archive/Ravka";
                     devices = [ "marcille" ];
                 };
                 "Ambrosia" = {
