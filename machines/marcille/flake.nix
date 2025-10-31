@@ -61,6 +61,7 @@
           requests
           podman
           scipy
+          rich
           imagehash
           seaborn
           zxing-cpp
