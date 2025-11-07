@@ -17,6 +17,8 @@ in
       "video"
       "audio"
       "libvirtd"
+      "dialout"
+      "tty"
     ];
 
   };
@@ -36,7 +38,7 @@ in
         allowUnfreePredicate = (_: true);
       };
 
-};
+    };
 
     # nixpkgs.config = import ../os/nixos-pkgs.nix;
     home.stateVersion = "24.05";

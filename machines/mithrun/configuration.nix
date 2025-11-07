@@ -23,7 +23,7 @@
       ../../services/nvidia.nix
       ../../services/nvidia-pcie-passthrough.nix
       ../../services/comms.nix
-      ../../services/kde.nix
+      ../../services/gnome.nix
       ../../services/sync.nix
       ../../services/python3.nix
     ];
@@ -94,7 +94,7 @@
       options = [ "zfsutil" "noatime" ];
     };
 
-  fileSystems."/home/alex/archive" =
+  fileSystems."/archive" =
     { device = "spool/archive";
       fsType = "zfs";
       options = [ "zfsutil" "noatime" ];
@@ -129,7 +129,6 @@
 
   # Set your time zone.
   time.timeZone = "US/Eastern";
-
   security.pam.loginLimits = [
 
     { domain = "@kvm"; item = "memlock"; type = "-"   ; value = "unlimited"; }
