@@ -6,12 +6,14 @@
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    vscode-server.url = "github:nix-community/nixos-vscode-server";
   };
 
   outputs = inputs@{ self
     , nixpkgs
     , nixpkgs-stable
     , home-manager
+    , vscode-server
     , ... }:
   let
 
@@ -41,6 +43,7 @@
         inherit self
           nixpkgs
           nixpkgs-stable
+          vscode-server
           home-manager;
       };
 
@@ -52,6 +55,7 @@
             upkgs = nixpkgs-stable.legacyPackages.${system};
           };
         }
+        vscode-server.nixosModules.default
         nixpkgs.nixosModules.notDetected
         {
           # nix.settings = {

@@ -9,7 +9,7 @@
     # pulseaudio.support32Bit = true;
   };
 
-  programs.river.enable = true;
+  # programs.river.enable = true;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true; # if not already enabled
@@ -22,7 +22,6 @@
 
   environment.systemPackages = with pkgs; [
       wl-clipboard
-      signal-desktop-bin
     ];
 
 }

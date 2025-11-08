@@ -12,7 +12,7 @@
     # Modesetting is required.
     modesetting.enable = true;
     prime = {
-        # sync.enable = true;
+        reverseSync.enable = true;
         offload.enable = true;
         offload.enableOffloadCmd = true;
         intelBusId = "PCI:0:2:0";
@@ -56,8 +56,10 @@
       extraPackages = with pkgs; [
 
         intel-media-driver # LIBVA_DRIVER_NAME=iHD
-        vaapiIntel # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
-        vaapiVdpau
+        # vaapiIntel # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
+        # vaapiVdpau
+        libva-vdpau-driver
+        intel-vaapi-driver
         libvdpau-va-gl
         vulkan-validation-layers
 

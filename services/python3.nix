@@ -2,7 +2,7 @@
 
 ## Thanks to https://www.reddit.com/r/NixOS/comments/1aq58xv/jupyter_and_python_on_nixos/
 {
-  # nixpkgs.config.cudaSupport = true;
+  nixpkgs.config.cudaSupport = true;
   environment.systemPackages = with pkgs; [
     (python313.withPackages (ps: with ps; [
       numpy # these two are
@@ -15,9 +15,9 @@
       pymongo
       psycopg2
       # plotly
-      torch
-      torchvision
-      torchaudio
+      # torch
+      # torchvision
+      # torchaudio
       python-dotenv
       notebook
       jupyter-core

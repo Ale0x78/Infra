@@ -6,7 +6,7 @@
     services = {
         syncthing = {
             settings.devices = {
-                "marcille" = {id = "Q43KN23-H6WC3PK-TAO3XGH-27DB73J-F6GGDH2-FL4AQGM-LPLKLP6-VPIIAA7"; }; 
+                "marcille" = {id = "REP2D47-NXPFV4N-HNVA3SY-OIERINY-7ITD4BX-YCHOSFK-Y2HX7SD-6I5MPQ4"; }; 
             };
             enable = true;
             openDefaultPorts = true;
@@ -17,7 +17,7 @@
             configDir = "/home/alex/.config/syncthing";  
             settings.folders = {
                 "Ravka" = {
-                    path = "/home/alex/Ravka";
+                    path = "/archive/Ravka";
                     devices = [ "marcille" ];
                 };
                 "Ambrosia" = {

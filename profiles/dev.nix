@@ -1,5 +1,13 @@
-{ config, lib, pkgs, home-manager, ... }:
+{ config, lib, pkgs, home-manager, vscode-server, ... }:
 {
+
+  services.ollama = {
+  enable = true;
+  host = "100.125.110.25";
+  acceleration = "cuda";
+  # models = "/archive/models";
+  };
+  services.vscode-server.enable = true;
   environment.systemPackages = with pkgs; [
       wget
       helix
@@ -11,8 +19,7 @@
       rustup
       go
       gopls
-      signal-desktop-bin
-      nodenv
+      just 
       nvfancontrol
       distrobox
       nixd

@@ -3,9 +3,9 @@
   environment.systemPackages = with pkgs; [
       binutils
       coreutils
-      apfs-fuse
       usbutils
       nodenv
+      signal-desktop
       tmux
       btop
       cowsay

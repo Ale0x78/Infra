@@ -1,4 +1,2 @@
-*.unsafe
-hostsecured
-/result
-result
+.DS_Store
+results

@@ -12,8 +12,9 @@
       ../../profiles/gaming.nix
       ../../profiles/thebasics.nix
       ../../profiles/virtual.nix
-      ../../profiles/hacking.nix
       ../../profiles/dev.nix
+      ../../profiles/web.nix
+      # ../../profiles/gamedev.nix
 
       ../../users/alex.nix
       ../../users/lila.nix
@@ -22,11 +23,10 @@
       ../../services/nvidia.nix
       ../../services/nvidia-pcie-passthrough.nix
       ../../services/comms.nix
-      ../../services/kde.nix
+      ../../services/gnome.nix
       ../../services/sync.nix
       ../../services/python3.nix
     ];
-
   networking.hostId = "d5abb711";
   specialisation."VFIO".configuration = {
    system.nixos.tags = [ "with-vfio" ];
@@ -41,29 +41,63 @@
   #     system = "x86_64-linux";
   # };
 
+
+# # Create datasets
+# zfs create zpool/root
+# zfs create spool/nix
+# zfs create zpool/var
+# zfs create zpool/home
+# zfs create spool/archive
+
+# # Mount root
+# mkdir -p /mnt
+# mount -t zfs zpool/root /mnt -o zfsutil
+
+# # Mount nix, var, home
+# mkdir /mnt/nix /mnt/var /mnt/home
+# mount -t zfs spool/nix /mnt/nix -o zfsutil
+# mount -t zfs zpool/var /mnt/var -o zfsutil
+# mount -t zfs spool/home /mnt/home -o zfsutil
+
+
+  nix.settings = {
+    substituters = [
+      "https://nix-community.cachix.org"
+    ];
+    trusted-public-keys = [
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+    ];
+  };
+
   systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
   fileSystems."/" =
     { device = "zpool/root";
       fsType = "zfs";
-      options = [ "zfsutil" ];
+      options = [ "zfsutil" "noatime" ];
     };
 
   fileSystems."/nix" =
     { device = "zpool/nix";
       fsType = "zfs";
-      options = [ "zfsutil" ];
+      options = [ "zfsutil" "noatime" ];
     };
 
   fileSystems."/var" =
     { device = "zpool/var";
       fsType = "zfs";
-      options = [ "zfsutil" ];
+      options = [ "zfsutil" "noatime" ];
     };
 
   fileSystems."/home" =
     { device = "zpool/home";
       fsType = "zfs";
-      options = [ "zfsutil" ];
+      options = [ "zfsutil" "noatime" ];
+    };
+
+  fileSystems."/archive" =
+    { device = "spool/archive";
+      fsType = "zfs";
+      options = [ "zfsutil" "noatime" ];
     };
 
   fileSystems."/boot" =
@@ -71,9 +105,13 @@
       fsType = "vfat";
     };
 
-  boot.zfs.devNodes = "/dev/disk/by-id/ata-TOSHIBA_HDWG780UZSVA_94G0A1QRFWAJ-part1";
+  boot.zfs.pools.spool.devNodes = "/dev/disk/by-id/ata-TOSHIBA_HDWG780UZSVA_94G0A1QRFWAJ-part1"; # Archive data
+  
+  boot.zfs.pools.zpool.devNodes = "/dev/disk/by-id/nvme-WD_BLACK_SN770_1TB_22405U800412_1-part2"; # Host OS
+  boot.kernelParams = [ "zfs.zfs_arc_max=6442450944" ]; # 6GB
 
-  boot.zfs.extraPools = [ "zpool" ];
+  
+  boot.zfs.extraPools = [ "zpool" "spool" ];
   hardware.bluetooth.enable = true; # enables support for Bluetooth
   hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
 
@@ -91,10 +129,6 @@
 
   # Set your time zone.
   time.timeZone = "US/Eastern";
-
-
-
-
   security.pam.loginLimits = [
 
     { domain = "@kvm"; item = "memlock"; type = "-"   ; value = "unlimited"; }

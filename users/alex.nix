@@ -18,6 +18,8 @@ in
       "audio"
       "docker"
       "libvirtd"
+      "dialout"
+      "tty"
     ];
 
   };
@@ -37,7 +39,7 @@ in
         allowUnfreePredicate = (_: true);
       };
 
-};
+    };
 
     # nixpkgs.config = import ../os/nixos-pkgs.nix;
     home.stateVersion = "24.05";
@@ -68,7 +70,6 @@ in
             qFlipper
             lutris
             protonup-qt
-            ryubing
             virt-manager
             texliveFull
           ];

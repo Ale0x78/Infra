@@ -13,6 +13,11 @@
         system = "aarch64-darwin";
         config.allowUnfree = true;
       };
+
+    zbar = pkgs.zbar.overrideAttrs (oldAttrs: {
+      postInstall = "mkdir -p $out/lib/; ln -nsf $lib/lib/libzbar.dylib $out/lib/";
+    });
+      
     in pkgs.buildEnv {
       name = "home-packages";
       paths = with pkgs; [
@@ -20,6 +25,7 @@
         # general tools
         git
         curl
+        envsubst
         wget
         nmap
         fish
@@ -30,26 +36,32 @@
         binutils
         coreutils
         fortune 
-        zbar
+        
         sshuttle
+        android-tools
         parallel
+        codeql
+        rbenv 
+
         podman-compose
-        poetry
-        pyenv
+        uv
+        container
+        kubectl
 
         # Dev stuff
         helix
         podman
-        nodejs
         rustup
         (pkgs.python313.withPackages (python-pkgs: with python-pkgs; [
           # select Python packages here
           pandas
           imageio
           brotli
+          beautifulsoup4
           requests
           podman
           scipy
+          rich
           imagehash
           seaborn
           zxing-cpp
@@ -61,19 +73,20 @@
           z3-solver
           pymongo
           psycopg2-binary
-          pyzbar
+          
           python-dotenv
           opencv4
           matplotlib
           # hdbscan
           numpy
-          pytorch
+          
         ]))
-        pgcli
+        # pgcli
         mongodb-tools
         go
         openconnect
         jdk
+        nodejs_24
         mitmproxy
         ffmpeg
         ripgrep
