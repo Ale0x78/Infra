@@ -36,7 +36,7 @@
         binutils
         coreutils
         fortune 
-        zbar
+        
         sshuttle
         android-tools
         parallel
@@ -61,6 +61,7 @@
           requests
           podman
           scipy
+          rich
           imagehash
           seaborn
           zxing-cpp
@@ -72,13 +73,13 @@
           z3-solver
           pymongo
           psycopg2-binary
-          pyzbar
+          
           python-dotenv
           opencv4
           matplotlib
           # hdbscan
           numpy
-          pytorch
+          
         ]))
         # pgcli
         mongodb-tools
