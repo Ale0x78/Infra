@@ -16,6 +16,7 @@ in
       "networkmanager" # this is actually in the nixos documentation on networkmanager
       "video"
       "audio"
+      "docker"
       "libvirtd"
     ];
 
@@ -67,7 +68,7 @@ in
             qFlipper
             lutris
             protonup-qt
-            ryujinx
+            ryubing
             virt-manager
             texliveFull
           ];
