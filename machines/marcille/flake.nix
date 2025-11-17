@@ -2,7 +2,7 @@
   inputs = {
     nixpkgs.url = "nixpkgs/nixpkgs-unstable";
     # devenv.url = "github:cachix/devenv/latest";
-    # nixstable.url = "nixpkgs/nixos";
+    nixstable.url = "nixpkgs/25.05-darwin";
   };
 
   outputs = { self, nixpkgs }: {
@@ -13,11 +13,15 @@
         system = "aarch64-darwin";
         config.allowUnfree = true;
       };
+      sbpkgs = import nixstable {
+        system = "aarch64-darwin";
+        config.allowUnfree = true;
+      };
 
     zbar = pkgs.zbar.overrideAttrs (oldAttrs: {
       postInstall = "mkdir -p $out/lib/; ln -nsf $lib/lib/libzbar.dylib $out/lib/";
     });
-      
+
     in pkgs.buildEnv {
       name = "home-packages";
       paths = with pkgs; [
@@ -28,20 +32,20 @@
         envsubst
         wget
         nmap
-        fish
+        sbpkgs.fish
         cowsay
         neovim
         ghidra-bin
         tmux
         binutils
         coreutils
-        fortune 
-        
+        fortune
+
         sshuttle
         android-tools
         parallel
         codeql
-        rbenv 
+        rbenv
 
         podman-compose
         uv
@@ -52,36 +56,36 @@
         helix
         podman
         rustup
-        (pkgs.python313.withPackages (python-pkgs: with python-pkgs; [
-          # select Python packages here
-          pandas
-          imageio
-          brotli
-          beautifulsoup4
-          requests
-          podman
-          scipy
-          rich
-          imagehash
-          seaborn
-          zxing-cpp
-          tiktoken
-          # tensorflow
-          zstandard
-          # pynput
-          docker
-          z3-solver
-          pymongo
-          psycopg2-binary
-          
-          python-dotenv
-          opencv4
-          matplotlib
-          # hdbscan
-          numpy
-          
-        ]))
-        # pgcli
+        # (pkgs.python313.withPackages (python-pkgs: with python-pkgs; [
+        #   # select Python packages here
+        #   pandas
+        #   imageio
+        #   brotli
+        #   beautifulsoup4
+        #   requests
+        #   podman
+        #   scipy
+        #   rich
+        #   imagehash
+        #   seaborn
+        #   zxing-cpp
+        #   tiktoken
+        #   # tensorflow
+        #   zstandard
+        #   # pynput
+        #   docker
+        #   z3-solver
+        #   pymongo
+        #   psycopg2-binary
+
+        #   python-dotenv
+        #   opencv4
+        #   matplotlib
+        #   # hdbscan
+        #   numpy
+
+        # ]))
+        pgcli
         mongodb-tools
         go
         openconnect
