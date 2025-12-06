@@ -19,7 +19,6 @@
     jetbrains.datagrip
     jetbrains.dataspell
     sshuttle
-    vscode
   ];
   # virtualisation.lxd.enable = true;
 
