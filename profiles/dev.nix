@@ -1,13 +1,12 @@
-{ config, lib, pkgs, home-manager, vscode-server, ... }:
+{ config, lib, pkgs, home-manager, ... }:
 {
 
-  services.ollama = {
-  enable = true;
-  host = "100.125.110.25";
-  acceleration = "cuda";
+  # services.ollama = {
+  # enable = true;
+  # host = "100.125.110.25";
+  # acceleration = "cuda";
   # models = "/archive/models";
-  };
-  services.vscode-server.enable = true;
+  # };
   environment.systemPackages = with pkgs; [
       wget
       helix
@@ -16,10 +15,11 @@
       gleam
       cmake
       gwe
+      uv
       rustup
       go
       gopls
-      just 
+      just
       nvfancontrol
       distrobox
       nixd

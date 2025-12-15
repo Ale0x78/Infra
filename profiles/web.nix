@@ -17,6 +17,6 @@
     # programs.firefox.package = pkgs.latest.firefox-nightly-bin;
     environment.systemPackages = with pkgs; [
         # firefox
-        brave
+        # brave
       ];
 }

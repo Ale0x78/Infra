@@ -5,7 +5,15 @@ mkTuple = lib.gvariant.mkTuple;
 in
 {
   programs.fish.enable = true;
+  # vscode-insider = (pkgs.vscode.override { isInsiders = true; }).overrideAttrs (oldAttrs: rec {
+  #   src = (builtins.fetchTarball {
+  #     url = "https://code.visualstudio.com/sha/download?build=insider&os=linux-x64";
+  #     sha256 = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+  #   });
+  #   version = "latest";
 
+  #   buildInputs = oldAttrs.buildInputs ++ [ pkgs.krb5 ];
+  # });
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.alex.isNormalUser = true;
   users.users.alex = {
@@ -16,7 +24,7 @@ in
       "networkmanager" # this is actually in the nixos documentation on networkmanager
       "video"
       "audio"
-      "docker"
+      "podman"
       "libvirtd"
       "dialout"
       "tty"
@@ -72,11 +80,14 @@ in
             protonup-qt
             virt-manager
             texliveFull
+            nil
+            vscode
+            # vscode-insider
           ];
       programs.git = {
         enable = true;
-        userName  = "Ale0x78";
-        userEmail = "anahape@ncsu.edu";
+        settings.user.name  = "Ale0x78";
+        settings.user.email = "anahape@ncsu.edu";
       };
       programs.fish = {
         enable = true;

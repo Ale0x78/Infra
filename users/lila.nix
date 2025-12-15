@@ -55,8 +55,10 @@ in
           ];
       programs.git = {
         enable = true;
-        userName  = "Lila";
-        userEmail = "lila@mithrun.local";
+        settings.user = {
+          name = "Lila";
+          email = "lila@mithrun.local";
+        };
       };
       programs.fish = {
         enable = true;
