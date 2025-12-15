@@ -2,10 +2,10 @@
   inputs = {
     nixpkgs.url = "nixpkgs/nixpkgs-unstable";
     # devenv.url = "github:cachix/devenv/latest";
-    nixstable.url = "nixpkgs/25.05-darwin";
+    nixstable.url = "nixpkgs/25.05";
   };
 
-  outputs = { self, nixpkgs }: {
+  outputs = { self, nixpkgs, nixstable }: {
     # packages.config.allowUnfree = true;
     packages."aarch64-darwin".default = let
       # pkgs = nixpkgs.legacyPackages."aarch64-darwin";
