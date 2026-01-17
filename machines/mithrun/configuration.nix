@@ -23,7 +23,7 @@
       ../../services/nvidia.nix
       ../../services/nvidia-pcie-passthrough.nix
       ../../services/comms.nix
-      ../../services/gnome.nix
+      ../../services/kde.nix
       ../../services/sync.nix
       ../../services/python3.nix
     ];
@@ -94,24 +94,24 @@
       options = [ "zfsutil" "noatime" ];
     };
 
-  fileSystems."/archive" =
-    { device = "spool/archive";
-      fsType = "zfs";
-      options = [ "zfsutil" "noatime" ];
-    };
+  # fileSystems."/archive" =
+  #   { device = "spool/archive";
+  #     fsType = "zfs";
+  #     options = [ "zfsutil" "noatime" ];
+  #   };
 
   fileSystems."/boot" =
     { device = "/dev/disk/by-label/BOOT";
       fsType = "vfat";
     };
 
-  boot.zfs.pools.spool.devNodes = "/dev/disk/by-id/ata-TOSHIBA_HDWG780UZSVA_94G0A1QRFWAJ-part1"; # Archive data
-  
-  boot.zfs.pools.zpool.devNodes = "/dev/disk/by-id/nvme-WD_BLACK_SN770_1TB_22405U800412_1-part2"; # Host OS
+  # boot.zfs.pools.spool.devNodes = "/dev/disk/by-id/ata-TOSHIBA_HDWG780UZSVA_94G0A1QRFWAJ-part1"; # Archive data
+
+  # boot.zfs.pools.zpool.devNodes = "/dev/disk/by-id/nvme-WD_BLACK_SN770_1TB_22405U800412_1-part2"; # Host OS
   boot.kernelParams = [ "zfs.zfs_arc_max=6442450944" ]; # 6GB
 
-  
-  boot.zfs.extraPools = [ "zpool" "spool" ];
+
+  boot.zfs.extraPools = [ "zpool" ];
   hardware.bluetooth.enable = true; # enables support for Bluetooth
   hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
 
