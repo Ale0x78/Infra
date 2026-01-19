@@ -39,6 +39,9 @@
         tmux
         binutils
         coreutils
+        nixd
+        nil
+        zellij
         fortune
 
         sshuttle
