@@ -1,23 +1,28 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 ## This is directly from the NixOS wiki
 # https://nixos.wiki/wiki/Nvidia
 {
   boot.extraModprobeConfig = "options kvm_intel nested=1";
 
-  services.xserver.videoDrivers = ["nvidia"];
+  services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia-container-toolkit.enable = true;
   hardware.nvidia = {
 
     # Modesetting is required.
     modesetting.enable = true;
     prime = {
-        reverseSync.enable = true;
-        offload.enable = true;
-        offload.enableOffloadCmd = true;
-        intelBusId = "PCI:0:2:0";
-        nvidiaBusId = "PCI:1:0:0";
-      };
+      reverseSync.enable = true;
+      offload.enable = true;
+      offload.enableOffloadCmd = true;
+      intelBusId = "PCI:0:2:0";
+      nvidiaBusId = "PCI:1:0:0";
+    };
     # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
     # Enable this if you have graphical corruption issues or application crashes after waking
     # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead
@@ -44,8 +49,6 @@
     CLUTTER_VBLANK = "true";
   };
 
-
-
   # Direct Rendering Infrastructure (DRI) support, both for 32-bit and 64-bit, and
   # Make sure opengl is enabled
   hardware = {
@@ -66,7 +69,6 @@
       ];
     };
   };
-
 
   environment.variables = {
     GBM_BACKEND = "nvidia-drm";

@@ -14,7 +14,7 @@
     neovide
     lmstudio
     webex
-    jetbrains.idea-ultimate
+    jetbrains.idea
     jetbrains.goland
     jetbrains.datagrip
     jetbrains.dataspell
@@ -23,7 +23,7 @@
   # virtualisation.lxd.enable = true;
 
   # users.users.alex = {
-    # extraGroups = [ "lxd" ];
+  # extraGroups = [ "lxd" ];
   # };
   # virtualisation.lxd.ui.enable = true;
   # virtualisation.lxd.zfsSupport = true;

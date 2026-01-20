@@ -59,7 +59,6 @@ in
             podman-compose
             lunar-client
             prismlauncher
-            nexusmods-app
             discord
             joycond
             starship
